@@ -1,0 +1,112 @@
+import 'package:attendance/core/utils/assets.dart';
+import 'package:attendance/feature/home/presentation/widgets/all_lecture_list_view.dart';
+import 'package:flutter/material.dart';
+
+class HomeViewBody extends StatelessWidget {
+  const HomeViewBody({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Image.asset(
+          Assets.waveTop,
+          width: MediaQuery.of(context).size.width,
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            children: [
+              Text(
+                'Welcome',
+                style: TextStyle(fontSize: 20),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'م/ محمود راضي',
+                    style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  )),
+              IconButton(
+                onPressed: () {},
+                icon: Container(
+                    height: 30,
+                    width: 30,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: const Icon(
+                      Icons.logout_outlined,
+                      color: Colors.white,
+                    )),
+              ),
+            ],
+          ),
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Divider(),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'My Lecture',
+                style: TextStyle(fontSize: 20),
+              ),
+              IconButton(
+                style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll<Color>(
+                    Color(0xff027DFE),
+                  ),
+                ),
+                onPressed: () {},
+                icon: const SizedBox(
+                  width: 120,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Add Lecture',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        const AllLectureListView(),
+        Image.asset(Assets.waveBottom),
+      ],
+    );
+  }
+}
