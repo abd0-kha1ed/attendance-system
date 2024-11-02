@@ -1,4 +1,3 @@
-import 'package:attendance/feature/home/presentation/view/home_view.dart';
 import 'package:attendance/feature/login/presentation/view/login_view.dart';
 import 'package:attendance/feature/splash/presentation/view/splash_view.dart';
 import 'package:attendance/feature/splash/presentation/view/teacher_view.dart';

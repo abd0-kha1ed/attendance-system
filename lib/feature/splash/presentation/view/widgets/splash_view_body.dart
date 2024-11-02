@@ -1,4 +1,5 @@
 import 'package:attendance/core/utils/assets.dart';
+import 'package:attendance/feature/home/presentation/view/home_view.dart';
 
 import 'package:attendance/feature/splash/presentation/view/teacher_view.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
         context,
         MaterialPageRoute(
           builder: (context) {
-            return const TeacherView();
+            return const HomeView();
           },
         ),
       );

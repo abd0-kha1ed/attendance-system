@@ -88,11 +88,11 @@ class HomeViewBody extends StatelessWidget {
                         color: Colors.white,
                       ),
                       SizedBox(
-                        width: 10,
+                        width: 4,
                       ),
                       Text(
                         'Add Lecture',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.white, fontSize: 14),
                       ),
                     ],
                   ),
