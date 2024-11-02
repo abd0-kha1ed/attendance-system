@@ -6,13 +6,11 @@ void main() {
 }
 
 class Attendance extends StatelessWidget {
-const Attendance({ super.key });
-@override
-Widget build(BuildContext context) {
-return MaterialApp.router(
-routerConfig: AppRouters.router,
-
-);
-  
-}
+  const Attendance({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      routerConfig: AppRouters.router,
+    );
+  }
 }
