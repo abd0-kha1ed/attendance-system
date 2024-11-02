@@ -1,6 +1,6 @@
 import 'package:attendance/core/utils/app_routers.dart';
 import 'package:attendance/core/utils/assets.dart';
-
+import 'package:attendance/feature/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -57,7 +57,15 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void navigateToHomeView() {
     Future.delayed(const Duration(seconds: 3), () {
-      GoRouter.of(context).push(AppRouters.kHomeView);
+      Navigator.push(
+        // ignore: use_build_context_synchronously
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return const HomeView();
+          },
+        ),
+      );
     });
   }
 
