@@ -1,4 +1,5 @@
 import 'package:attendance/core/utils/assets.dart';
+import 'package:attendance/feature/login/presentation/view/login_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -17,7 +18,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void initState() {
     super.initState();
     initSlidingAnimation();
-    // navigateToHomeView();
+    navigateToHomeView();
   }
 
   @override
@@ -39,8 +40,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
         children: [
           Image.asset(
             Assets.logo,
-            height: 200,
-            width: 250,
+            
           ),
           const SizedBox(height: 20),
           const SizedBox(height: 40),
@@ -54,17 +54,18 @@ class _SplashViewBodyState extends State<SplashViewBody>
     );
   }
 
-  // void navigateToHomeView() {
-  //   Future.delayed(const Duration(seconds: 3), () {
-  //     Navigator.push(context,
-  //       MaterialPageRoute(
-  //         builder: (context) {
-  //           return const HomeView();
-  //         },
-  //       ),
-  //     );
-  //   });
-  // }
+  void navigateToHomeView() {
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return const LoginView();
+          },
+        ),
+      );
+    });
+  }
 
   void initSlidingAnimation() {
     animationController =
