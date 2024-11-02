@@ -1,7 +1,8 @@
 import 'package:attendance/constant.dart';
 import 'package:attendance/core/widgets/custom_icon_button.dart';
-import 'package:attendance/feature/splash/presentation/view/widgets/whats_phone.dart';
+import 'package:attendance/core/widgets/whats_phone.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class TeacherViewBody extends StatelessWidget {
   const TeacherViewBody({
@@ -12,10 +13,15 @@ class TeacherViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(
-          Icons.arrow_circle_left_rounded,
-          color: Colors.white,
-          size: 40,
+        leading: IconButton(
+          onPressed: () {
+            GoRouter.of(context).pop();
+          },
+          icon: const Icon(
+            Icons.arrow_circle_left_rounded,
+            color: Colors.white,
+            size: 40,
+          ),
         ),
         backgroundColor: kappbarcolor,
         centerTitle: true,
@@ -48,7 +54,7 @@ class TeacherViewBody extends StatelessWidget {
                             children: [
                               Text('Name'),
                               SizedBox(
-                                width: 230,
+                                // width: 230,
                                 child: Text(
                                   'mahmoudahmedhsn@gmail.com',
                                   maxLines: 2,

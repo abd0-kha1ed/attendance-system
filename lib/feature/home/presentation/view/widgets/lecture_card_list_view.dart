@@ -1,4 +1,4 @@
-import 'package:attendance/feature/home/presentation/widgets/lecture_card.dart';
+import 'package:attendance/feature/home/presentation/view/widgets/lecture_card.dart';
 import 'package:flutter/material.dart';
 
 class LectureCardListView extends StatelessWidget {

@@ -1,6 +1,8 @@
+import 'package:attendance/core/utils/app_routers.dart';
 import 'package:attendance/core/utils/assets.dart';
-import 'package:attendance/feature/home/presentation/widgets/all_lecture_list_view.dart';
+import 'package:attendance/feature/home/presentation/view/widgets/all_lecture_list_view.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -30,7 +32,9 @@ class HomeViewBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    GoRouter.of(context).push(AppRouters.kTeacherView);
+                  },
                   child: const Text(
                     'م/ محمود راضي',
                     style: TextStyle(

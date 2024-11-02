@@ -1,4 +1,4 @@
-import 'package:attendance/feature/splash/presentation/view/widgets/teacher_view_body.dart';
+import 'package:attendance/feature/teacher/presentation/view/widgets/teacher_view_body.dart';
 import 'package:flutter/material.dart';
 
 class TeacherView extends StatelessWidget {

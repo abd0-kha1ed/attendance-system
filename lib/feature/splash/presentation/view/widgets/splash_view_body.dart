@@ -1,11 +1,8 @@
+import 'package:attendance/core/utils/app_routers.dart';
 import 'package:attendance/core/utils/assets.dart';
-<<<<<<< HEAD
 
-import 'package:attendance/feature/splash/presentation/view/teacher_view.dart';
-=======
-import 'package:attendance/feature/home/presentation/view/home_view.dart';
->>>>>>> adc660683a0fbb8f88f4101b7a66c30a7de908b9
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -60,19 +57,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void navigateToHomeView() {
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.push(
-        // ignore: use_build_context_synchronously
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-<<<<<<< HEAD
-            return const TeacherView();
-=======
-            return const HomeView();
->>>>>>> adc660683a0fbb8f88f4101b7a66c30a7de908b9
-          },
-        ),
-      );
+      GoRouter.of(context).push(AppRouters.kHomeView);
     });
   }
 
