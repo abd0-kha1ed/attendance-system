@@ -1,10 +1,6 @@
 import 'package:attendance/core/utils/assets.dart';
-<<<<<<< HEAD
 
 import 'package:attendance/feature/splash/presentation/view/teacher_view.dart';
-=======
-import 'package:attendance/feature/home/presentation/view/home_view.dart';
->>>>>>> adc660683a0fbb8f88f4101b7a66c30a7de908b9
 import 'package:flutter/material.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -65,11 +61,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
         context,
         MaterialPageRoute(
           builder: (context) {
-<<<<<<< HEAD
             return const TeacherView();
-=======
-            return const HomeView();
->>>>>>> adc660683a0fbb8f88f4101b7a66c30a7de908b9
           },
         ),
       );
