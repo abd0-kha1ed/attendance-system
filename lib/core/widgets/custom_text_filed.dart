@@ -17,6 +17,7 @@ class CustomTextField extends StatelessWidget {
         if (value!.isEmpty) {
           return 'This field cannot be empty';
         }
+        return null;
       },
       decoration: InputDecoration(
         suffixIcon: iconButton,
