@@ -40,7 +40,6 @@ class _SplashViewBodyState extends State<SplashViewBody>
         children: [
           Image.asset(
             Assets.logo,
-            
           ),
           const SizedBox(height: 20),
           const SizedBox(height: 40),
@@ -57,6 +56,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void navigateToHomeView() {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.push(
+        // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(
           builder: (context) {
