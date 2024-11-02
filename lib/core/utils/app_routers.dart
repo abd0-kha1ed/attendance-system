@@ -6,6 +6,7 @@ abstract class AppRouters {
     GoRoute(
       path: '/',
       builder: (context, state) => const SplashView(),
-    )
+    ),
+    
   ]);
 }
