@@ -17,7 +17,7 @@ class CustomLiftArrow extends StatelessWidget {
         GoRouter.of(context).pop();
       },
       icon: Image.asset(
-        Assets.leftarrow,
+        Assets.leftArrow,
         color: colorIcon,
         scale: 0.7,
       ),
