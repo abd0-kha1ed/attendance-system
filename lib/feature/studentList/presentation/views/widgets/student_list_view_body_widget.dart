@@ -1,8 +1,10 @@
 import 'package:attendance/constant.dart';
+import 'package:attendance/core/utils/app_routers.dart';
 import 'package:attendance/core/widgets/custom_icon_button.dart';
 import 'package:attendance/core/widgets/whats_phone.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/custom_student_name_id.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class StudentListviewBodyWidget extends StatelessWidget {
   const StudentListviewBodyWidget({
@@ -21,7 +23,9 @@ class StudentListviewBodyWidget extends StatelessWidget {
               height: 30,
             ),
             CustomIconButton(
-              onPressed: () {},
+              onPressed: () {
+                GoRouter.of(context).push(AppRouters.kEditExistingStudent);
+              },
               icon: const Icon(
                 Icons.edit,
                 color: kAppBarColor,

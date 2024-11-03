@@ -24,7 +24,7 @@ class FeaturedStudentsView extends StatelessWidget {
           ),
         ),
       ),
-      body: FeaturedStudentsViewBody(),
+      body: const FeaturedStudentsViewBody(),
     );
   }
 }
