@@ -24,7 +24,7 @@ class StudentListView extends StatelessWidget {
           ),
         ),
       ),
-      body: StudentListViewBody(),
+      body: const StudentListViewBody(),
     );
   }
 }
