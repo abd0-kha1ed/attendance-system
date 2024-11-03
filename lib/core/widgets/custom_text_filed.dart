@@ -4,15 +4,20 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
       {super.key,
-      required this.labelText,
+      this.labelText,
       this.iconButton,
-      this.obscureText = false});
-  final String labelText;
+      this.obscureText = false,
+      this.enabled = true,
+      this.hintText});
+  final String? labelText;
   final IconButton? iconButton;
   final bool obscureText;
+  final bool enabled;
+  final String? hintText;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: enabled,
       obscureText: obscureText,
       validator: (value) {
         if (value!.isEmpty) {
@@ -21,6 +26,8 @@ class CustomTextField extends StatelessWidget {
         return null;
       },
       decoration: InputDecoration(
+        hintText: hintText,
+        hintStyle: const TextStyle(fontWeight: FontWeight.bold),
         suffixIcon: iconButton,
         labelText: labelText,
         border: OutlineInputBorder(
