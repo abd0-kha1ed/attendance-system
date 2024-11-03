@@ -1,50 +1,69 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 
-void main() => runApp(DropdownExampleApp());
+// class CustomDropDown extends StatefulWidget {
+//   @override
+//   _CustomDropDownState createState() => _CustomDropDownState();
+// }
 
-class DropdownExampleApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DropdownExample(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
+// class _CustomDropDownState extends State<CustomDropDown> {
+//   String selectedRegion = 'Region'; // Default initial value
 
-class DropdownExample extends StatefulWidget {
-  @override
-  _DropdownExampleState createState() => _DropdownExampleState();
-}
+//   List<String> regions = [
+//     'Abo hamad',
+//     'Zagazig',
+//     '10th of ramadan',
+//     'Dyarb negm',
+//     'Minya el qamh',
+//     'Almogaze',
+//     'Shnbara',
+//   ];
 
-class _DropdownExampleState extends State<DropdownExample> {
-  String selectedGrade = '3rd Secondary'; // Initial value
-  String selectedRegion = 'Region'; // Initial value
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: DropdownButton<String>(
-          value: selectedGrade,
-          items: <String>['3rd Secondary', '2nd Secondary', '1st Secondary']
-              .map((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
-          onChanged: (String? newValue) {
-            setState(() {
-              selectedGrade = newValue!;
-            });
-          },
-          isExpanded: true,
-          dropdownColor: Colors.white, // Dropdown background color
-          style: TextStyle(color: Colors.black), // Text color
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Region Dropdown Example"),
+//       ),
+//       body: Center(
+//         child: Padding(
+//           padding: const EdgeInsets.all(16.0),
+//           child: Column(
+//             mainAxisSize: MainAxisSize.min,
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Text(
+//                 'Region',
+//                 style: TextStyle(fontSize: 16),
+//               ),
+//               SizedBox(height: 8),
+//               DropdownButton<String>(
+//                 value: selectedRegion,
+//                 items: regions.map((String value) {
+//                   return DropdownMenuItem<String>(
+//                     value: value,
+//                     child: Text(value),
+//                   );
+//                 }).toList(),
+//                 onChanged: (String? newValue) {
+//                   setState(() {
+//                     selectedRegion = newValue!;
+//                   });
+//                 },
+//                 isExpanded: true,
+//                 dropdownColor:
+//                     Colors.white, // Background color of dropdown menu
+//                 style: TextStyle(color: Colors.black), // Text color
+//                 iconEnabledColor: Colors.blue, // Dropdown arrow color
+//                 underline: Container(
+//                   height: 2,
+//                   color: Colors.blue, // Underline color
+//                 ),
+//                 iconSize: 24,
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

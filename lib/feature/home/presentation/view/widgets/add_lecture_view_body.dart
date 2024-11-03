@@ -1,5 +1,5 @@
 import 'package:attendance/constant.dart';
-import 'package:attendance/core/widgets/custom_drop_down.dart';
+
 import 'package:flutter/material.dart';
 
 class AddLectureViewBody extends StatefulWidget {
@@ -67,7 +67,7 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
           height: 40,
         ),
         const Text('grade'),
-        Expanded(child: DropdownExampleApp())
+        // CustomDropDown()
       ],
     );
   }

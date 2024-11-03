@@ -119,45 +119,49 @@ class LectureControlPanelViewBody extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          const Column(
+          Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomControlPanel(
+                    onTap: () {},
                     title: 'Edit Lecture',
                     icon: Icons.edit,
-                    background: Color(0xff042B59),
+                    background: const Color(0xff042B59),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 30,
                   ),
                   CustomControlPanel(
+                    onTap: () {},
                     title: 'Students List',
                     icon: Icons.group,
-                    background: Color(0xff0453b0),
+                    background: const Color(0xff0453b0),
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomControlPanel(
+                    onTap: () {},
                     title: 'Absence Report',
                     icon: Icons.group,
-                    background: Color(0xfff44236),
+                    background: const Color(0xfff44236),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 30,
                   ),
                   CustomControlPanel(
+                    onTap: () {},
                     title: 'Featured Students',
                     icon: Icons.star,
                     iconColor: Colors.yellow,
-                    background: Color(0xff042B59),
+                    background: const Color(0xff042B59),
                   ),
                 ],
               )
