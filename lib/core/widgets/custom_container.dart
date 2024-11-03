@@ -12,7 +12,7 @@ class CustomContainer extends StatelessWidget {
       child: Container(
         height: 60,
         decoration: BoxDecoration(
-          color: kLogocolor,
+          color: kLogoColor,
           borderRadius: BorderRadius.circular(12),
         ),
         width: MediaQuery.of(context).size.width,
