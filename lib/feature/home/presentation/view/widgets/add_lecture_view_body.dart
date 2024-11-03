@@ -3,7 +3,7 @@ import 'package:attendance/core/widgets/custom_drop_down.dart';
 import 'package:flutter/material.dart';
 
 class AddLectureViewBody extends StatefulWidget {
-  const AddLectureViewBody({Key? key}) : super(key: key);
+  const AddLectureViewBody({super.key});
 
   @override
   State<AddLectureViewBody> createState() => _AddLectureViewBodyState();
@@ -16,19 +16,19 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Row(
           children: [
-            Text('Region'),
-            SizedBox(width: 16),
+            const Text('Region'),
+            const SizedBox(width: 16),
             ToggleButtons(
-              color: kappbarcolor,
-              borderColor: kappbarcolor,
-              selectedBorderColor: kappbarcolor,
+              color: kAppBarColor,
+              borderColor: kAppBarColor,
+              selectedBorderColor: kAppBarColor,
               selectedColor: Colors.white,
-              fillColor: kappbarcolor,
+              fillColor: kAppBarColor,
               borderRadius: BorderRadius.circular(28),
               isSelected: isSelected,
               onPressed: (int index) {
@@ -66,7 +66,7 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
         const SizedBox(
           height: 40,
         ),
-        Text('grade'),
+        const Text('grade'),
         Expanded(child: DropdownExampleApp())
       ],
     );
