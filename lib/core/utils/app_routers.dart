@@ -1,3 +1,4 @@
+import 'package:attendance/feature/absence_report/presentation/view/absence_report_view.dart';
 import 'package:attendance/feature/home/presentation/view/add_lecture_view.dart';
 import 'package:attendance/feature/home/presentation/view/home_view.dart';
 import 'package:attendance/feature/home/presentation/view/lecture_control_panel_view.dart';
@@ -12,6 +13,7 @@ abstract class AppRouters {
   static const kHomeView = '/homeView';
   static const kLectureControlPanelView = '/lectureControlPanelView';
   static const kAddLectureView = '/addLectureView';
+  static const kAbsenceReportView = '/absenceReportView';
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -37,6 +39,10 @@ abstract class AppRouters {
     GoRoute(
       path: kAddLectureView,
       builder: (context, state) => const AddLectureView(),
-    )
+    ),
+    GoRoute(
+      path: kAbsenceReportView,
+      builder: (context, state) => const AbsenceReportView(),
+    ),
   ]);
 }

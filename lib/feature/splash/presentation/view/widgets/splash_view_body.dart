@@ -40,8 +40,9 @@ class _SplashViewBodyState extends State<SplashViewBody>
         children: [
           Image.asset(
             Assets.logo,
+            height: MediaQuery.of(context).size.height * 0.7,
+            width: MediaQuery.of(context).size.width * 0.1,
           ),
-          const SizedBox(height: 20),
           const SizedBox(height: 40),
           const Center(
             child: CircularProgressIndicator(
