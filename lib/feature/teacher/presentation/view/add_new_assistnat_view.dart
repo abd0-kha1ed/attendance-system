@@ -22,7 +22,7 @@ class AddNewAssistnatView extends StatelessWidget {
           ),
         ),
       ),
-      body: const AddNewAssistantBody(),
+      body: AddNewAssistantBody(),
     );
   }
 }
