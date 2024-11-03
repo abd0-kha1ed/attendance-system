@@ -63,7 +63,7 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 40,
         ),
         Text('grade'),
