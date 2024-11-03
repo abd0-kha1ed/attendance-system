@@ -12,17 +12,20 @@ class CustomLiftArrow extends StatelessWidget {
   final Color backgroundColor;
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        GoRouter.of(context).pop();
-      },
-      icon: Image.asset(
-        Assets.leftArrow,
-        color: colorIcon,
-        scale: 0.7,
-      ),
-      style: ButtonStyle(
-        backgroundColor: WidgetStatePropertyAll<Color>(backgroundColor),
+    return SizedBox(
+      height: 30,
+      width: 30,
+      child: IconButton(
+        onPressed: () {
+          GoRouter.of(context).pop();
+        },
+        icon: Image.asset(
+          Assets.leftArrow,
+          color: colorIcon,
+        ),
+        style: ButtonStyle(
+          backgroundColor: WidgetStatePropertyAll<Color>(backgroundColor),
+        ),
       ),
     );
   }

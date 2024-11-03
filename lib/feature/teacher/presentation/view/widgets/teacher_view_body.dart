@@ -13,15 +13,21 @@ class TeacherViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: CustomLiftArrow(
-          colorIcon: Colors.black,
-          backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          onPressed: () {},
+          icon: const CustomLiftArrow(
+            colorIcon: Colors.black,
+            backgroundColor: Colors.white,
+          ),
         ),
         backgroundColor: kAppBarColor,
         centerTitle: true,
         title: const Text(
           'My Assistants',
-          style: TextStyle(color: Colors.white, fontSize: 25),
+          style: TextStyle(
+            color: Colors.white,
+          ),
         ),
       ),
       body: Column(
