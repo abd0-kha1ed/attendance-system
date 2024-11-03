@@ -26,33 +26,23 @@ class _DropdownExampleState extends State<DropdownExample> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Grade Dropdown
-
-            DropdownButton<String>(
-              value: selectedGrade,
-              items: <String>['3rd Secondary', '2nd Secondary', '1st Secondary']
-                  .map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  selectedGrade = newValue!;
-                });
-              },
-              isExpanded: false,
-              dropdownColor: Colors.white, // Dropdown background color
-              style: TextStyle(color: Colors.black), // Text color
-            ),
-            SizedBox(height: 16),
-
-            // Region Dropdown
-          ],
+        child: DropdownButton<String>(
+          value: selectedGrade,
+          items: <String>['3rd Secondary', '2nd Secondary', '1st Secondary']
+              .map((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+          onChanged: (String? newValue) {
+            setState(() {
+              selectedGrade = newValue!;
+            });
+          },
+          isExpanded: true,
+          dropdownColor: Colors.white, // Dropdown background color
+          style: TextStyle(color: Colors.black), // Text color
         ),
       ),
     );
