@@ -136,7 +136,9 @@ class LectureControlPanelViewBody extends StatelessWidget {
                     width: 30,
                   ),
                   CustomControlPanel(
-                    onTap: () {},
+                    onTap: () {
+                      GoRouter.of(context).push(AppRouters.kStudentListView);
+                    },
                     title: 'Students List',
                     icon: Icons.group,
                     background: const Color(0xff0453b0),
@@ -161,7 +163,10 @@ class LectureControlPanelViewBody extends StatelessWidget {
                     width: 30,
                   ),
                   CustomControlPanel(
-                    onTap: () {},
+                    onTap: () {
+                      GoRouter.of(context)
+                          .push(AppRouters.kFeatureStudenstView);
+                    },
                     title: 'Featured Students',
                     icon: Icons.star,
                     iconColor: Colors.yellow,

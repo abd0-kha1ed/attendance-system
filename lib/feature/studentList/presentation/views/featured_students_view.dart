@@ -1,17 +1,17 @@
 import 'package:attendance/constant.dart';
 import 'package:attendance/core/widgets/custom_lift_arrow.dart';
-import 'package:attendance/feature/studentList/presentation/views/widgets/student_list_view_body.dart';
+import 'package:attendance/feature/studentList/presentation/views/widgets/featured_students_view_body.dart';
 import 'package:flutter/material.dart';
 
-class StudentListView extends StatelessWidget {
-  const StudentListView({super.key});
+class FeaturedStudentsView extends StatelessWidget {
+  const FeaturedStudentsView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
-          'Students List',
+          'Feature Students',
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -24,7 +24,7 @@ class StudentListView extends StatelessWidget {
           ),
         ),
       ),
-      body: StudentListViewBody(),
+      body: FeaturedStudentsViewBody(),
     );
   }
 }
