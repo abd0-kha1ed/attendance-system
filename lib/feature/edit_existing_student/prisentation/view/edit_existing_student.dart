@@ -1,4 +1,5 @@
 import 'package:attendance/core/widgets/custom_lift_arrow.dart';
+import 'package:attendance/feature/edit_existing_student/prisentation/view/widgets/edit_existing_student_body.dart';
 import 'package:flutter/material.dart';
 
 class EditExistingStudent extends StatelessWidget {
@@ -21,6 +22,7 @@ class EditExistingStudent extends StatelessWidget {
           ),
         ),
       ),
+      body: EditExistingStudentbody(),
     );
   }
 }
