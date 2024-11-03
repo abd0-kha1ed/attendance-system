@@ -43,18 +43,13 @@ class HomeViewBody extends StatelessWidget {
                         color: Colors.black),
                   )),
               IconButton(
+                style: const ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.red)),
                 onPressed: () {},
-                icon: Container(
-                    height: 30,
-                    width: 30,
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: const Icon(
-                      Icons.logout_outlined,
-                      color: Colors.white,
-                    )),
+                icon: const Icon(
+                  Icons.logout_outlined,
+                  color: Colors.white,
+                ),
               ),
             ],
           ),

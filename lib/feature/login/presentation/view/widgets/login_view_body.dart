@@ -26,7 +26,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           const Icon(
             Icons.school,
             size: 120,
-            color: kLogocolor,
+            color: kLogoColor,
           ),
           const SizedBox(
             height: 20,
@@ -42,7 +42,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           ),
           Center(
             child: ToggleButtons(
-              color: kLogocolor,
+              color: kLogoColor,
               borderColor: Colors.blue,
               selectedBorderColor: Colors.blue,
               selectedColor: Colors.white,

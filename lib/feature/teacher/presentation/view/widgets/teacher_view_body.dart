@@ -23,7 +23,7 @@ class TeacherViewBody extends StatelessWidget {
             size: 40,
           ),
         ),
-        backgroundColor: kappbarcolor,
+        backgroundColor: kAppBarColor,
         centerTitle: true,
         title: const Text(
           'My Assistants',
