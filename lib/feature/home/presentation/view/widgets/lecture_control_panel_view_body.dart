@@ -1,5 +1,7 @@
+import 'package:attendance/core/utils/app_routers.dart';
 import 'package:attendance/feature/home/presentation/view/widgets/custom_control_panel.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LectureControlPanelViewBody extends StatelessWidget {
   const LectureControlPanelViewBody({super.key});
@@ -134,7 +136,9 @@ class LectureControlPanelViewBody extends StatelessWidget {
                     width: 30,
                   ),
                   CustomControlPanel(
-                    onTap: () {},
+                    onTap: () {
+                      GoRouter.of(context).push(AppRouters.kStudentListView);
+                    },
                     title: 'Students List',
                     icon: Icons.group,
                     background: const Color(0xff0453b0),
