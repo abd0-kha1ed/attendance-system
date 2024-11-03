@@ -81,7 +81,10 @@ class HomeViewBody extends StatelessWidget {
                     Color(0xff027DFE),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  GoRouter.of(context).push(AppRouters.kAddLectureView);
+                  // GoRouter.of(context).push(AppRouters.kTeacherView);
+                },
                 icon: const SizedBox(
                   width: 120,
                   child: Row(

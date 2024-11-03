@@ -1,3 +1,4 @@
+import 'package:attendance/feature/home/presentation/view/add_lecture_view.dart';
 import 'package:attendance/feature/home/presentation/view/home_view.dart';
 import 'package:attendance/feature/login/presentation/view/login_view.dart';
 import 'package:attendance/feature/splash/presentation/view/splash_view.dart';
@@ -8,6 +9,7 @@ abstract class AppRouters {
   static const kLoginView = '/LoginView';
   static const kTeacherView = '/TeacherView';
   static const kHomeView = '/homeView';
+  static const kAddLectureView = '/AddLectureView';
   static final router = GoRouter(routes: [
     GoRoute(
       path: '/',
@@ -21,9 +23,13 @@ abstract class AppRouters {
       path: kTeacherView,
       builder: (context, state) => const TeacherView(),
     ),
-GoRoute(
+    GoRoute(
       path: kHomeView,
       builder: (context, state) => const HomeView(),
-    )
+    ),
+    GoRoute(
+      path: kAddLectureView,
+      builder: (context, state) => const AddLectureView(),
+    ),
   ]);
 }
