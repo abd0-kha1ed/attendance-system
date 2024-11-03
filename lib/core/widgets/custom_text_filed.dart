@@ -1,3 +1,4 @@
+import 'package:attendance/constant.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -23,11 +24,11 @@ class CustomTextField extends StatelessWidget {
         suffixIcon: iconButton,
         labelText: labelText,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(8),
         ),
         focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.black),
-            borderRadius: BorderRadius.circular(12)),
+            borderSide: const BorderSide(color: kAppBarColor),
+            borderRadius: BorderRadius.circular(8)),
       ),
     );
   }

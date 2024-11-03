@@ -1,4 +1,5 @@
 import 'package:attendance/core/widgets/custom_lift_arrow.dart';
+import 'package:attendance/feature/absence_report/presentation/view/widgets/absence_report_view_body.dart';
 import 'package:flutter/material.dart';
 
 class AbsenceReportView extends StatelessWidget {
@@ -7,6 +8,7 @@ class AbsenceReportView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xff042B59),
         title: const Text(
           'Absence Report',
           style: TextStyle(color: Colors.white),
@@ -23,15 +25,4 @@ class AbsenceReportView extends StatelessWidget {
       body: const AbsenceReportViewBody(),
     );
   }
-}
-
-class AbsenceReportViewBody extends StatelessWidget {
-const AbsenceReportViewBody({ super.key });
-@override
-Widget build(BuildContext context) {
-return Container(
-
-
-);
-}
 }

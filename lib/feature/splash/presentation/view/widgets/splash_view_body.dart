@@ -23,6 +23,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   @override
   void setState(VoidCallback fn) {
+    // ignore: unused_element
     void dispose() {
       super.dispose();
       animationController.dispose();

@@ -4,6 +4,7 @@ import 'package:attendance/feature/home/presentation/view/home_view.dart';
 import 'package:attendance/feature/home/presentation/view/lecture_control_panel_view.dart';
 import 'package:attendance/feature/login/presentation/view/login_view.dart';
 import 'package:attendance/feature/splash/presentation/view/splash_view.dart';
+import 'package:attendance/feature/studentList/presentation/views/student_list_view.dart';
 import 'package:attendance/feature/teacher/presentation/view/teacher_view.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,6 +15,7 @@ abstract class AppRouters {
   static const kLectureControlPanelView = '/lectureControlPanelView';
   static const kAddLectureView = '/addLectureView';
   static const kAbsenceReportView = '/absenceReportView';
+  static const kStudentListView = '/StudentListView';
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -44,5 +46,9 @@ abstract class AppRouters {
       path: kAbsenceReportView,
       builder: (context, state) => const AbsenceReportView(),
     ),
+    // GoRoute(
+    //   path: kStudentListView,
+    //   builder: (context, state) => const StudentListView(),
+    // ),
   ]);
 }
