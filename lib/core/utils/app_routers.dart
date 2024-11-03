@@ -17,7 +17,7 @@ abstract class AppRouters {
   static const kAddLectureView = '/addLectureView';
   static const kAbsenceReportView = '/absenceReportView';
   static const kStudentListView = '/StudentListView';
-  static const kFeatureStudenstView = '/FeatureStudentsView';
+  static const kFeatureStudentView = '/FeatureStudentsView';
   static final router = GoRouter(routes: [
     GoRoute(
       path: '/',
@@ -47,9 +47,13 @@ abstract class AppRouters {
       path: kAbsenceReportView,
       builder: (context, state) => const AbsenceReportView(),
     ),
-    // GoRoute(
-    //   path: kStudentListView,
-    //   builder: (context, state) => const StudentListView(),
-    // ),
+    GoRoute(
+      path: kStudentListView,
+      builder: (context, state) => const StudentListView(),
+    ),
+    GoRoute(
+      path: kFeatureStudentView,
+      builder: (context, state) => const FeaturedStudentsView(),
+    ),
   ]);
 }

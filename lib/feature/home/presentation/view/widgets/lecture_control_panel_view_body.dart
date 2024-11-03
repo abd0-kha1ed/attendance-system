@@ -165,7 +165,7 @@ class LectureControlPanelViewBody extends StatelessWidget {
                   CustomControlPanel(
                     onTap: () {
                       GoRouter.of(context)
-                          .push(AppRouters.kFeatureStudenstView);
+                          .push(AppRouters.kFeatureStudentView);
                     },
                     title: 'Featured Students',
                     icon: Icons.star,
