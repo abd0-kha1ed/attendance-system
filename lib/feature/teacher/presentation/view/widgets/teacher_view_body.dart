@@ -1,8 +1,8 @@
 import 'package:attendance/constant.dart';
 import 'package:attendance/core/widgets/custom_icon_button.dart';
+import 'package:attendance/core/widgets/custom_lift_arrow.dart';
 import 'package:attendance/core/widgets/whats_phone.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class TeacherViewBody extends StatelessWidget {
   const TeacherViewBody({
@@ -13,15 +13,9 @@ class TeacherViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            GoRouter.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.arrow_circle_left_rounded,
-            color: Colors.white,
-            size: 40,
-          ),
+        leading: CustomLiftArrow(
+          colorIcon: Colors.black,
+          backgroundColor: Colors.white,
         ),
         backgroundColor: kAppBarColor,
         centerTitle: true,
