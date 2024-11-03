@@ -8,8 +8,14 @@ class AddLectureView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          // leading: CustomLiftArrow(colorIcon: colorIcon, backgroundColor: backgroundColor),
-          ),
+        leading: const CustomLiftArrow(
+            colorIcon: Colors.white, backgroundColor: Colors.black),
+        title: const Text(
+          'Add New Lecture',
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
+        centerTitle: true,
+      ),
       body: AddLectureViewBody(),
     );
   }
