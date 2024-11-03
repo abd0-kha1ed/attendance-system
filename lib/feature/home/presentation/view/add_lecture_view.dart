@@ -1,4 +1,5 @@
 import 'package:attendance/core/widgets/custom_lift_arrow.dart';
+import 'package:attendance/feature/home/presentation/view/widgets/add_lecture_view_body.dart';
 import 'package:flutter/material.dart';
 
 class AddLectureView extends StatelessWidget {
@@ -9,7 +10,7 @@ class AddLectureView extends StatelessWidget {
       appBar: AppBar(
           // leading: CustomLiftArrow(colorIcon: colorIcon, backgroundColor: backgroundColor),
           ),
-      body: AddLectureView(),
+      body: AddLectureViewBody(),
     );
   }
 }
