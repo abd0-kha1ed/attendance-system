@@ -8,15 +8,18 @@ class CustomTextField extends StatelessWidget {
       this.iconButton,
       this.obscureText = false,
       this.enabled = true,
+      this.onChanged,
       this.hintText});
   final String? labelText;
   final IconButton? iconButton;
   final bool obscureText;
   final bool enabled;
   final String? hintText;
+  final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onChanged,
       enabled: enabled,
       obscureText: obscureText,
       validator: (value) {

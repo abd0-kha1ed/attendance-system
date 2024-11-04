@@ -22,6 +22,6 @@ class AddNewStudentView extends StatelessWidget {
             ),
           ),
         ),
-        body: AddNewStudentBody());
+        body: const AddNewStudentBody());
   }
 }
