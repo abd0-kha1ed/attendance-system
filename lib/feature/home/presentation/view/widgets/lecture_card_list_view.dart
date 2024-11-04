@@ -25,7 +25,7 @@ class LectureCardListView extends StatelessWidget {
             child: ListView.builder(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
-                itemCount: 3,
+                itemCount: 7,
                 itemBuilder: (context, index) {
                   return const LectureCard();
                 }),

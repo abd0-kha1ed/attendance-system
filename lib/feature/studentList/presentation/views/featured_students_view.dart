@@ -31,7 +31,7 @@ class FeaturedStudentsView extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8), color: kLogoColor),
-                width: 140,
+                width: 160,
                 child: const Center(
                     child: Text(
                   'Export Data',

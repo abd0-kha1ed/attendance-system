@@ -8,19 +8,21 @@ class StudentListViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(itemBuilder: (context, index) {
-      return const Column(
-        children: [
-          CustomStudintNameId(),
-          SizedBox(
-            height: 6,
-          ),
-          Divider(),
-          SizedBox(
-            height: 10,
-          ),
-        ],
-      );
-    });
+    return ListView.builder(
+        physics: const BouncingScrollPhysics(),
+        itemBuilder: (context, index) {
+          return const Column(
+            children: [
+              CustomStudintNameId(),
+              SizedBox(
+                height: 6,
+              ),
+              Divider(),
+              SizedBox(
+                height: 10,
+              ),
+            ],
+          );
+        });
   }
 }
