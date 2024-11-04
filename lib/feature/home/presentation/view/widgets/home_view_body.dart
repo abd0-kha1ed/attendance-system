@@ -1,5 +1,6 @@
 import 'package:attendance/core/utils/app_routers.dart';
 import 'package:attendance/core/utils/assets.dart';
+import 'package:attendance/core/widgets/custom_aler_dialog_widget.dart';
 import 'package:attendance/feature/home/presentation/view/widgets/all_lecture_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -45,7 +46,13 @@ class HomeViewBody extends StatelessWidget {
               IconButton(
                 style: const ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(Colors.red)),
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return const CusotmAlerDialogWidget();
+                      });
+                },
                 icon: const Icon(
                   Icons.logout_outlined,
                   color: Colors.white,
