@@ -1,7 +1,10 @@
 import 'package:attendance/constant.dart';
+import 'package:attendance/core/utils/app_routers.dart';
 import 'package:attendance/core/widgets/custom_container.dart';
 import 'package:attendance/core/widgets/custom_text_filed.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -128,9 +131,21 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               height: 16,
             ),
             CustomContainer(
-              onTap: () {
+              onTap: () async {
                 if (formkey.currentState!.validate()) {
                   formkey.currentState!.save();
+                  try {
+                    final credential = await FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
+                            email: email!, password: passWord!);
+                    GoRouter.of(context).push(AppRouters.kHomeView);
+                  } on FirebaseAuthException catch (e) {
+                    if (e.code == 'user-not-found') {
+                      print('No user found for that email.');
+                    } else if (e.code == 'wrong-password') {
+                      print('Wrong password provided for that user.');
+                    }
+                  }
                 } else {
                   autovalidateMode = AutovalidateMode.always;
                   setState(() {});
