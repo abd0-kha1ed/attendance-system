@@ -1,35 +1,32 @@
-import 'package:attendance/core/utils/app_routers.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-class AddNewAssisstantWidget extends StatelessWidget {
-  const AddNewAssisstantWidget({
-    super.key,
-  });
-
+class CustomAddNewbuttonWidget extends StatelessWidget {
+  const CustomAddNewbuttonWidget(
+      {super.key, required this.text, this.icons, this.onTap});
+  final String text;
+  final IconData? icons;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        GoRouter.of(context).push(AppRouters.kAddNewAssistant);
-      },
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           color: const Color(0XFF0453B0),
           borderRadius: BorderRadius.circular(50),
         ),
         height: 50,
-        child: const Center(
+        child: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                Icons.person,
+                icons,
                 color: Colors.white,
               ),
               Text(
-                'Add New Assistant',
-                style: TextStyle(color: Colors.white),
+                text,
+                style: const TextStyle(color: Colors.white),
               )
             ],
           ),

@@ -11,10 +11,10 @@ class FeaturedStudentsView extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
-          'Feature Students',
+          overflow: TextOverflow.ellipsis,
+          'Featured Students',
           style: TextStyle(color: Colors.white),
         ),
-        centerTitle: true,
         backgroundColor: kAppBarColor,
         leading: IconButton(
           onPressed: () {},
@@ -23,6 +23,24 @@ class FeaturedStudentsView extends StatelessWidget {
             backgroundColor: Colors.white,
           ),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
+            child: GestureDetector(
+              onTap: () {},
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8), color: kLogoColor),
+                width: 160,
+                child: const Center(
+                    child: Text(
+                  'Export Data',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                )),
+              ),
+            ),
+          )
+        ],
       ),
       body: const FeaturedStudentsViewBody(),
     );

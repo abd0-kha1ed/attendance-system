@@ -1,6 +1,6 @@
 import 'package:attendance/core/utils/app_routers.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_framework.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
 
 void main() {
   runApp(const Attendance());
@@ -22,9 +22,7 @@ class Attendance extends StatelessWidget {
             const ResponsiveBreakpoint.resize(1000, name: DESKTOP),
           ],
           background: Container(color: const Color(0xFFF5F5F5))),
-      // initialRoute: "/",
-
-      // theme: ThemeData.light(),
+      
     );
   }
 }

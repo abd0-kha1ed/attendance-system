@@ -31,11 +31,11 @@ class CustomTextField extends StatelessWidget {
         suffixIcon: iconButton,
         labelText: labelText,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(16),
         ),
         focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: kAppBarColor),
-            borderRadius: BorderRadius.circular(8)),
+            borderRadius: BorderRadius.circular(16)),
       ),
     );
   }

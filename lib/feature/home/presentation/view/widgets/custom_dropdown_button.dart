@@ -1,4 +1,3 @@
-
 import 'package:attendance/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,8 +21,14 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
 
   Future<void> _loadLastSelectedValue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? lastValue = prefs.getString('lastSelectedValue');
+
     setState(() {
-      selectedValue = prefs.getString('lastSelectedValue') ?? widget.items[0];
+      if (widget.items.contains(lastValue)) {
+        selectedValue = lastValue;
+      } else {
+        selectedValue = widget.items.isNotEmpty ? widget.items[0] : null;
+      }
     });
   }
 
@@ -52,12 +57,14 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
           });
           _saveLastSelectedValue(newValue!);
         },
-        items: widget.items.map<DropdownMenuItem<String>>((String value) {
+        items:
+            widget.items.toSet().map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
               value,
               style: const TextStyle(color: Colors.black),
+              textAlign: TextAlign.center,
             ),
           );
         }).toList(),
@@ -66,6 +73,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
             return Text(
               value,
               style: const TextStyle(color: Colors.white),
+              textAlign: TextAlign.center,
             );
           }).toList();
         },
