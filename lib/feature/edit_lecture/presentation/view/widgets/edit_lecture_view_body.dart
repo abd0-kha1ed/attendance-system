@@ -4,14 +4,14 @@ import 'package:attendance/feature/home/presentation/view/widgets/custom_dropdow
 
 import 'package:flutter/material.dart';
 
-class AddLectureViewBody extends StatefulWidget {
-  const AddLectureViewBody({super.key});
+class EditLectureViewBody extends StatefulWidget {
+  const EditLectureViewBody({super.key});
 
   @override
-  State<AddLectureViewBody> createState() => _AddLectureViewBodyState();
+  State<EditLectureViewBody> createState() => _EditLectureViewBodyState();
 }
 
-class _AddLectureViewBodyState extends State<AddLectureViewBody> {
+class _EditLectureViewBodyState extends State<EditLectureViewBody> {
   List<bool> isSelected = [true, false];
   void showPickerBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -25,7 +25,6 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
             children: [
               Expanded(
                 child: ListWheelScrollView.useDelegate(
-                  
                   magnification: 1.5,
                   itemExtent: 50,
                   physics: const FixedExtentScrollPhysics(),
@@ -33,7 +32,6 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
                   perspective: 0.003,
                   onSelectedItemChanged: (index) {},
                   childDelegate: ListWheelChildBuilderDelegate(
-                    
                     builder: (context, index) => Center(
                       child: Container(
                         color: Colors.transparent,
@@ -218,7 +216,7 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
             height: 30,
           ),
           CustomContainer(
-            text: 'Add Lecture',
+            text: 'Update Lecture',
             onTap: () {},
           )
         ],

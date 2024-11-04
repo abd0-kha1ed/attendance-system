@@ -1,4 +1,3 @@
-
 import 'package:attendance/core/utils/app_routers.dart';
 import 'package:attendance/feature/home/presentation/view/widgets/custom_control_panel.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +16,9 @@ class ControlPanelSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomControlPanel(
-              onTap: () {},
+              onTap: () {
+                GoRouter.of(context).push(AppRouters.kEditLectureView);
+              },
               title: 'Edit Lecture',
               icon: Icons.edit,
               background: const Color(0xff042B59),
