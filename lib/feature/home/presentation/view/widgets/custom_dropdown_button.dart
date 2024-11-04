@@ -7,6 +7,7 @@ class CustomDropdownButton extends StatefulWidget {
   final List<String> items;
 
   @override
+  // ignore: library_private_types_in_public_api
   _CustomDropdownButtonState createState() => _CustomDropdownButtonState();
 }
 
