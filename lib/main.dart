@@ -12,8 +12,7 @@ class Attendance extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: AppRouters.router,
-      builder: (context, child) => ResponsiveWrapper.builder(
-          child,
+      builder: (context, child) => ResponsiveWrapper.builder(child,
           maxWidth: 1200,
           minWidth: 480,
           defaultScale: true,
@@ -24,9 +23,8 @@ class Attendance extends StatelessWidget {
           ],
           background: Container(color: const Color(0xFFF5F5F5))),
       // initialRoute: "/",
-      
+
+      // theme: ThemeData.light(),
     );
-    
   }
-  
 }
