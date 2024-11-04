@@ -13,6 +13,7 @@ class AddLectureViewBody extends StatefulWidget {
 
 class _AddLectureViewBodyState extends State<AddLectureViewBody> {
   List<bool> isSelected = [true, false];
+  int selectedCount = 1;
   void showPickerBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -25,15 +26,17 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
             children: [
               Expanded(
                 child: ListWheelScrollView.useDelegate(
-                  
                   magnification: 1.5,
                   itemExtent: 50,
                   physics: const FixedExtentScrollPhysics(),
                   overAndUnderCenterOpacity: 0.3,
                   perspective: 0.003,
-                  onSelectedItemChanged: (index) {},
+                  onSelectedItemChanged: (index) {
+                    setState(() {
+                      selectedCount = index + 1;
+                    });
+                  },
                   childDelegate: ListWheelChildBuilderDelegate(
-                    
                     builder: (context, index) => Center(
                       child: Container(
                         color: Colors.transparent,
@@ -167,18 +170,18 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
                     borderRadius: BorderRadius.circular(12),
                     color: kAppBarColor,
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
                         Text(
-                          '10',
-                          style: TextStyle(color: Colors.white),
+                          '$selectedCount',
+                          style: const TextStyle(color: Colors.white),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 6,
                         ),
-                        Icon(
+                        const Icon(
                           Icons.person,
                           color: Colors.white,
                         ),

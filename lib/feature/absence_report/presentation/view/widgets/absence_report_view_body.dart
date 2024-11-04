@@ -11,6 +11,9 @@ class AbsenceReportViewBody extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          const SizedBox(
+            height: 10,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -29,7 +32,7 @@ class AbsenceReportViewBody extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 5,
+            height: 10,
           ),
           const AbsenceReportListView(),
         ],

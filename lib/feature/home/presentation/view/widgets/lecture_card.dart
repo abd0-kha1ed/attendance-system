@@ -11,8 +11,8 @@ class LectureCard extends StatelessWidget {
         GoRouter.of(context).push(AppRouters.kLectureControlPanelView);
       },
       child: const Card(
-        child: SizedBox(
-          width: 130,
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
