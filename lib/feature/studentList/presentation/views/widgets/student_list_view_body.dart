@@ -1,3 +1,4 @@
+import 'package:attendance/core/widgets/cusomt_add_new_button_widget.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/custom_search_student_list.dart';
 
 import 'package:attendance/feature/studentList/presentation/views/widgets/student_list_view_body_widget.dart';
@@ -19,11 +20,17 @@ class StudentListViewBody extends StatelessWidget {
             height: 20,
           ),
           Expanded(
-            child: ListView.builder(
-                itemCount: 15,
-                itemBuilder: (context, index) {
-                  return const StudentListviewBodyWidget();
-                }),
+            child: ListView.builder(itemBuilder: (context, index) {
+              return const StudentListviewBodyWidget();
+            }),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: CustomAddNewbuttonWidget(
+              text: "add New Student",
+              icons: Icons.person,
+              onTap: () {},
+            ),
           )
         ],
       ),
