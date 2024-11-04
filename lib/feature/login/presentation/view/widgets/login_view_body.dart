@@ -13,6 +13,8 @@ class LoginViewBody extends StatefulWidget {
 class _LoginViewBodyState extends State<LoginViewBody> {
   List<bool> isSelected = [true, false];
   bool _isObscured = true;
+  String? email;
+  String? passWord;
   // Initial selection for "Assistant"
   final GlobalKey<FormState> formkey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
@@ -96,7 +98,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             const SizedBox(
               height: 25,
             ),
-            const CustomTextField(
+            CustomTextField(
+              onChanged: (value) {
+                email = value;
+              },
               labelText: 'Email',
             ),
             const SizedBox(
@@ -104,6 +109,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             ),
             CustomTextField(
               obscureText: _isObscured,
+              onChanged: (value) {
+                passWord = value;
+              },
               labelText: 'PassWord',
               iconButton: IconButton(
                 icon: Icon(

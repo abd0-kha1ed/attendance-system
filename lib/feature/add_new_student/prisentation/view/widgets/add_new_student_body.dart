@@ -2,15 +2,25 @@ import 'package:attendance/core/widgets/custom_container.dart';
 import 'package:attendance/core/widgets/custom_text_filed.dart';
 import 'package:flutter/material.dart';
 
-class AddNewStudentBody extends StatelessWidget {
-  AddNewStudentBody({super.key});
-  final GlobalKey<FormState> keyform = GlobalKey();
+class AddNewStudentBody extends StatefulWidget {
+  const AddNewStudentBody({super.key});
+
+  @override
+  State<AddNewStudentBody> createState() => _AddNewStudentBodyState();
+}
+
+class _AddNewStudentBodyState extends State<AddNewStudentBody> {
+  final GlobalKey<FormState> formkey = GlobalKey();
+
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Form(
-        key: keyform,
+        autovalidateMode: autovalidateMode,
+        key: formkey,
         child: ListView(
           children: [
             const SizedBox(
@@ -57,7 +67,12 @@ class AddNewStudentBody extends StatelessWidget {
             CustomContainer(
               text: 'Add',
               onTap: () {
-                if (keyform.currentState!.validate()) {}
+                if (formkey.currentState!.validate()) {
+                  formkey.currentState!.save();
+                } else {
+                  autovalidateMode = AutovalidateMode.always;
+                  setState(() {});
+                }
               },
             )
           ],

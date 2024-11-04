@@ -1,6 +1,7 @@
 import 'package:attendance/core/utils/assets.dart';
 import 'package:attendance/feature/home/presentation/view/home_view.dart';
 import 'package:attendance/feature/login/presentation/view/login_view.dart';
+
 import 'package:flutter/material.dart';
 
 class SplashViewBody extends StatefulWidget {
