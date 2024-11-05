@@ -127,7 +127,14 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           email: email!,
           password: passWord!,
         );
-        GoRouter.of(context).push(AppRouters.kHomeView);
+
+        // Navigate to Home and clear fields
+        GoRouter.of(context).push(AppRouters.kHomeView).then((_) {
+          setState(() {
+            email = null;
+            passWord = null;
+          });
+        });
       } on FirebaseAuthException catch (e) {
         String errorMessage;
         if (e.code == 'user-not-found') {
@@ -137,7 +144,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         } else {
           errorMessage = 'An unexpected error occurred.';
         }
-        showSnackBar(context, errorMessage); // Display the exact error message
+        showSnackBar(context, errorMessage);
       } catch (_) {
         showSnackBar(context, 'An error occurred. Please try again.');
       } finally {
