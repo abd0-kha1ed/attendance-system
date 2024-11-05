@@ -17,10 +17,10 @@ class LoginViewBody extends StatefulWidget {
 }
 
 class _LoginViewBodyState extends State<LoginViewBody> {
-  List<bool> isSelected = [true, false];
+  final List<bool> isSelected = [true, false];
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   bool _isObscured = true;
-  String? email;
-  String? passWord;
   bool isLoading = false;
   final GlobalKey<FormState> formkey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
@@ -49,13 +49,13 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               _buildRoleToggleButtons(),
               const SizedBox(height: 25),
               CustomTextField(
-                onChanged: (value) => email = value,
+                controller: emailController,
                 labelText: 'Email',
               ),
               const SizedBox(height: 12),
               CustomTextField(
+                controller: passwordController,
                 obscureText: _isObscured,
-                onChanged: (value) => passWord = value,
                 labelText: 'Password',
                 iconButton: IconButton(
                   icon: Icon(_isObscured ? Icons.visibility_off : Icons.visibility),
@@ -124,17 +124,16 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       setState(() => isLoading = true);
       try {
         await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email!,
-          password: passWord!,
+          email: emailController.text,
+          password: passwordController.text,
         );
 
-        // Navigate to Home and clear fields
-        GoRouter.of(context).push(AppRouters.kHomeView).then((_) {
-          setState(() {
-            email = null;
-            passWord = null;
-          });
-        });
+        // Clear fields after successful login
+        emailController.clear();
+        passwordController.clear();
+
+        // Navigate to Home
+        GoRouter.of(context).push(AppRouters.kHomeView);
       } on FirebaseAuthException catch (e) {
         String errorMessage;
         if (e.code == 'user-not-found') {
