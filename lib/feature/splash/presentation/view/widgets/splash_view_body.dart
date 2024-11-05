@@ -1,7 +1,10 @@
 import 'package:attendance/core/utils/assets.dart';
+import 'package:attendance/feature/home/presentation/view/home_view.dart';
+import 'package:attendance/feature/login/presentation/manger/login_cubit/auth_cubit.dart';
 import 'package:attendance/feature/login/presentation/view/login_view.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -65,7 +68,28 @@ class _SplashViewBodyState extends State<SplashViewBody>
         context,
         MaterialPageRoute(
           builder: (context) {
-            return const LoginView();
+            // return LoginView();
+            return BlocConsumer<AuthCubit, AuthState>(
+              listener: (context, state) {
+                if (state is AuthErrorState) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text('errpr')));
+                }
+              },
+              builder: (context, State) {
+                if (State is UnAuthenticatedState) {
+                  return LoginView();
+                } else if (State is AuthenticatedState) {
+                  return const HomeView();
+                } else {
+                  return const Scaffold(
+                    body: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                }
+              },
+            );
           },
         ),
       );

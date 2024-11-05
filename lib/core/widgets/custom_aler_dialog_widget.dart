@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CusotmAlerDialogWidget extends StatelessWidget {
   const CusotmAlerDialogWidget({
@@ -48,6 +50,8 @@ class CusotmAlerDialogWidget extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
+                
+                // await FirebaseAuth.instance.signOut();
                 Navigator.of(context).pop();
                 // Dismiss the dialog
               },
