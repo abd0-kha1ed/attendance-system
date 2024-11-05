@@ -1,6 +1,7 @@
 import 'package:attendance/constant.dart';
 import 'package:attendance/core/widgets/custom_container.dart';
 import 'package:attendance/feature/home/presentation/view/widgets/custom_dropdown_button.dart';
+import 'package:attendance/feature/home/presentation/view/widgets/time_picker_bottom_sheet.dart';
 
 import 'package:flutter/material.dart';
 
@@ -200,7 +201,15 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
             children: [
               const Text('Lecture Time'),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (BuildContext context) {
+                      return const TimePickerBottomSheet();
+                    },
+                  );
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
