@@ -73,12 +73,12 @@ class _SplashViewBodyState extends State<SplashViewBody>
               listener: (context, state) {
                 if (state is AuthErrorState) {
                   ScaffoldMessenger.of(context)
-                      .showSnackBar(SnackBar(content: Text('errpr')));
+                      .showSnackBar(const SnackBar(content: Text('error')));
                 }
               },
               builder: (context, State) {
                 if (State is UnAuthenticatedState) {
-                  return LoginView();
+                  return const LoginView();
                 } else if (State is AuthenticatedState) {
                   return const HomeView();
                 } else {

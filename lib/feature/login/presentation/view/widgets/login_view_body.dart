@@ -139,10 +139,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 if (formkey.currentState!.validate()) {
                   formkey.currentState!.save();
                   try {
-                    login(email!, passWord!);
-                    // final credential = await FirebaseAuth.instance
-                    //     .signInWithEmailAndPassword(
-                    //         email: email!, password: passWord!);
+                    final credential = await FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
+                            email: email!, password: passWord!);
                     GoRouter.of(context).push(AppRouters.kHomeView);
                   } on FirebaseAuthException catch (e) {
                     if (e.code == 'user-not-found') {
@@ -167,13 +166,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     );
   }
 
-  void login(String emailA, String passwordA) {
-    String email = emailA;
-    String password = passwordA;
-    final authCubit = context.read<AuthCubit>();
-    if (email.isNotEmpty && password.isNotEmpty) {
-      authCubit.login(email, password);
-    }
-  }
+ 
 }
 //l;k
