@@ -42,26 +42,29 @@ class _TeacherAssistantListViewState extends State<TeacherAssistantListView> {
                 );
               }
             }
-            return ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: assistants.length,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      ItemTeacherAssistantListView(
-                        assistantModel: assistants[index],
-                      ),
-                      const WhatsPhone(),
-                      const Divider(
-                        indent: 40,
-                        endIndent: 40,
-                      )
-                    ],
-                  );
-                });
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: assistants.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        ItemTeacherAssistantListView(
+                          assistantModel: assistants[index],
+                        ),
+                        const WhatsPhone(),
+                        const Divider(
+                          indent: 40,
+                          endIndent: 40,
+                        )
+                      ],
+                    );
+                  }),
+            );
           } else {
             return const Text('loading');
           }

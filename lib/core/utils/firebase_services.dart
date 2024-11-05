@@ -17,4 +17,8 @@ class FirebaseServices {
   Stream<QuerySnapshot> getAssistants() {
     return firestore.collection('assistants').orderBy('createdAt').snapshots();
   }
+
+  Future<void> deleteAssistant(String assistantId) async {
+    await firestore.collection('assistants').doc(assistantId).delete();
+  }
 }
