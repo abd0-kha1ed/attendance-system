@@ -3,7 +3,7 @@ class AddAssistantModel {
   final String email;
   final String password;
   final String assistantId;
-  final int phoneNumber;
+  final String phoneNumber;
 
   AddAssistantModel(
       {
