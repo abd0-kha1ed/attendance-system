@@ -11,5 +11,5 @@ class AddNewAssistanSuccess extends AddNewAssistanState {}
 class AddNewAssistanFail extends AddNewAssistanState {
   final String errorMessage;
 
-  AddNewAssistanFail(this.errorMessage);
+  AddNewAssistanFail({required this.errorMessage});
 }
