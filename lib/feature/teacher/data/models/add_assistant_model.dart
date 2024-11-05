@@ -6,13 +6,11 @@ class AddAssistantModel {
   final String phoneNumber;
 
   AddAssistantModel(
-      {
-      required this.password,
-    required this.name,
-    required this.email,
-    required this.phoneNumber,
-    required this.assistantId
-  });
+      {required this.password,
+      required this.name,
+      required this.email,
+      required this.phoneNumber,
+      required this.assistantId});
 
   factory AddAssistantModel.fromJson(Map<String, dynamic> jsonData) {
     return AddAssistantModel(
