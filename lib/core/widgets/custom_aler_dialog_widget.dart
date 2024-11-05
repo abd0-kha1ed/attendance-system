@@ -44,7 +44,9 @@ class CustomAlertDialogWidget extends StatelessWidget {
                 try {
                   await FirebaseAuth.instance.signOut();
 
+                  // ignore: use_build_context_synchronously
                   GoRouter.of(context).pop();
+                  // ignore: use_build_context_synchronously
                   GoRouter.of(context).pop();
                 } on Exception catch (e) {
                   throw Exception(e.toString());

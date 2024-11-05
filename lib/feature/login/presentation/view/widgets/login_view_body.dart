@@ -58,7 +58,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 obscureText: _isObscured,
                 labelText: 'Password',
                 iconButton: IconButton(
-                  icon: Icon(_isObscured ? Icons.visibility_off : Icons.visibility),
+                  icon: Icon(
+                      _isObscured ? Icons.visibility_off : Icons.visibility),
                   onPressed: () => setState(() => _isObscured = !_isObscured),
                 ),
               ),
@@ -141,11 +142,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         } else if (e.code == 'wrong-password') {
           errorMessage = 'Incorrect password. Please try again.';
         } else {
-          errorMessage = 'An unexpected error occurred.';
+          errorMessage =
+              'Wrong password or your account does not exsit in our services';
         }
         showSnackBar(context, errorMessage);
       } catch (_) {
-        showSnackBar(context, 'An error occurred. Please try again.');
+        showSnackBar(context, 'An unexpected error occurred.');
       } finally {
         setState(() => isLoading = false);
       }
