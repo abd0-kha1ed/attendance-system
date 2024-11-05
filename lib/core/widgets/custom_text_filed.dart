@@ -10,7 +10,7 @@ class CustomTextField extends StatelessWidget {
       this.enabled = true,
       this.onChanged,
       this.hintText,
-      this.controller});
+      this.controller, this.onSaved});
   final String? labelText;
   final IconButton? iconButton;
   final bool obscureText;
@@ -18,9 +18,11 @@ class CustomTextField extends StatelessWidget {
   final String? hintText;
   final void Function(String)? onChanged;
   final TextEditingController? controller;
+  final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onSaved: onSaved,
       controller: controller,
       onChanged: onChanged,
       enabled: enabled,

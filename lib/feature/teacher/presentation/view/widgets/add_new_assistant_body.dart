@@ -1,5 +1,7 @@
+import 'package:attendance/core/utils/firebase_services.dart';
 import 'package:attendance/core/widgets/custom_container.dart';
 import 'package:attendance/core/widgets/custom_text_filed.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AddNewAssistantBody extends StatefulWidget {
@@ -11,11 +13,18 @@ class AddNewAssistantBody extends StatefulWidget {
 
 class _AddNewAssistantBodyState extends State<AddNewAssistantBody> {
   final GlobalKey<FormState> formkey = GlobalKey();
+  final FirebaseServices firebaseServices = FirebaseServices();
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  String? name, password, phone, email;
 
   @override
   Widget build(BuildContext context) {
+    final nameController = TextEditingController();
+    final numberController = TextEditingController();
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Form(
@@ -26,11 +35,23 @@ class _AddNewAssistantBodyState extends State<AddNewAssistantBody> {
             const SizedBox(
               height: 12,
             ),
-            const CustomTextField(labelText: 'Name'),
+            CustomTextField(
+              labelText: 'Name',
+              controller: nameController,
+              onSaved: (value) {
+                name = value;
+              },
+            ),
             const SizedBox(
               height: 8,
             ),
-            const CustomTextField(labelText: 'Phoen Number'),
+            CustomTextField(
+              onSaved: (value) {
+                phone = value;
+              },
+              labelText: 'Phoen Number',
+              controller: numberController,
+            ),
             const SizedBox(
               height: 8,
             ),
@@ -41,21 +62,45 @@ class _AddNewAssistantBodyState extends State<AddNewAssistantBody> {
             const SizedBox(
               height: 8,
             ),
-            const CustomTextField(labelText: 'Email'),
+            CustomTextField(
+              onSaved: (value) {
+                email = value;
+              },
+              labelText: 'Email',
+              controller: emailController,
+            ),
             const SizedBox(
               height: 8,
             ),
-            const CustomTextField(labelText: 'PassWord'),
+            CustomTextField(
+              onSaved: (value) {
+                password = value;
+              },
+              labelText: 'PassWord',
+              controller: passwordController,
+            ),
             const SizedBox(
               height: 16,
             ),
             CustomContainer(
-                onTap: () {
+                onTap: () async {
                   if (formkey.currentState!.validate()) {
                     formkey.currentState!.save();
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});
+                  }
+
+                  // final name = nameController.text;
+                  // final phoneNumber = numberController.text;
+                  // final email = emailController.text;
+                  // final password = passwordController.text;
+
+                  try {
+                    await firebaseServices.addNewAssistant(
+                        name!, phone!, email!, password!);
+                  } on FirebaseException catch (e) {
+                    print('Error adding assistant: ${e.message}');
                   }
                 },
                 text: 'Add')
