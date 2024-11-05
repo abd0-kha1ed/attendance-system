@@ -3,8 +3,11 @@ import 'package:attendance/core/utils/app_routers.dart';
 import 'package:attendance/core/widgets/custom_container.dart';
 import 'package:attendance/core/widgets/custom_snack_bar.dart';
 import 'package:attendance/core/widgets/custom_text_filed.dart';
+import 'package:attendance/feature/login/presentation/manger/login_cubit/auth_cubit.dart';
+import 'package:attendance/feature/splash/presentation/view/widgets/splash_view_body.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginViewBody extends StatefulWidget {
@@ -136,9 +139,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 if (formkey.currentState!.validate()) {
                   formkey.currentState!.save();
                   try {
-                    final credential = await FirebaseAuth.instance
-                        .signInWithEmailAndPassword(
-                            email: email!, password: passWord!);
+                    login(email!, passWord!);
+                    // final credential = await FirebaseAuth.instance
+                    //     .signInWithEmailAndPassword(
+                    //         email: email!, password: passWord!);
                     GoRouter.of(context).push(AppRouters.kHomeView);
                   } on FirebaseAuthException catch (e) {
                     if (e.code == 'user-not-found') {
@@ -161,6 +165,15 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         ),
       ),
     );
+  }
+
+  void login(String emailA, String passwordA) {
+    String email = emailA;
+    String password = passwordA;
+    final authCubit = context.read<AuthCubit>();
+    if (email.isNotEmpty && password.isNotEmpty) {
+      authCubit.login(email, password);
+    }
   }
 }
 //l;k
