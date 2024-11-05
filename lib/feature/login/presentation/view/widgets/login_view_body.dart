@@ -1,6 +1,7 @@
 import 'package:attendance/constant.dart';
 import 'package:attendance/core/utils/app_routers.dart';
 import 'package:attendance/core/widgets/custom_container.dart';
+import 'package:attendance/core/widgets/custom_snack_bar.dart';
 import 'package:attendance/core/widgets/custom_text_filed.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -141,10 +142,13 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     GoRouter.of(context).push(AppRouters.kHomeView);
                   } on FirebaseAuthException catch (e) {
                     if (e.code == 'user-not-found') {
-                      print('No user found for that email.');
+                      showSnackBar(context, 'No user found for that email.');
                     } else if (e.code == 'wrong-password') {
-                      print('Wrong password provided for that user.');
+                      showSnackBar(
+                          context, 'Wrong password provided for that user.');
                     }
+                  } catch (ex) {
+                    showSnackBar(context, 'There was an error, Try again');
                   }
                 } else {
                   autovalidateMode = AutovalidateMode.always;
