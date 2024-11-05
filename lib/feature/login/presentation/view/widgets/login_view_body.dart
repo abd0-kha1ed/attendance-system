@@ -18,10 +18,10 @@ class LoginViewBody extends StatefulWidget {
 }
 
 class _LoginViewBodyState extends State<LoginViewBody> {
-  List<bool> isSelected = [true, false];
+  final List<bool> isSelected = [true, false];
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   bool _isObscured = true;
-  String? email;
-  String? passWord;
   bool isLoading = false;
   // Initial selection for "Assistant"
   final GlobalKey<FormState> formkey = GlobalKey();
@@ -54,6 +54,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
                 ),
               ),
+<<<<<<< HEAD
               const SizedBox(
                 height: 25,
               ),
@@ -103,6 +104,23 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       ),
                     ),
                   ],
+=======
+              const SizedBox(height: 25),
+              _buildRoleToggleButtons(),
+              const SizedBox(height: 25),
+              CustomTextField(
+                controller: emailController,
+                labelText: 'Email',
+              ),
+              const SizedBox(height: 12),
+              CustomTextField(
+                controller: passwordController,
+                obscureText: _isObscured,
+                labelText: 'Password',
+                iconButton: IconButton(
+                  icon: Icon(_isObscured ? Icons.visibility_off : Icons.visibility),
+                  onPressed: () => setState(() => _isObscured = !_isObscured),
+>>>>>>> def0ad8c8a635f5a5f60bc14161ad7a0b19fd4be
                 ),
               ),
               const SizedBox(
@@ -175,5 +193,88 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       ),
     );
   }
+<<<<<<< HEAD
+=======
+
+  Widget _buildRoleToggleButtons() {
+    return Center(
+      child: ToggleButtons(
+        color: kLogoColor,
+        borderColor: Colors.blue,
+        selectedBorderColor: Colors.blue,
+        selectedColor: Colors.white,
+        fillColor: Colors.blue,
+        borderRadius: BorderRadius.circular(28),
+        isSelected: isSelected,
+        onPressed: (int index) {
+          setState(() {
+            for (int i = 0; i < isSelected.length; i++) {
+              isSelected[i] = i == index;
+            }
+          });
+        },
+        children: const [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.help_center, size: 20),
+                SizedBox(width: 5),
+                Text('Assistant'),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.school, size: 20),
+                SizedBox(width: 5),
+                Text('Teacher'),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _login() async {
+    if (formkey.currentState!.validate()) {
+      setState(() => isLoading = true);
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+
+        // Clear fields after successful login
+        emailController.clear();
+        passwordController.clear();
+
+        // Navigate to Home
+        GoRouter.of(context).push(AppRouters.kHomeView);
+      } on FirebaseAuthException catch (e) {
+        String errorMessage;
+        if (e.code == 'user-not-found') {
+          errorMessage = 'No user found with this email.';
+        } else if (e.code == 'wrong-password') {
+          errorMessage = 'Incorrect password. Please try again.';
+        } else {
+          errorMessage = 'An unexpected error occurred.';
+        }
+        showSnackBar(context, errorMessage);
+      } catch (_) {
+        showSnackBar(context, 'An error occurred. Please try again.');
+      } finally {
+        setState(() => isLoading = false);
+      }
+    } else {
+      setState(() => autovalidateMode = AutovalidateMode.always);
+    }
+  }
+>>>>>>> def0ad8c8a635f5a5f60bc14161ad7a0b19fd4be
 }
 //l;k
