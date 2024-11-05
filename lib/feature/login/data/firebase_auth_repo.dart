@@ -4,7 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseAuthRepo implements AuthRepo {
   @override
-  Future<AppUser?> loginWithEmailPassword(String email, String password) async {
+  Future<AppUser?> signInWithEmailAndPassword(
+      String email, String password) async {
     try {
       //! attemp sign in
       UserCredential userCredential = await FirebaseAuth.instance

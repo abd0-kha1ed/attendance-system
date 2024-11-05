@@ -1,6 +1,5 @@
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CusotmAlerDialogWidget extends StatelessWidget {
   const CusotmAlerDialogWidget({
@@ -40,8 +39,15 @@ class CusotmAlerDialogWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Dismiss the dialog
+              onPressed: () async {
+                try {
+                  await FirebaseAuth.instance.signOut();
+
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                } on Exception catch (e) {
+                  throw Exception(e.toString());
+                } // Dismiss the dialog
               },
               child: const Text(
                 'yes',
@@ -50,9 +56,6 @@ class CusotmAlerDialogWidget extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                
-                // await FirebaseAuth.instance.signOut();
-                Navigator.of(context).pop();
                 // Dismiss the dialog
               },
               child: const Text(

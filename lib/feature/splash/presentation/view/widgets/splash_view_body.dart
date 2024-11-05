@@ -76,10 +76,10 @@ class _SplashViewBodyState extends State<SplashViewBody>
                       .showSnackBar(SnackBar(content: Text('errpr')));
                 }
               },
-              builder: (context, State) {
-                if (State is UnAuthenticatedState) {
+              builder: (context, state) {
+                if (state is UnAuthenticatedState) {
                   return LoginView();
-                } else if (State is AuthenticatedState) {
+                } else if (state is AuthenticatedState) {
                   return const HomeView();
                 } else {
                   return const Scaffold(
