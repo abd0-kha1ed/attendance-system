@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class CusotmAlerDialogWidget extends StatelessWidget {
-  const CusotmAlerDialogWidget({
+class CustomAlertDialogWidget extends StatelessWidget {
+  const CustomAlertDialogWidget({
     super.key,
   });
 
@@ -43,8 +44,8 @@ class CusotmAlerDialogWidget extends StatelessWidget {
                 try {
                   await FirebaseAuth.instance.signOut();
 
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pop();
+                  GoRouter.of(context).pop();
+                  GoRouter.of(context).pop();
                 } on Exception catch (e) {
                   throw Exception(e.toString());
                 } // Dismiss the dialog
@@ -56,7 +57,7 @@ class CusotmAlerDialogWidget extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                // Dismiss the dialog
+                GoRouter.of(context).pop();
               },
               child: const Text(
                 'No',

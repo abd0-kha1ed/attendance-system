@@ -78,7 +78,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
               },
               builder: (context, state) {
                 if (state is UnAuthenticatedState) {
-                  return LoginView();
+                  return const LoginView();
                 } else if (state is AuthenticatedState) {
                   return const HomeView();
                 } else {

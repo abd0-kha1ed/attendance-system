@@ -50,7 +50,7 @@ class HomeViewBody extends StatelessWidget {
                   showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return const CusotmAlerDialogWidget();
+                        return const CustomAlertDialogWidget();
                       });
                 },
                 icon: const Icon(

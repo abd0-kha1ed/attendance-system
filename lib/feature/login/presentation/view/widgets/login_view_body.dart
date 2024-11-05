@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -21,146 +22,155 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   bool _isObscured = true;
   String? email;
   String? passWord;
+  bool isLoading = false;
   // Initial selection for "Assistant"
   final GlobalKey<FormState> formkey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Form(
-        key: formkey,
-        autovalidateMode: autovalidateMode,
-        child: ListView(
-          children: [
-            const SizedBox(
-              height: 60,
-            ),
-            const Icon(
-              Icons.school,
-              size: 120,
-              color: kLogoColor,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Center(
-              child: Text(
-                'Attendance System',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+    return ModalProgressHUD(
+      inAsyncCall: isLoading,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Form(
+          key: formkey,
+          autovalidateMode: autovalidateMode,
+          child: ListView(
+            children: [
+              const SizedBox(
+                height: 60,
               ),
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            Center(
-              child: ToggleButtons(
+              const Icon(
+                Icons.school,
+                size: 120,
                 color: kLogoColor,
-                borderColor: Colors.blue,
-                selectedBorderColor: Colors.blue,
-                selectedColor: Colors.white,
-                fillColor: Colors.blue,
-                borderRadius: BorderRadius.circular(28),
-                isSelected: isSelected,
-                onPressed: (int index) {
-                  setState(() {
-                    for (int i = 0; i < isSelected.length; i++) {
-                      isSelected[i] = i == index; // Update selection state
-                    }
-                  });
-                },
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 5.0),
-                          child: Icon(
-                            Icons.help_center,
-                          ),
-                        ), // Assistant icon
-                        Text('Assistant'),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 5),
-                          child: Icon(Icons.school),
-                        ), // Teacher icon
-                        Text('Teacher'),
-                      ],
-                    ),
-                  ),
-                ],
               ),
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            CustomTextField(
-              onChanged: (value) {
-                email = value;
-              },
-              labelText: 'Email',
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            CustomTextField(
-              obscureText: _isObscured,
-              onChanged: (value) {
-                passWord = value;
-              },
-              labelText: 'PassWord',
-              iconButton: IconButton(
-                icon: Icon(
-                  _isObscured ? Icons.visibility_off : Icons.visibility,
+              const SizedBox(
+                height: 20,
+              ),
+              const Center(
+                child: Text(
+                  'Attendance System',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
                 ),
-                onPressed: () {
-                  setState(() {
-                    _isObscured = !_isObscured; // Toggle password visibility
-                  });
-                },
               ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            CustomContainer(
-              onTap: () async {
-                if (formkey.currentState!.validate()) {
-                  formkey.currentState!.save();
-                  try {
-                    // login(email!, passWord!);
-                    final credential = await FirebaseAuth.instance
-                        .signInWithEmailAndPassword(
-                            email: email!, password: passWord!);
-                    GoRouter.of(context).push(AppRouters.kHomeView);
-                  } on FirebaseAuthException catch (e) {
-                    if (e.code == 'user-not-found') {
-                      showSnackBar(context, 'No user found for that email.');
-                    } else if (e.code == 'wrong-password') {
-                      showSnackBar(
-                          context, 'Wrong password provided for that user.');
+              const SizedBox(
+                height: 25,
+              ),
+              Center(
+                child: ToggleButtons(
+                  color: kLogoColor,
+                  borderColor: Colors.blue,
+                  selectedBorderColor: Colors.blue,
+                  selectedColor: Colors.white,
+                  fillColor: Colors.blue,
+                  borderRadius: BorderRadius.circular(28),
+                  isSelected: isSelected,
+                  onPressed: (int index) {
+                    setState(() {
+                      for (int i = 0; i < isSelected.length; i++) {
+                        isSelected[i] = i == index; // Update selection state
+                      }
+                    });
+                  },
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 5.0),
+                            child: Icon(
+                              Icons.help_center,
+                            ),
+                          ), // Assistant icon
+                          Text('Assistant'),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 5),
+                            child: Icon(Icons.school),
+                          ), // Teacher icon
+                          Text('Teacher'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              CustomTextField(
+                onChanged: (value) {
+                  email = value;
+                },
+                labelText: 'Email',
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              CustomTextField(
+                obscureText: _isObscured,
+                onChanged: (value) {
+                  passWord = value;
+                },
+                labelText: 'PassWord',
+                iconButton: IconButton(
+                  icon: Icon(
+                    _isObscured ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isObscured = !_isObscured; // Toggle password visibility
+                    });
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              CustomContainer(
+                onTap: () async {
+                  if (formkey.currentState!.validate()) {
+                    // formkey.currentState!.save();
+                    isLoading = true;
+
+                    setState(() {});
+                    try {
+                      final credential = await FirebaseAuth.instance
+                          .signInWithEmailAndPassword(
+                              email: email!, password: passWord!);
+                      GoRouter.of(context).push(AppRouters.kHomeView);
+                    } on FirebaseAuthException catch (e) {
+                      if (e.code == 'user-not-found') {
+                        print('No user found for that email.');
+                      } else if (e.code == 'wrong-password') {
+                        // print('Wrong password provided for that user.');
+                        showSnackBar(context, e.toString());
+                      }
+                    } catch (ex) {
+                      print(ex);
+                      showSnackBar(context, 'there was an error');
                     }
-                  } catch (ex) {
-                    showSnackBar(context, 'There was an error, Try again');
+                    isLoading = false;
+                    setState(() {});
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
                   }
-                } else {
-                  autovalidateMode = AutovalidateMode.always;
-                  setState(() {});
-                }
-              },
-              text: 'Login',
-            )
-          ],
+                },
+                text: 'Login',
+              )
+            ],
+          ),
         ),
       ),
     );
