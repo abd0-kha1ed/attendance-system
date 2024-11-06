@@ -71,6 +71,7 @@ class FirebaseServices {
         .add({
       'code': code,
       'name': name,
+      'studentId': studentId,
     });
   }
 
