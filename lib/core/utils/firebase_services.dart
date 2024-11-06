@@ -51,15 +51,36 @@ class FirebaseServices {
     String studentId,
   ) async {
     await firestore.collection('students').doc(studentId).update({
-      'code':code,
-      'name':name,
-      'phoneNumber':phoneNumber,
-      'parentPhoneNumber':parentPhoneNumber,
+      'code': code,
+      'name': name,
+      'phoneNumber': phoneNumber,
+      'parentPhoneNumber': parentPhoneNumber,
     });
   }
 
   Future<void> deleteStudent(String studentId) async {
     await firestore.collection('students').doc(studentId).delete();
+  }
+
+  Future<void> addStudentFeature(
+      String code, String name, String studentId) async {
+    await firestore
+        .collection('students')
+        .doc(studentId)
+        .collection('feature')
+        .add({
+      'code': code,
+      'name': name,
+    });
+  }
+
+  Stream<QuerySnapshot> getStudentFeature(String studentid) {
+    return firestore
+        .collection('students')
+        .doc(studentid)
+        .collection('feature')
+        .orderBy('createdAt', descending: true)
+        .snapshots();
   }
 
   //  Future<void> deleteAssistant(String assistantId) async {
