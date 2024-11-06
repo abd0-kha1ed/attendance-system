@@ -1,6 +1,6 @@
 import 'package:attendance/feature/absence_report/presentation/view/absence_report_view.dart';
 import 'package:attendance/feature/studentList/presentation/views/add_new_student_view.dart';
-import 'package:attendance/feature/edit_existing_student/prisentation/view/edit_existing_student.dart';
+
 import 'package:attendance/feature/edit_lecture/presentation/view/edit_lecture_view.dart';
 import 'package:attendance/feature/home/presentation/view/add_lecture_view.dart';
 import 'package:attendance/feature/home/presentation/view/home_view.dart';
