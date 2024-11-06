@@ -1,7 +1,9 @@
 import 'package:attendance/core/utils/firebase_services.dart';
 import 'package:attendance/core/widgets/custom_icon_button.dart';
+import 'package:attendance/core/widgets/custom_show_dialog.dart';
 import 'package:attendance/feature/teacher/data/models/add_assistant_model.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ItemTeacherAssistantListView extends StatelessWidget {
   ItemTeacherAssistantListView({
@@ -33,7 +35,20 @@ class ItemTeacherAssistantListView extends StatelessWidget {
         ),
         CustomIconButton(
           onPressed: () async {
-            await firebaseServices.deleteAssistant(assistantModel.assistantId);
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return CustomShowDialog(
+                    onPressed: () async {
+                      await firebaseServices
+                          .deleteAssistant(assistantModel.assistantId);
+                      // ignore: use_build_context_synchronously
+                      GoRouter.of(context).pop();
+                    },
+                  );
+                });
+
+            //await firebaseServices.deleteAssistant(assistantModel.assistantId);
           },
           icon: const Icon(
             Icons.delete_forever,

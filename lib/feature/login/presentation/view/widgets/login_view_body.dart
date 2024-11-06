@@ -134,6 +134,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         passwordController.clear();
 
         // Navigate to Home
+        // ignore: use_build_context_synchronously
         GoRouter.of(context).push(AppRouters.kHomeView);
       } on FirebaseAuthException catch (e) {
         String errorMessage;
@@ -145,8 +146,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           errorMessage =
               'Wrong password or your account does not exsit in our services';
         }
+        // ignore: use_build_context_synchronously
         showSnackBar(context, errorMessage);
       } catch (_) {
+        // ignore: use_build_context_synchronously
         showSnackBar(context, 'An unexpected error occurred.');
       } finally {
         setState(() => isLoading = false);

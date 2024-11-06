@@ -91,19 +91,18 @@ class _AddNewAssistantBodyState extends State<AddNewAssistantBody> {
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
                         formKey.currentState!.save();
+                        BlocProvider.of<AddNewAssistantCubit>(context)
+                            .addNewAssistant(
+                                name: name!,
+                                phoneNumber: phone!,
+                                email: email!,
+                                password: password!);
+                        // GoRouter.of(context).pop();
+                        showSnackBar(context, 'Assistant was add success');
                       } else {
                         autovalidateMode = AutovalidateMode.always;
                         setState(() {});
                       }
-
-                      BlocProvider.of<AddNewAssistantCubit>(context)
-                          .addNewAssistant(
-                              name: name!,
-                              phoneNumber: phone!,
-                              email: email!,
-                              password: password!);
-                      // GoRouter.of(context).pop();
-                      showSnackBar(context, 'Assistant was add success');
 
                       // final name = nameController.text;
                       // final phoneNumber = numberController.text;
