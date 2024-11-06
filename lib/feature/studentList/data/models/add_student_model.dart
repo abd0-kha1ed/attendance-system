@@ -1,8 +1,8 @@
 class AddNewStudentModel {
-  final String code;
-  final String name;
-  final String phoneNumber;
-  final String parentPhoneNumber;
+   String code;
+   String name;
+   String phoneNumber;
+   String parentPhoneNumber;
   final String studentId;
 
   AddNewStudentModel(

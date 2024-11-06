@@ -15,7 +15,10 @@ class FirebaseServices {
   }
 
   Stream<QuerySnapshot> getAssistants() {
-    return firestore.collection('assistants').orderBy('createdAt').snapshots();
+    return firestore
+        .collection('assistants')
+        .orderBy('createdAt', descending: true)
+        .snapshots();
   }
 
   Future<void> deleteAssistant(String assistantId) async {
@@ -34,6 +37,24 @@ class FirebaseServices {
   }
 
   Stream<QuerySnapshot> getStudent() {
-    return firestore.collection('students').orderBy('createdAt').snapshots();
+    return firestore
+        .collection('students')
+        .orderBy('createdAt', descending: true)
+        .snapshots();
+  }
+
+  Future<void> updateStudent(
+    String code,
+    String name,
+    String phoneNumber,
+    String parentPhoneNumber,
+    String studentId,
+  ) async {
+    await firestore.collection('students').doc(studentId).update({
+      'code':code,
+      'name':name,
+      'phoneNumber':phoneNumber,
+      'parentPhoneNumber':parentPhoneNumber,
+    });
   }
 }

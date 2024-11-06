@@ -67,10 +67,10 @@ abstract class AppRouters {
       path: kFeatureStudentView,
       builder: (context, state) => const FeaturedStudentsView(),
     ),
-    GoRoute(
-      path: kEditExistingStudent,
-      builder: (context, state) => const EditExistingStudent(),
-    ),
+    // GoRoute(
+    //   path: kEditExistingStudent,
+    //   builder: (context, state) => const EditExistingStudent(),
+    // ),
     GoRoute(
       path: kAddNewAssistant,
       builder: (context, state) => BlocProvider(

@@ -97,20 +97,21 @@ class _AddNewStudentBodyState extends State<AddNewStudentBody> {
                 onTap: () async {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
+                    isLoading = true;
+                    setState(() {});
+                    try {
+                      await firebaseServices.addNewStudent(
+                          code!, name!, phoneNumber!, parentPhoneNumber!);
+                      isLoading = false;
+                      setState(() {});
+                      showSnackBar(context, 'Student was add successfully');
+                    } on FirebaseException catch (e) {
+                      showSnackBar(
+                          context, 'Oops there was an error, try later');
+                    }
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});
-                  }
-                  isLoading = true;
-                  setState(() {});
-                  try {
-                    await firebaseServices.addNewStudent(
-                        code!, name!, phoneNumber!, parentPhoneNumber!);
-                    isLoading = false;
-                    setState(() {});
-                    showSnackBar(context, 'Student was add successfully');
-                  } on FirebaseException catch (e) {
-                    showSnackBar(context, 'Oops there was an error, try later');
                   }
                 },
               )

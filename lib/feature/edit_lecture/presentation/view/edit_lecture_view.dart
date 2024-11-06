@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class EditLectureView extends StatelessWidget {
   const EditLectureView({super.key});
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
