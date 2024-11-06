@@ -1,6 +1,7 @@
 import 'package:attendance/constant.dart';
 import 'package:attendance/core/widgets/custom_container.dart';
 import 'package:attendance/feature/home/presentation/view/widgets/custom_dropdown_button.dart';
+import 'package:attendance/feature/home/presentation/view/widgets/time_picker_bottom_sheet.dart';
 
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,8 @@ class EditLectureViewBody extends StatefulWidget {
 }
 
 class _EditLectureViewBodyState extends State<EditLectureViewBody> {
+  DateTime selectedTime = DateTime.now();
+
   List<bool> isSelected = [true, false];
   int selectedCount = 1;
   void showPickerBottomSheet(BuildContext context) {
@@ -200,17 +203,30 @@ class _EditLectureViewBodyState extends State<EditLectureViewBody> {
             children: [
               const Text('Lecture Time'),
               GestureDetector(
-                onTap: () {},
+                onTap: () async {
+                  final result = await showModalBottomSheet<DateTime>(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (BuildContext context) {
+                      return const TimePickerBottomSheet();
+                    },
+                  );
+                  if (result != null) {
+                    setState(() {
+                      selectedTime = result;
+                    });
+                  }
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     color: kAppBarColor,
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '1:27 PM',
-                      style: TextStyle(color: Colors.white),
+                      '${selectedTime.hour}:${selectedTime.minute.toString().padLeft(2, '0')} ${selectedTime.hour >= 12 ? 'PM' : 'AM'}',
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
