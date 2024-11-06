@@ -1,9 +1,13 @@
 import 'package:attendance/constant.dart';
 import 'package:attendance/core/widgets/custom_container.dart';
+import 'package:attendance/core/widgets/custom_snack_bar.dart';
+import 'package:attendance/feature/home/presentation/manger/add_lecture_cubit/add_lecture_cubit.dart';
+import 'package:attendance/feature/home/presentation/manger/add_lecture_cubit/add_lecture_cubit_state.dart';
 import 'package:attendance/feature/home/presentation/view/widgets/custom_dropdown_button.dart';
 import 'package:attendance/feature/home/presentation/view/widgets/time_picker_bottom_sheet.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddLectureViewBody extends StatefulWidget {
   const AddLectureViewBody({super.key});
@@ -68,6 +72,140 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
+    return BlocBuilder<AddLectureCubit, AddLectureState>(
+        builder: (context, state) {
+      final cubit = context.read<AddLectureCubit>();
+
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Starting Day'),
+                ToggleButtons(
+                  color: kAppBarColor,
+                  borderColor: kAppBarColor,
+                  selectedBorderColor: kAppBarColor,
+                  selectedColor: Colors.white,
+                  fillColor: kAppBarColor,
+                  borderRadius: BorderRadius.circular(28),
+                  isSelected: List.generate(
+                      2, (index) => index == state.selectedDayIndex),
+                  onPressed: (index) {
+                    cubit.updateSelectedDayIndex(index);
+                  },
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.0),
+                      child: Text('saturday'),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.0),
+                      child: Text('monday'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('grade'),
+                CustomDropdownButton(
+                  items: [
+                    '1st Prep',
+                    '2nd Prep',
+                    '3rd Prep',
+                    '1st Secondary',
+                    '2nd Secondary',
+                    '3rd Secondary'
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Region'),
+                CustomDropdownButton(items: [
+                  'Abo hamad',
+                  'Zagazig',
+                  '10th of ramadan',
+                  'Dyarb negm',
+                  'Minya el qamh',
+                  'Almogaze',
+                  'Shnbara',
+                ]),
+              ],
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Total count of Students'),
+                GestureDetector(
+                  onTap: () {
+                    showPickerBottomSheet(context);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: kAppBarColor,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            '$selectedCount',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          const Icon(
+                            Icons.person,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Lecture Time'),
+                GestureDetector(
+                  onTap: () async {
+                    final result = await showModalBottomSheet<DateTime>(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (BuildContext context) {
+                        return const TimePickerBottomSheet();
+                      },
+                    );
+                    if (result != null) {
+                      setState(() {
+                        selectedTime = result;
+                      });
+=======
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
@@ -93,106 +231,41 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
                     for (int i = 0; i < isSelected.length; i++) {
                       isSelected[i] = i == index;
                       // Update selection state
+>>>>>>> 8e8fe65392e2b10657431052b1ebb8f1ec685bea
                     }
-                  });
-                },
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        // Assistant icon
-                        Text('saturday'),
-                      ],
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: kAppBarColor,
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        // Teacher icon
-                        Text('monday'),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('grade'),
-              CustomDropdownButton(
-                items: [
-                  '1st Prep',
-                  '2nd Prep',
-                  '3rd Prep',
-                  '1st Secondary',
-                  '2nd Secondary',
-                  '3rd Secondary'
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Region'),
-              CustomDropdownButton(items: [
-                'Abo hamad',
-                'Zagazig',
-                '10th of ramadan',
-                'Dyarb negm',
-                'Minya el qamh',
-                'Almogaze',
-                'Shnbara',
-              ]),
-            ],
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('Total count of Students'),
-              GestureDetector(
-                onTap: () {
-                  showPickerBottomSheet(context);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: kAppBarColor,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Text(
-                          '$selectedCount',
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                        const SizedBox(
-                          width: 6,
-                        ),
-                        const Icon(
-                          Icons.person,
-                          color: Colors.white,
-                        ),
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        '${selectedTime.hour}:${selectedTime.minute.toString().padLeft(2, '0')} ${selectedTime.hour >= 12 ? 'PM' : 'AM'}',
+                        style: const TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                 ),
+<<<<<<< HEAD
+              ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            CustomContainer(
+              text: 'Add Lecture',
+              onTap: () async {
+                await context.read<AddLectureCubit>().addLectureData();
+                showSnackBar(context, 'Lecture saved successfully');
+              },
+            )
+          ],
+        ),
+      );
+    });
+=======
               ),
             ],
           ),
@@ -244,5 +317,6 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
         ],
       ),
     );
+>>>>>>> 8e8fe65392e2b10657431052b1ebb8f1ec685bea
   }
 }
