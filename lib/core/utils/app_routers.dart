@@ -1,4 +1,5 @@
 import 'package:attendance/feature/absence_report/presentation/view/absence_report_view.dart';
+import 'package:attendance/feature/studentList/presentation/views/add_feature_student.dart';
 import 'package:attendance/feature/studentList/presentation/views/add_new_student_view.dart';
 
 import 'package:attendance/feature/edit_lecture/presentation/view/edit_lecture_view.dart';
@@ -29,6 +30,7 @@ abstract class AppRouters {
   static const kAddNewAssistant = '/AddNewAssistnat';
   static const kAddNewStudent = '/AddNewStudentView';
   static const kEditLectureView = '/EditLectureView';
+  static const kAddFeatureStudent = '/AddFeatureStudent';
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -85,5 +87,9 @@ abstract class AppRouters {
       path: kEditLectureView,
       builder: (context, state) => const EditLectureView(),
     ),
+    GoRoute(
+      path: kAddFeatureStudent,
+      builder: (context, state) => const AddFeatureStudent(),
+    )
   ]);
 }

@@ -91,7 +91,8 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
                 onPressed: (int index) {
                   setState(() {
                     for (int i = 0; i < isSelected.length; i++) {
-                      isSelected[i] = i == index; // Update selection state
+                      isSelected[i] = i == index;
+                      // Update selection state
                     }
                   });
                 },
@@ -213,7 +214,7 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
                   );
                   if (result != null) {
                     setState(() {
-                      selectedTime = result; 
+                      selectedTime = result;
                     });
                   }
                 },
