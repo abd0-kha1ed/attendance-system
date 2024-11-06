@@ -1,14 +1,14 @@
 part of 'add_new_assistan_cubit.dart';
 
-abstract class AddNewAssistanState {}
+abstract class AddNewAssistantState {}
 
-class AddNewAssistanInitial extends AddNewAssistanState {}
+class AddNewAssistanInitial extends AddNewAssistantState {}
 
-class AddNewAssistantLoading extends AddNewAssistanState {}
+class AddNewAssistantLoading extends AddNewAssistantState {}
 
-class AddNewAssistanSuccess extends AddNewAssistanState {}
+class AddNewAssistanSuccess extends AddNewAssistantState {}
 
-class AddNewAssistanFail extends AddNewAssistanState {
+class AddNewAssistanFail extends AddNewAssistantState {
   final String errorMessage;
 
   AddNewAssistanFail({required this.errorMessage});

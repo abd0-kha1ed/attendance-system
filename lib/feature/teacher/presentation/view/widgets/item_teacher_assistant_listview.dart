@@ -24,12 +24,9 @@ class ItemTeacherAssistantListView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(assistantModel.name),
-            SizedBox(
-              // width: 230,
-              child: Text(
-                assistantModel.email,
-                maxLines: 2,
-              ),
+            Text(
+              assistantModel.email,
+              maxLines: 2,
             ),
             Text(assistantModel.phoneNumber),
           ],

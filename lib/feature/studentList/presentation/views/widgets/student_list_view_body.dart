@@ -25,7 +25,7 @@ class StudentListViewBody extends StatelessWidget {
             child: ListView.builder(
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return const StudentListviewBodyWidget();
+                  return const StudentListViewBodyWidget();
                 }),
           ),
           Padding(

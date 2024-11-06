@@ -6,8 +6,8 @@ import 'package:attendance/feature/studentList/presentation/views/widgets/custom
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class StudentListviewBodyWidget extends StatelessWidget {
-  const StudentListviewBodyWidget({
+class StudentListViewBodyWidget extends StatelessWidget {
+  const StudentListViewBodyWidget({
     super.key,
   });
 
@@ -18,7 +18,7 @@ class StudentListviewBodyWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(child: CustomStudintNameId()),
+            const SizedBox(child: CustomStudentNameId()),
             const SizedBox(
               height: 30,
             ),
@@ -33,7 +33,9 @@ class StudentListviewBodyWidget extends StatelessWidget {
             ),
           ],
         ),
-        const WhatsPhone(),
+        const WhatsPhone(
+          phoneNumber: '',
+        ),
         const SizedBox(
           height: 10,
         ),
