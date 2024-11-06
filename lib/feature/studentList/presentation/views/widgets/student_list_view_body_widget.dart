@@ -2,6 +2,7 @@ import 'package:attendance/constant.dart';
 import 'package:attendance/core/utils/app_routers.dart';
 import 'package:attendance/core/widgets/custom_icon_button.dart';
 import 'package:attendance/core/widgets/whats_phone.dart';
+import 'package:attendance/feature/studentList/data/models/add_student_model.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/custom_student_name_id.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -9,7 +10,9 @@ import 'package:go_router/go_router.dart';
 class StudentListViewBodyWidget extends StatelessWidget {
   const StudentListViewBodyWidget({
     super.key,
+    required this.studentModel,
   });
+  final AddNewStudentModel studentModel;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,12 @@ class StudentListViewBodyWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(child: CustomStudentNameId()),
+            SizedBox(
+              child: CustomStudentNameId(
+                name: studentModel.name,
+                code: studentModel.code,
+              ),
+            ),
             const SizedBox(
               height: 30,
             ),
@@ -33,8 +41,8 @@ class StudentListViewBodyWidget extends StatelessWidget {
             ),
           ],
         ),
-        const WhatsPhone(
-          phoneNumber: '',
+        WhatsPhone(
+          phoneNumber: studentModel.phoneNumber,
         ),
         const SizedBox(
           height: 10,

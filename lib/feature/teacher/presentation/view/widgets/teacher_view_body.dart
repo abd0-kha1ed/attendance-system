@@ -39,7 +39,7 @@ class TeacherViewBody extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionbuttonWidget(
+      floatingActionButton: FloatingActionButtonWidget(
         onPressed: () {
           GoRouter.of(context).push(AppRouters.kAddNewAssistant);
         },

@@ -2,26 +2,32 @@ import 'package:attendance/constant.dart';
 import 'package:flutter/material.dart';
 
 class CustomStudentNameId extends StatelessWidget {
-  const CustomStudentNameId({super.key});
+  const CustomStudentNameId(
+      {super.key, required this.name, required this.code});
+  final String name, code;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Container(
-          height: 60,
-          width: 60,
           color: kAppBarColor,
-          child: const Center(
-            child: Text(
-              '115',
-              style: TextStyle(color: Colors.white, fontSize: 20),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                code,
+                style: const TextStyle(color: Colors.white, fontSize: 20),
+              ),
             ),
           ),
         ),
         const SizedBox(
           width: 15,
         ),
-        const SizedBox(width: 150, child: Text(' احمد مختار خطاب')),
+        Text(
+          name,
+          // style: TextStyle(fontSize: 20),
+        ),
       ],
     );
   }

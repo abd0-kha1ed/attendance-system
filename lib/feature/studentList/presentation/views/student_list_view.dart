@@ -28,9 +28,9 @@ class StudentListView extends StatelessWidget {
         ),
       ),
       body: const StudentListViewBody(),
-      floatingActionButton: FloatingActionbuttonWidget(
+      floatingActionButton: FloatingActionButtonWidget(
         onPressed: () {
-          GoRouter.of(context).push(AppRouters.kAddnewStudent);
+          GoRouter.of(context).push(AppRouters.kAddNewStudent);
         },
       ),
     );

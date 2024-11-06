@@ -13,7 +13,10 @@ class StudentListViewWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           return const Column(
             children: [
-              CustomStudentNameId(),
+              CustomStudentNameId(
+                name: '',
+                code: '',
+              ),
               SizedBox(
                 height: 6,
               ),

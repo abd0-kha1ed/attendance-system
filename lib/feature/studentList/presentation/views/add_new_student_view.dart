@@ -1,5 +1,5 @@
 import 'package:attendance/core/widgets/custom_lift_arrow.dart';
-import 'package:attendance/feature/add_new_student/prisentation/view/widgets/add_new_student_body.dart';
+import 'package:attendance/feature/studentList/presentation/views/widgets/add_new_student_body.dart';
 import 'package:flutter/material.dart';
 
 class AddNewStudentView extends StatelessWidget {
