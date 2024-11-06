@@ -1,8 +1,8 @@
 import 'package:attendance/constant.dart';
 import 'package:flutter/material.dart';
 
-class CustomStudintNameId extends StatelessWidget {
-  const CustomStudintNameId({super.key});
+class CustomStudentNameId extends StatelessWidget {
+  const CustomStudentNameId({super.key});
   @override
   Widget build(BuildContext context) {
     return Row(

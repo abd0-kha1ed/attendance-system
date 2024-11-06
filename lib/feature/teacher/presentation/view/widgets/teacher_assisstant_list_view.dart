@@ -8,6 +8,7 @@ class TeacherAssistantListView extends StatefulWidget {
   const TeacherAssistantListView({
     super.key,
   });
+  
 
   @override
   State<TeacherAssistantListView> createState() =>
@@ -56,7 +57,7 @@ class _TeacherAssistantListViewState extends State<TeacherAssistantListView> {
                         ItemTeacherAssistantListView(
                           assistantModel: assistants[index],
                         ),
-                        const WhatsPhone(),
+                         WhatsPhone(phoneNumber: assistants[index].phoneNumber,),
                         const Divider(
                           indent: 40,
                           endIndent: 40,

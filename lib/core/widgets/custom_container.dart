@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class CustomContainer extends StatelessWidget {
   const CustomContainer(
-      {super.key, required this.text, this.onTap, this.isloading = false});
+      {super.key, required this.text, this.onTap, this.isLoading = false});
   final String text;
   final void Function()? onTap;
-  final bool isloading;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -19,7 +19,7 @@ class CustomContainer extends StatelessWidget {
         ),
         width: MediaQuery.of(context).size.width,
         child: Center(
-          child: isloading
+          child: isLoading
               ? const SizedBox(
                   height: 24,
                   width: 24,

@@ -9,8 +9,10 @@ import 'package:attendance/feature/login/presentation/view/login_view.dart';
 import 'package:attendance/feature/splash/presentation/view/splash_view.dart';
 import 'package:attendance/feature/studentList/presentation/views/featured_students_view.dart';
 import 'package:attendance/feature/studentList/presentation/views/student_list_view.dart';
+import 'package:attendance/feature/teacher/presentation/manger/add_new_assistant_cubit/cubit/add_new_assistan_cubit.dart';
 import 'package:attendance/feature/teacher/presentation/view/add_new_assistnat_view.dart';
 import 'package:attendance/feature/teacher/presentation/view/teacher_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
 
@@ -71,7 +73,9 @@ abstract class AppRouters {
     ),
     GoRoute(
       path: kAddNewAssistant,
-      builder: (context, state) => const AddNewAssistnatView(),
+      builder: (context, state) => BlocProvider(
+          create: (context) => AddNewAssistantCubit(),
+          child: const AddNewAssistnatView()),
     ),
     GoRoute(
       path: kAddnewStudent,
