@@ -1,3 +1,4 @@
+import 'package:attendance/core/utils/firebase_services.dart';
 import 'package:attendance/core/widgets/custom_container.dart';
 import 'package:attendance/core/widgets/custom_text_filed.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +12,13 @@ class AddNewStudentBody extends StatefulWidget {
 
 class _AddNewStudentBodyState extends State<AddNewStudentBody> {
   final GlobalKey<FormState> formkey = GlobalKey();
-
+  String? code, name, phoneNumber, parentPhoneNumber;
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-
+  final codeController = TextEditingController();
+  final nameController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+  final parentPhoneNumberController = TextEditingController();
+  final FirebaseServices firebaseServices = FirebaseServices();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,20 +31,32 @@ class _AddNewStudentBodyState extends State<AddNewStudentBody> {
             const SizedBox(
               height: 16,
             ),
-            const CustomTextField(
+            CustomTextField(
+              controller: codeController,
               hintText: 'Student Code',
+              onSaved: (value) {
+                code = value;
+              },
             ),
             const SizedBox(
               height: 12,
             ),
-            const CustomTextField(
+            CustomTextField(
+              controller: nameController,
               hintText: 'Name',
+              onSaved: (value) {
+                name = value;
+              },
             ),
             const SizedBox(
               height: 12,
             ),
-            const CustomTextField(
+            CustomTextField(
+              controller: phoneNumberController,
               hintText: 'Phone Number',
+              onSaved: (value) {
+                phoneNumber = value;
+              },
             ),
             const SizedBox(
               height: 12,
@@ -51,8 +68,12 @@ class _AddNewStudentBodyState extends State<AddNewStudentBody> {
             const SizedBox(
               height: 12,
             ),
-            const CustomTextField(
+            CustomTextField(
+              controller: parentPhoneNumberController,
               hintText: 'Parent Phone Number',
+              onSaved: (value) {
+                parentPhoneNumber = value;
+              },
             ),
             const SizedBox(
               height: 12,

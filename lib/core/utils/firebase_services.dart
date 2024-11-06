@@ -1,3 +1,4 @@
+import 'package:attendance/feature/add_new_student/prisentation/view/widgets/add_new_student_body.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseServices {
@@ -20,5 +21,20 @@ class FirebaseServices {
 
   Future<void> deleteAssistant(String assistantId) async {
     await firestore.collection('assistants').doc(assistantId).delete();
+  }
+
+  Future<void> addNewStudent(String code, String name, String phoneNumber,
+      String parentPhoneNumber) async {
+    await firestore.collection('students').add({
+      'code': code,
+      'name': name,
+      'phoneNumber': phoneNumber,
+      'parentPhoneNumber': parentPhoneNumber,
+      'createdAt': FieldValue.serverTimestamp(),
+    });
+  }
+
+  Stream<QuerySnapshot> getStudent() {
+    return firestore.collection('students').orderBy('createdAt').snapshots();
   }
 }

@@ -1,7 +1,7 @@
 import 'package:attendance/constant.dart';
 import 'package:attendance/core/utils/app_routers.dart';
-import 'package:attendance/core/widgets/cusomt_add_new_button_widget.dart';
 import 'package:attendance/core/widgets/custom_lift_arrow.dart';
+import 'package:attendance/core/widgets/floating_action_button_widget.dart';
 import 'package:attendance/feature/teacher/presentation/view/widgets/teacher_assisstant_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -32,21 +32,17 @@ class TeacherViewBody extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
+      body: const Column(
         children: [
-          const Expanded(
+          Expanded(
             child: TeacherAssistantListView(),
           ),
-          Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
-              child: CustomAddNewbuttonWidget(
-                onTap: () {
-                  GoRouter.of(context).push(AppRouters.kAddNewAssistant);
-                },
-                text: 'Add New Assistant',
-                icons: Icons.person,
-              ))
         ],
+      ),
+      floatingActionButton: FloatingActionbuttonWidget(
+        onPressed: () {
+          GoRouter.of(context).push(AppRouters.kAddNewAssistant);
+        },
       ),
     );
   }

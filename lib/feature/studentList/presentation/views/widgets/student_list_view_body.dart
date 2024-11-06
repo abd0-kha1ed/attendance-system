@@ -28,16 +28,6 @@ class StudentListViewBody extends StatelessWidget {
                   return const StudentListViewBodyWidget();
                 }),
           ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: CustomAddNewbuttonWidget(
-              text: "add New Student",
-              icons: Icons.person,
-              onTap: () {
-                GoRouter.of(context).push(AppRouters.kAddnewStudent);
-              },
-            ),
-          )
         ],
       ),
     );
