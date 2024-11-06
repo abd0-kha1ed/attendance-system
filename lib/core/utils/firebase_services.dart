@@ -36,4 +36,12 @@ class FirebaseServices {
   Stream<QuerySnapshot> getStudent() {
     return firestore.collection('students').orderBy('createdAt').snapshots();
   }
+
+  Future<void> deleteStudent(String studentId) async {
+    await firestore.collection('students').doc(studentId).delete();
+  }
+
+  //  Future<void> deleteAssistant(String assistantId) async {
+  //   await firestore.collection('assistants').doc(assistantId).delete();
+  // }
 }
