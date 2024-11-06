@@ -104,10 +104,13 @@ class _AddNewStudentBodyState extends State<AddNewStudentBody> {
                           code!, name!, phoneNumber!, parentPhoneNumber!);
                       isLoading = false;
                       setState(() {});
+                      // ignore: use_build_context_synchronously
                       showSnackBar(context, 'Student was add successfully');
-                    } on FirebaseException catch (e) {
+                    } on FirebaseException {
                       showSnackBar(
-                          context, 'Oops there was an error, try later');
+                          // ignore: use_build_context_synchronously
+                          context,
+                          'Oops there was an error, try later');
                     }
                   } else {
                     autovalidateMode = AutovalidateMode.always;
