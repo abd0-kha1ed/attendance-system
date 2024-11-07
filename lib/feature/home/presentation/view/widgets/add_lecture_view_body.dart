@@ -18,9 +18,11 @@ class AddLectureViewBody extends StatefulWidget {
 
 class _AddLectureViewBodyState extends State<AddLectureViewBody> {
   DateTime selectedTime = DateTime.now();
+  int selectedCount = 0;
+  String selectedGrade = '1st Prep';
+  String selectedRegion = 'Abo hamad';
 
   List<bool> isSelected = [true, false];
-  int selectedCount = 1;
   void showPickerBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -72,7 +74,6 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     return BlocBuilder<AddLectureCubit, AddLectureState>(
         builder: (context, state) {
       final cubit = context.read<AddLectureCubit>();
@@ -95,16 +96,16 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
                   isSelected: List.generate(
                       2, (index) => index == state.selectedDayIndex),
                   onPressed: (index) {
-                    cubit.updateSelectedDayIndex(index);
+                    cubit.updateStartingDay(index);
                   },
                   children: const [
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 15.0),
-                      child: Text('saturday'),
+                      child: Text('Saturday'),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 15.0),
-                      child: Text('monday'),
+                      child: Text('Sunday'),
                     ),
                   ],
                 ),
@@ -113,12 +114,12 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
             const SizedBox(
               height: 15,
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('grade'),
+                const Text('Grade'),
                 CustomDropdownButton(
-                  items: [
+                  items: const [
                     '1st Prep',
                     '2nd Prep',
                     '3rd Prep',
@@ -126,25 +127,49 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
                     '2nd Secondary',
                     '3rd Secondary'
                   ],
-                ),
+                  value: state.grade,
+                  onChanged: (value) {
+                    if (value != null) {
+                      cubit.updateGrade(value);
+                    }
+                  },
+                  onSaved: (value) {
+                    if (value != null) {
+                      cubit.updateGrade(value);
+                    }
+                  },
+                )
               ],
             ),
             const SizedBox(
               height: 10,
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Region'),
-                CustomDropdownButton(items: [
-                  'Abo hamad',
-                  'Zagazig',
-                  '10th of ramadan',
-                  'Dyarb negm',
-                  'Minya el qamh',
-                  'Almogaze',
-                  'Shnbara',
-                ]),
+                const Text('Region'),
+                CustomDropdownButton(
+                  items: const [
+                    'Abo hamad',
+                    'Zagazig',
+                    '10th of Ramadan',
+                    'Dyarb negm',
+                    'Minya el Qamh',
+                    'Almogaze',
+                    'Shnbara',
+                  ],
+                  value: state.region,
+                  onChanged: (value) {
+                    if (value != null) {
+                      cubit.updateRegion(value);
+                    }
+                  },
+                  onSaved: (value) {
+                    if (value != null) {
+                      cubit.updateRegion(value);
+                    }
+                  },
+                ),
               ],
             ),
             const SizedBox(
@@ -205,33 +230,6 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
                       setState(() {
                         selectedTime = result;
                       });
-=======
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('Starting Day'),
-              const SizedBox(width: 16),
-              ToggleButtons(
-                color: kAppBarColor,
-                borderColor: kAppBarColor,
-                selectedBorderColor: kAppBarColor,
-                selectedColor: Colors.white,
-                fillColor: kAppBarColor,
-                borderRadius: BorderRadius.circular(28),
-                isSelected: isSelected,
-                onPressed: (int index) {
-                  setState(() {
-                    for (int i = 0; i < isSelected.length; i++) {
-                      isSelected[i] = i == index;
-                      // Update selection state
->>>>>>> 8e8fe65392e2b10657431052b1ebb8f1ec685bea
                     }
                   },
                   child: Container(
@@ -248,7 +246,6 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
                     ),
                   ),
                 ),
-<<<<<<< HEAD
               ],
             ),
             const SizedBox(
@@ -257,66 +254,18 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
             CustomContainer(
               text: 'Add Lecture',
               onTap: () async {
-                await context.read<AddLectureCubit>().addLectureData();
+                await cubit.addLectureData(
+                  state.grade,
+                  state.region,
+                  selectedCount,
+                  selectedTime,
+                );
                 showSnackBar(context, 'Lecture saved successfully');
               },
-            )
+            ),
           ],
         ),
       );
     });
-=======
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('Lecture Time'),
-              GestureDetector(
-                onTap: () async {
-                  final result = await showModalBottomSheet<DateTime>(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (BuildContext context) {
-                      return const TimePickerBottomSheet();
-                    },
-                  );
-                  if (result != null) {
-                    setState(() {
-                      selectedTime = result;
-                    });
-                  }
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: kAppBarColor,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      '${selectedTime.hour}:${selectedTime.minute.toString().padLeft(2, '0')} ${selectedTime.hour >= 12 ? 'PM' : 'AM'}',
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          CustomContainer(
-            text: 'Add Lecture',
-            onTap: () {},
-          )
-        ],
-      ),
-    );
->>>>>>> 8e8fe65392e2b10657431052b1ebb8f1ec685bea
   }
 }

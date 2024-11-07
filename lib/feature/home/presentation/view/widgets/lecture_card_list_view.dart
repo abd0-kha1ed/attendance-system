@@ -1,37 +1,58 @@
+import 'package:attendance/feature/home/data/models/lecture_model.dart';
+import 'package:attendance/feature/home/presentation/manger/get%20lecture/get_lecture_cubit.dart';
+import 'package:attendance/feature/home/presentation/manger/get%20lecture/get_lecture_state.dart';
 import 'package:attendance/feature/home/presentation/view/widgets/lecture_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LectureCardListView extends StatelessWidget {
-  const LectureCardListView({super.key});
+  const LectureCardListView({super.key, required this.region});
+  final String region;
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Row(
-            children: [
-              Text(
-                'Abo hamad',
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 1 / 7,
-            child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                itemCount: 7,
-                itemBuilder: (context, index) {
-                  return const LectureCard();
-                }),
-          )
-        ],
-      ),
+    return BlocBuilder<GetLectureCubit, GetLectureState>(
+      builder: (context, state) {
+        if (state is DataLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is DataError) {
+          return Center(child: Text('Error: ${state.message}'));
+        } else if (state is DataLoaded) {
+          List<LectureModel> lectures = state.data;
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  region,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                SizedBox(
+                  height: 130,
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: lectures.length,
+                    itemBuilder: (context, index) {
+                      return LectureCard(
+                        lecture: lectures[index],
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
     );
   }
 }

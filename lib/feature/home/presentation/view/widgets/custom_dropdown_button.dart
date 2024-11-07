@@ -3,8 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomDropdownButton extends StatefulWidget {
-  const CustomDropdownButton({super.key, required this.items});
+  const CustomDropdownButton({
+    super.key,
+    required this.items,
+    required this.value,
+    this.onChanged,
+    this.onSaved,
+  });
+
   final List<String> items;
+  final void Function(String?)? onChanged;
+  final void Function(String?)? onSaved;
+
+  final String value;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -43,6 +54,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
     return SizedBox(
       width: 170,
       child: DropdownButtonFormField<String>(
+        onSaved: widget.onChanged,
         iconEnabledColor: Colors.white,
         decoration: InputDecoration(
           filled: true,
@@ -58,6 +70,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
             selectedValue = newValue!;
           });
           _saveLastSelectedValue(newValue!);
+          widget.onSaved?.call(newValue);
         },
         items:
             widget.items.toSet().map<DropdownMenuItem<String>>((String value) {

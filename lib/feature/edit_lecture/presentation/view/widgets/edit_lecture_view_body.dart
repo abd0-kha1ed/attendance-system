@@ -128,6 +128,7 @@ class _EditLectureViewBodyState extends State<EditLectureViewBody> {
             children: [
               Text('grade'),
               CustomDropdownButton(
+                value: '',
                 items: [
                   '1st Prep',
                   '2nd Prep',
@@ -146,7 +147,7 @@ class _EditLectureViewBodyState extends State<EditLectureViewBody> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Region'),
-              CustomDropdownButton(items: [
+              CustomDropdownButton(value: '', items: [
                 'Abo hamad',
                 'Zagazig',
                 '10th of ramadan',

@@ -74,16 +74,16 @@ class FirebaseServices {
     });
   }
 
-  Stream<QuerySnapshot> getStudentFeature(String studentid) {
+  Stream<QuerySnapshot> getStudentFeature(String studentId) {
     return firestore
         .collection('students')
-        .doc(studentid)
+        .doc(studentId)
         .collection('feature')
         .orderBy('createdAt', descending: true)
         .snapshots();
   }
 
-  //  Future<void> deleteAssistant(String assistantId) async {
-  //   await firestore.collection('assistants').doc(assistantId).delete();
-  // }
+  Stream<QuerySnapshot> getLectures() {
+    return firestore.collection('lectures').snapshots();
+  }
 }

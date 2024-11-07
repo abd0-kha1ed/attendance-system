@@ -8,56 +8,64 @@ class AddLectureCubit extends Cubit<AddLectureState> {
   AddLectureCubit()
       : super(AddLectureState(
           selectedTime: DateTime.now(),
-          selectedCount: 1,
+          selectedCount: 0,
           selectedDayIndex: 0,
+          grade: '1st Prep', 
+          region: 'Abo hamad', 
         ));
 
   void updateSelectedTime(DateTime time) {
     emit(state.copyWith(selectedTime: time));
   }
 
-  void updateSelectedCount(int count) {
+  void updateStudentCount(int count) {
     emit(state.copyWith(selectedCount: count));
   }
 
-  void updateSelectedDayIndex(int index) {
+  void updateStartingDay(int index) {
     emit(state.copyWith(selectedDayIndex: index));
   }
 
-  Future<void> addLectureData() async {
-  try {
-    final lecture = LectureModel(
-      time: state.selectedTime,
-      studentCount: state.selectedCount,
-      startingDay: state.selectedDayIndex == 0 ? 'Saturday' : 'Monday',
-      createdAt: DateTime.now(),
-    );
-
-    final docRef = await FirebaseFirestore.instance.collection('lectures').add(lecture.toMap());
-    
-    final lectureModel = LectureModel(
-      id: docRef.id,
-      time: lecture.time,
-      studentCount: lecture.studentCount,
-      startingDay: lecture.startingDay,
-      createdAt: lecture.createdAt,
-    );
-
-  } catch (e) {
-    print("Error saving lecture data: $e");
-  }
+  void updateGrade(String grade) {
+  emit(state.copyWith(grade: grade)); 
 }
 
+void updateRegion(String region) {
+  emit(state.copyWith(region: region)); 
+}
+
+
+
+  Future<void> addLectureData(
+      String grade, String region, int totalCount, DateTime lectureTime) async {
+    final lectureData = {
+      'grade': grade,
+      'region': region,
+      'totalCount': totalCount,
+      'lectureTime': lectureTime,
+      'startingDay': state.selectedDayIndex == 0
+          ? 'Saturday'
+          : 'Sunday', // Optional: store starting day
+    };
+
+    try {
+      await firebaseFirestore.collection('lectures').add(lectureData);
+      emit(state.copyWith());
+    } catch (error) {
+      print('Error adding lecture: $error');
+    }
+  }
 
   Future<List<LectureModel>> fetchLectures() async {
-  try {
-    final querySnapshot = await firebaseFirestore.collection('lectures').get();
-    return querySnapshot.docs.map((doc) => LectureModel.fromMap(doc.data(), doc.id)).toList();
-  } catch (e) {
-    print("Error fetching lectures: $e");
-    return [];
+    try {
+      final querySnapshot =
+          await firebaseFirestore.collection('lectures').get();
+      return querySnapshot.docs
+          .map((doc) => LectureModel.fromMap(doc.data(), doc.id))
+          .toList();
+    } catch (e) {
+      print("Error fetching lectures: $e");
+      return [];
+    }
   }
-}
-
-
 }
