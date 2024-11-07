@@ -229,6 +229,7 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
               text: 'Add Lecture',
               onTap: () async {
                 await context.read<AddLectureCubit>().addLectureData();
+                // ignore: use_build_context_synchronously
                 showSnackBar(context, 'Lecture saved successfully');
               },
             )

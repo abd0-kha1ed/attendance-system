@@ -1,80 +1,110 @@
 import 'package:attendance/core/utils/firebase_services.dart';
 import 'package:attendance/feature/studentList/data/models/add_student_model.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/custom_search_student_list.dart';
-
-import 'package:attendance/feature/studentList/presentation/views/widgets/student_list_view_widget.dart';
+import 'package:attendance/feature/studentList/presentation/views/widgets/feature_student_item_widget.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 class FeaturedStudentsViewBody extends StatefulWidget {
   const FeaturedStudentsViewBody({super.key});
 
   @override
-  State<FeaturedStudentsViewBody> createState() =>
-      _FeaturedStudentsViewBodyState();
+  State<FeaturedStudentsViewBody> createState() => _StudentListViewBodyState();
 }
 
-class _FeaturedStudentsViewBodyState extends State<FeaturedStudentsViewBody> {
+class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
   final FirebaseServices firebaseServices = FirebaseServices();
+  List<AddNewStudentModel> featuresStudents = [];
+  List<AddNewStudentModel> filteredStudents = [];
+  TextEditingController searchController = TextEditingController();
+  Timer? debounce;
+
+  @override
+  void initState() {
+    super.initState();
+    searchController.addListener(_onSearchChanged);
+  }
+
+  // Debounced search to reduce processing load
+  void _onSearchChanged() {
+    if (debounce?.isActive ?? false) debounce!.cancel();
+    debounce = Timer(const Duration(milliseconds: 300), () {
+      setState(() {}); // Trigger rebuild to filter students
+    });
+  }
+
+  // Filter students based on search query
+  List<AddNewStudentModel> _getFilteredStudents(
+      List<AddNewStudentModel> students) {
+    final query = searchController.text.toLowerCase();
+    return query.isEmpty
+        ? students
+        : students
+            .where((student) => student.name.toLowerCase().contains(query))
+            .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: firebaseServices.getStudent(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (snapshot.hasError) {
-            return Text('error: ${snapshot.error}');
-          }
-          if (snapshot.hasData) {
-            final List<AddNewStudentModel> studentFeature = [];
-            for (var doc in snapshot.data!.docs) {
-              if (doc.exists && doc.data() != null) {
-                studentFeature.add(
-                  AddNewStudentModel.fromjson({
-                    'name': doc['name'],
-                    'code': doc['code'],
-                    'phoneNumber': doc['phoneNumber'],
-                    'parentPhoneNumber': doc['parentPhoneNumber'],
-                    'id': doc.id,
-                  }),
-                );
-              }
-            }
-            return const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 10,
+      stream: firebaseServices.getFeature(), // Fetching the features collection
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          // return const Center(child: CircularProgressIndicator());
+        }
+
+        if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        }
+
+        if (snapshot.hasData) {
+          // Map snapshot data to the students list
+          featuresStudents = snapshot.data!.docs.map((doc) {
+            return AddNewStudentModel.fromjson({
+              'name': doc['name'],
+              'code': doc['code'],
+            });
+          }).toList();
+
+          // Apply filtering directly here
+          filteredStudents = _getFilteredStudents(featuresStudents);
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                const SizedBox(height: 10),
+                CustomSearchStudentList(
+                  controller: searchController,
+                ),
+                const SizedBox(height: 20),
+                if (filteredStudents.isEmpty) const Text('No students found'),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: filteredStudents.length,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return FeatureStudentItemWidget(
+                        addNewStudentModel: filteredStudents[index],
+                      );
+                    },
                   ),
-                  // CustomSearchStudentList(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Expanded(child: StudentListViewWidget()),
-                ],
-              ),
-            );
-          } else {
-            return const Text('');
-          }
-        });
-    // return const Padding(
-    //   padding: const EdgeInsets.symmetric(horizontal: 16),
-    //   child: Column(
-    //     children: [
-    //       SizedBox(
-    //         height: 10,
-    //       ),
-    //       CustomSearchStudentList(),
-    //       SizedBox(
-    //         height: 20,
-    //       ),
-    //       Expanded(child: StudentListViewWidget()),
-    //     ],
-    //   ),
-    // );
+                ),
+              ],
+            ),
+          );
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    searchController.removeListener(_onSearchChanged);
+    searchController.dispose();
+    debounce?.cancel();
+    super.dispose();
   }
 }

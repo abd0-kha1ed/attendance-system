@@ -63,25 +63,34 @@ class FirebaseServices {
   }
 
   Future<void> addStudentFeature(
-      String code, String name, String studentId) async {
-    await firestore
-        .collection('students')
-        .doc(studentId)
-        .collection('feature')
-        .add({
+    String code,
+    String name,
+  ) async {
+    await firestore.collection('features').add({
       'code': code,
       'name': name,
-      'studentId': studentId,
+      'createdAt': FieldValue.serverTimestamp(),
     });
   }
 
-  Stream<QuerySnapshot> getStudentFeature(String studentid) {
+  Stream<QuerySnapshot> getFeature() {
     return firestore
-        .collection('students')
-        .doc(studentid)
-        .collection('feature')
+        .collection('features')
         .orderBy('createdAt', descending: true)
         .snapshots();
+  }
+
+  // Stream<QuerySnapshot> getStudent() {
+  //   return firestore
+  //       .collection('students')
+  //       .orderBy('createdAt', descending: true)
+  //       .snapshots();
+  // }
+
+  Future<void> deleteFeatureStudent(String studentId) async {
+    // print("Deleting student with ID: $studentId"); // Debugging line
+    await firestore.collection('features').doc(studentId).delete();
+    // print("Student deleted successfully"); // Debugging line
   }
 
   //  Future<void> deleteAssistant(String assistantId) async {

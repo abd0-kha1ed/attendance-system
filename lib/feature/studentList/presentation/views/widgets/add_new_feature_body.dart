@@ -2,6 +2,7 @@ import 'package:attendance/core/utils/firebase_services.dart';
 import 'package:attendance/core/widgets/custom_container.dart';
 import 'package:attendance/core/widgets/custom_snack_bar.dart';
 import 'package:attendance/core/widgets/custom_text_filed.dart';
+import 'package:attendance/feature/studentList/data/models/add_student_model.dart';
 import 'package:attendance/feature/studentList/presentation/add_new_cubit/cubit/add_new_student_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +26,7 @@ class _AddNewFeatureBodyState extends State<AddNewFeatureBody> {
   bool isLoading = false;
 
   final FirebaseServices firebaseServices = FirebaseServices();
+  AddNewStudentModel? addNewStudentModel;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,9 @@ class _AddNewFeatureBodyState extends State<AddNewFeatureBody> {
 
                       BlocProvider.of<AddNewStudentCubit>(context)
                           .addStudentFeature(
-                              name: name!, code: code!, studentId: studentId!);
+                        name: name!,
+                        code: code!,
+                      );
                       showSnackBar(context, 'Assistant was add success');
                       //! throw exption student id requered
 
