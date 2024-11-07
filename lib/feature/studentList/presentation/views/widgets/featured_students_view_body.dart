@@ -49,7 +49,7 @@ class _FeaturedStudentsViewBodyState extends State<FeaturedStudentsViewBody> {
                   SizedBox(
                     height: 10,
                   ),
-                  CustomSearchStudentList(),
+                  // CustomSearchStudentList(),
                   SizedBox(
                     height: 20,
                   ),

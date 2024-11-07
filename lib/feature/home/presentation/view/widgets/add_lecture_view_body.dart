@@ -72,7 +72,6 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     return BlocBuilder<AddLectureCubit, AddLectureState>(
         builder: (context, state) {
       final cubit = context.read<AddLectureCubit>();
@@ -205,33 +204,6 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
                       setState(() {
                         selectedTime = result;
                       });
-=======
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('Starting Day'),
-              const SizedBox(width: 16),
-              ToggleButtons(
-                color: kAppBarColor,
-                borderColor: kAppBarColor,
-                selectedBorderColor: kAppBarColor,
-                selectedColor: Colors.white,
-                fillColor: kAppBarColor,
-                borderRadius: BorderRadius.circular(28),
-                isSelected: isSelected,
-                onPressed: (int index) {
-                  setState(() {
-                    for (int i = 0; i < isSelected.length; i++) {
-                      isSelected[i] = i == index;
-                      // Update selection state
->>>>>>> 8e8fe65392e2b10657431052b1ebb8f1ec685bea
                     }
                   },
                   child: Container(
@@ -248,7 +220,6 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
                     ),
                   ),
                 ),
-<<<<<<< HEAD
               ],
             ),
             const SizedBox(
@@ -265,58 +236,5 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
         ),
       );
     });
-=======
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('Lecture Time'),
-              GestureDetector(
-                onTap: () async {
-                  final result = await showModalBottomSheet<DateTime>(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (BuildContext context) {
-                      return const TimePickerBottomSheet();
-                    },
-                  );
-                  if (result != null) {
-                    setState(() {
-                      selectedTime = result;
-                    });
-                  }
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: kAppBarColor,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      '${selectedTime.hour}:${selectedTime.minute.toString().padLeft(2, '0')} ${selectedTime.hour >= 12 ? 'PM' : 'AM'}',
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          CustomContainer(
-            text: 'Add Lecture',
-            onTap: () {},
-          )
-        ],
-      ),
-    );
->>>>>>> 8e8fe65392e2b10657431052b1ebb8f1ec685bea
   }
 }

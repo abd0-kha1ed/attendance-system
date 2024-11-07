@@ -13,7 +13,7 @@ class StudentListViewWidget extends StatelessWidget {
     return ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return Column(
+          return const Column(
             children: [
               CustomStudentNameId(
                 name: '',
