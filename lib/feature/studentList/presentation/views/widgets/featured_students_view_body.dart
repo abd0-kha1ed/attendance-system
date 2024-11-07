@@ -1,7 +1,7 @@
 import 'package:attendance/core/utils/firebase_services.dart';
 import 'package:attendance/feature/studentList/data/models/add_student_model.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/custom_search_student_list.dart';
-import 'package:attendance/feature/studentList/presentation/views/widgets/student_list_view_widget.dart';
+import 'package:attendance/feature/studentList/presentation/views/widgets/feature_student_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -14,10 +14,11 @@ class FeaturedStudentsViewBody extends StatefulWidget {
 
 class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
   final FirebaseServices firebaseServices = FirebaseServices();
-  List<AddNewStudentModel> featuresStudents = [];
+  List<AddNewStudentModel> studentsFeature = [];
   List<AddNewStudentModel> filteredStudents = [];
   TextEditingController searchController = TextEditingController();
   Timer? debounce;
+
   @override
   void initState() {
     super.initState();
@@ -45,30 +46,62 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 10,
-          ),
-          CustomSearchStudentList(controller: searchController),
-          SizedBox(
-            height: 20,
-          ),
-          // Expanded(child: FeatureStudentItemWidget(addNewStudentModel: ,)),
-          CustomSearchStudentList(
-            controller: searchController,
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          // Expanded(child: StudentListViewWidget(
+    return StreamBuilder(
+      stream: firebaseServices
+          .getStudentFeature(), // Ensure this is a Firebase real-time stream
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          // return const Center(child: CircularProgressIndicator());
+        }
 
-          // ),
-          // ),
-        ],
-      ),
+        if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        }
+
+        if (snapshot.hasData) {
+          // Map snapshot data to the students list
+          studentsFeature = snapshot.data!.docs.map((doc) {
+            return AddNewStudentModel.fromjson({
+              'name': doc['name'],
+              'code': doc['code'],
+              'id': doc.id,
+            });
+          }).toList();
+
+          // Apply filtering directly here
+          filteredStudents = _getFilteredStudents(studentsFeature);
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                const SizedBox(height: 10),
+                CustomSearchStudentList(
+                  controller: searchController,
+                ),
+                const SizedBox(height: 20),
+                if (filteredStudents.isEmpty) const Text('No students found'),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: filteredStudents.length,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return FeatureStudentItemWidget(
+                        addNewStudentModel: filteredStudents[index],
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        } else {
+          return const Center(
+              child: Center(
+            child: CircularProgressIndicator(),
+          ));
+        }
+      },
     );
   }
 
