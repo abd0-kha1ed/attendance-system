@@ -1,7 +1,7 @@
 import 'package:attendance/core/utils/firebase_services.dart';
 import 'package:attendance/feature/studentList/data/models/add_student_model.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/custom_search_student_list.dart';
-import 'package:attendance/feature/studentList/presentation/views/widgets/feature_student_item_widget.dart';
+import 'package:attendance/feature/studentList/presentation/views/widgets/student_list_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -18,7 +18,6 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
   List<AddNewStudentModel> filteredStudents = [];
   TextEditingController searchController = TextEditingController();
   Timer? debounce;
-
   @override
   void initState() {
     super.initState();
@@ -58,6 +57,16 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
             height: 20,
           ),
           // Expanded(child: FeatureStudentItemWidget(addNewStudentModel: ,)),
+          CustomSearchStudentList(
+            controller: searchController,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          // Expanded(child: StudentListViewWidget(
+
+          // ),
+          // ),
         ],
       ),
     );

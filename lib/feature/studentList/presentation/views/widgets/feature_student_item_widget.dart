@@ -10,7 +10,6 @@ class FeatureStudentItemWidget extends StatelessWidget {
   FeatureStudentItemWidget({super.key, required this.addNewStudentModel});
   final AddNewStudentModel addNewStudentModel;
   final FirebaseServices firebaseServices = FirebaseServices();
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,10 +33,10 @@ class FeatureStudentItemWidget extends StatelessWidget {
                           try {
                             // await firebaseServices.deleteFeatureStudent(
                             //     addNewStudentModel.studentId);
-                            // print(
-                            //     "Deletion successful for student ID: ${addNewStudentModel.studentId}");
-                            // // Close the dialog after deletion
-                            // GoRouter.of(context).pop();
+                            print(
+                                "Deletion successful for student ID: ${addNewStudentModel.studentId}");
+                            // Close the dialog after deletion
+                            GoRouter.of(context).pop();
                             // Add any additional logic here to refresh the data if necessary
                           } catch (e) {
                             print("Error deleting student: $e");
