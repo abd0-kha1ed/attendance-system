@@ -18,13 +18,11 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
   List<AddNewStudentModel> filteredStudents = [];
   TextEditingController searchController = TextEditingController();
   Timer? debounce;
-
   @override
   void initState() {
     super.initState();
     searchController.addListener(_onSearchChanged);
   }
-
   // Debounced search to reduce processing load
   void _onSearchChanged() {
     if (debounce?.isActive ?? false) debounce!.cancel();
@@ -32,7 +30,6 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
       setState(() {}); // Trigger rebuild to filter students
     });
   }
-
   // Filter students based on search query
   List<AddNewStudentModel> _getFilteredStudents(
       List<AddNewStudentModel> students) {
@@ -43,21 +40,25 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
             .where((student) => student.name.toLowerCase().contains(query))
             .toList();
   }
-
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return  Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
           SizedBox(
             height: 10,
           ),
-          CustomSearchStudentList(),
+          CustomSearchStudentList(
+            controller: searchController,
+          ),
           SizedBox(
             height: 20,
           ),
-          Expanded(child: StudentListViewWidget()),
+          // Expanded(child: StudentListViewWidget(
+
+          // ),
+          // ),
         ],
       ),
     );

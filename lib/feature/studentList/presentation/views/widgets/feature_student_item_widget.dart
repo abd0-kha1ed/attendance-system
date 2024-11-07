@@ -29,23 +29,23 @@ class FeatureStudentItemWidget extends StatelessWidget {
                     builder: (BuildContext context) {
                       return CustomShowDialog(
                         onPressed: () async {
-                          print(
-                              "Attempting to delete student with ID: ${addNewStudentModel.studentId}");
-                          try {
-                            await firebaseServices.deleteFeatureStudent(
-                                addNewStudentModel.studentId);
-                            print(
-                                "Deletion successful for student ID: ${addNewStudentModel.studentId}");
-                            // Close the dialog after deletion
-                            GoRouter.of(context).pop();
-                            // Add any additional logic here to refresh the data if necessary
-                          } catch (e) {
-                            print("Error deleting student: $e");
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                  content: Text('Error deleting student: $e')),
-                            );
-                          }
+                          // print(
+                          //     "Attempting to delete student with ID: ${addNewStudentModel.studentId}");
+                          // try {
+                          //   await firebaseServices.deleteFeatureStudent(
+                          //       addNewStudentModel.studentId);
+                          //   print(
+                          //       "Deletion successful for student ID: ${addNewStudentModel.studentId}");
+                          //   // Close the dialog after deletion
+                          //   GoRouter.of(context).pop();
+                          //   // Add any additional logic here to refresh the data if necessary
+                          // } catch (e) {
+                          //   print("Error deleting student: $e");
+                          //   ScaffoldMessenger.of(context).showSnackBar(
+                          //     SnackBar(
+                          //         content: Text('Error deleting student: $e')),
+                          //   );
+                          // }
                         },
                       );
                     });
