@@ -2,9 +2,10 @@ import 'package:attendance/core/utils/firebase_services.dart';
 import 'package:attendance/core/widgets/custom_container.dart';
 import 'package:attendance/core/widgets/custom_snack_bar.dart';
 import 'package:attendance/core/widgets/custom_text_filed.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:attendance/feature/studentList/data/models/add_student_model.dart';
+import 'package:attendance/feature/studentList/presentation/add_new_cubit/cubit/add_new_student_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddNewFeatureBody extends StatefulWidget {
   const AddNewFeatureBody({
@@ -18,20 +19,21 @@ class AddNewFeatureBody extends StatefulWidget {
 class _AddNewFeatureBodyState extends State<AddNewFeatureBody> {
   final GlobalKey<FormState> formKey = GlobalKey();
 
-  String? code, name;
+  String? code, name, studentId;
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   bool isLoading = false;
 
   final FirebaseServices firebaseServices = FirebaseServices();
+  AddNewStudentModel? addNewStudentModel;
 
   @override
   Widget build(BuildContext context) {
     final codeController = TextEditingController();
     final nameController = TextEditingController();
-    return ModalProgressHUD(
-      inAsyncCall: isLoading,
+    return BlocProvider(
+      create: (context) => AddNewStudentCubit(),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Form(
@@ -61,26 +63,43 @@ class _AddNewFeatureBodyState extends State<AddNewFeatureBody> {
             const SizedBox(
               height: 24,
             ),
-            CustomContainer(
-              text: 'add new student',
-              onTap: () async {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  // await firebaseServices.addStudentFeature(name!, code!,);
-                  isLoading = true;
-                  setState(() {});
-                  try {
-                    isLoading = false;
-                    setState(() {});
-                    // ignore: use_build_context_synchronously
-                    showSnackBar(context, 'Student was add successfully');
-                  } on FirebaseException {
-                    showSnackBar(
-                        // ignore: use_build_context_synchronously
-                        context,
-                        'Oops there was an error, try later');
-                  }
-                }
+            BlocBuilder<AddNewStudentCubit, AddNewStudentState>(
+              builder: (context, state) {
+                return CustomContainer(
+                  text: 'add new student',
+                  isLoading: state is AddNewStudentLoading ? true : false,
+                  onTap: () async {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+
+                      BlocProvider.of<AddNewStudentCubit>(context)
+                          .addStudentFeature(
+                        name: name!,
+                        code: code!,
+                      );
+                      showSnackBar(context, 'Assistant was add success');
+                      //! throw exption student id requered
+
+                      // await firebaseServices.addStudentFeature(name!, code!,)
+                      // isLoading = true;
+                      // setState(() {});
+                      // try {
+                      //   isLoading = false;
+                      //   setState(() {});
+                      //   // ignore: use_build_context_synchronously
+                      //   showSnackBar(context, 'Student was add successfully');
+                      // } on FirebaseException {
+                      //   showSnackBar(
+                      //       // ignore: use_build_context_synchronously
+                      //       context,
+                      //       'Oops there was an error, try later');
+                      // }
+                    } else {
+                      autovalidateMode = AutovalidateMode.always;
+                      setState(() {});
+                    }
+                  },
+                );
               },
             ),
           ]),

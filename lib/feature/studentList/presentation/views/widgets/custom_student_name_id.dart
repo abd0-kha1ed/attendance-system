@@ -1,10 +1,12 @@
 import 'package:attendance/constant.dart';
+import 'package:attendance/core/utils/firebase_services.dart';
+import 'package:attendance/feature/studentList/data/models/add_student_model.dart';
 import 'package:flutter/material.dart';
 
 class CustomStudentNameId extends StatelessWidget {
-  const CustomStudentNameId(
-      {super.key, required this.name, required this.code});
-  final String name, code;
+  CustomStudentNameId({super.key, required this.addNewStudentModel});
+  final AddNewStudentModel addNewStudentModel;
+  final FirebaseServices firebaseServices = FirebaseServices();
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,7 +17,7 @@ class CustomStudentNameId extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                code,
+                addNewStudentModel.code,
                 style: const TextStyle(color: Colors.white, fontSize: 20),
               ),
             ),
@@ -25,7 +27,7 @@ class CustomStudentNameId extends StatelessWidget {
           width: 15,
         ),
         Text(
-          name,
+          addNewStudentModel.name,
           // style: TextStyle(fontSize: 20),
         ),
       ],

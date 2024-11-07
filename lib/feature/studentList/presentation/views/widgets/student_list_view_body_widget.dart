@@ -28,8 +28,7 @@ class StudentListViewBodyWidget extends StatelessWidget {
           children: [
             SizedBox(
               child: CustomStudentNameId(
-                name: studentModel.name,
-                code: studentModel.code,
+                addNewStudentModel: studentModel,
               ),
             ),
             const SizedBox(
