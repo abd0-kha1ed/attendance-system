@@ -73,41 +73,16 @@ class FirebaseServices {
     });
   }
 
-<<<<<<< HEAD
   Stream<QuerySnapshot> getStudentFeature(String studentId) {
     return firestore
         .collection('students')
         .doc(studentId)
         .collection('feature')
-=======
-  Stream<QuerySnapshot> getFeature() {
-    return firestore
-        .collection('features')
->>>>>>> 80c0ce12b5ccf15963939b91635460ad824d607b
         .orderBy('createdAt', descending: true)
         .snapshots();
   }
 
-<<<<<<< HEAD
   Stream<QuerySnapshot> getLectures() {
     return firestore.collection('lectures').snapshots();
   }
-=======
-  // Stream<QuerySnapshot> getStudent() {
-  //   return firestore
-  //       .collection('students')
-  //       .orderBy('createdAt', descending: true)
-  //       .snapshots();
-  // }
-
-  Future<void> deleteFeatureStudent(String studentId) async {
-    // print("Deleting student with ID: $studentId"); // Debugging line
-    await firestore.collection('features').doc(studentId).delete();
-    // print("Student deleted successfully"); // Debugging line
-  }
-
-  //  Future<void> deleteAssistant(String assistantId) async {
-  //   await firestore.collection('assistants').doc(assistantId).delete();
-  // }
->>>>>>> 80c0ce12b5ccf15963939b91635460ad824d607b
 }

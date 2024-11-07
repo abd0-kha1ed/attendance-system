@@ -32,12 +32,12 @@ class FeatureStudentItemWidget extends StatelessWidget {
                           print(
                               "Attempting to delete student with ID: ${addNewStudentModel.studentId}");
                           try {
-                            await firebaseServices.deleteFeatureStudent(
-                                addNewStudentModel.studentId);
-                            print(
-                                "Deletion successful for student ID: ${addNewStudentModel.studentId}");
-                            // Close the dialog after deletion
-                            GoRouter.of(context).pop();
+                            // await firebaseServices.deleteFeatureStudent(
+                            //     addNewStudentModel.studentId);
+                            // print(
+                            //     "Deletion successful for student ID: ${addNewStudentModel.studentId}");
+                            // // Close the dialog after deletion
+                            // GoRouter.of(context).pop();
                             // Add any additional logic here to refresh the data if necessary
                           } catch (e) {
                             print("Error deleting student: $e");

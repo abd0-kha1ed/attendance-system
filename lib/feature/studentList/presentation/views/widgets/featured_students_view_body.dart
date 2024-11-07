@@ -46,18 +46,18 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
           SizedBox(
             height: 10,
           ),
-          CustomSearchStudentList(),
+          CustomSearchStudentList(controller: searchController),
           SizedBox(
             height: 20,
           ),
-          Expanded(child: StudentListViewWidget()),
+          // Expanded(child: FeatureStudentItemWidget(addNewStudentModel: ,)),
         ],
       ),
     );
