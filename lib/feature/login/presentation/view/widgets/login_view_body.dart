@@ -17,7 +17,7 @@ class LoginViewBody extends StatefulWidget {
 }
 
 class _LoginViewBodyState extends State<LoginViewBody> {
-  final List<bool> isSelected = [true, false]; // Default to Teacher (index 1)
+  final List<bool> isSelected = [false, true]; // Default to Teacher (index 1)
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool _isObscured = true;

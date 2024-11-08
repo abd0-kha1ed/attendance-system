@@ -1,6 +1,5 @@
 import 'package:attendance/constant.dart';
 import 'package:attendance/core/utils/app_routers.dart';
-import 'package:attendance/feature/assistant%20folder/presentation/view/widgets/qr_scanner_screen.dart';
 import 'package:attendance/feature/home/presentation/view/widgets/custom_control_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

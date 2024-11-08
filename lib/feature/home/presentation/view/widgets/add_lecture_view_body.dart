@@ -1,6 +1,5 @@
 import 'package:attendance/constant.dart';
 import 'package:attendance/core/widgets/custom_container.dart';
-import 'package:attendance/core/widgets/custom_snack_bar.dart';
 import 'package:attendance/feature/home/presentation/manger/add_lecture_cubit/add_lecture_cubit.dart';
 import 'package:attendance/feature/home/presentation/manger/add_lecture_cubit/add_lecture_cubit_state.dart';
 import 'package:attendance/feature/home/presentation/view/widgets/custom_dropdown_button.dart';
@@ -260,7 +259,7 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
                   selectedCount,
                   selectedTime,
                 );
-                showSnackBar(context, 'Lecture saved successfully');
+                // showSnackBar(context, 'Lecture saved successfully');
               },
             ),
           ],

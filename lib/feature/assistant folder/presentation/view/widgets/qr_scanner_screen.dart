@@ -37,7 +37,7 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
                     setState(() {
                       barcodeResult = code;
                     });
-                    print('Barcode found: $code');
+                    // print('Barcode found: $code');
                   }
                 }
               },

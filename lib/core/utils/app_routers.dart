@@ -20,7 +20,6 @@ import 'package:attendance/feature/studentList/presentation/views/student_list_v
 import 'package:attendance/feature/teacher/presentation/manger/add_new_assistant_cubit/cubit/add_new_assistan_cubit.dart';
 import 'package:attendance/feature/teacher/presentation/view/add_new_assistnat_view.dart';
 import 'package:attendance/feature/teacher/presentation/view/teacher_view.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
