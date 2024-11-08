@@ -22,7 +22,7 @@ class GetLectureCubit extends Cubit<GetLectureState> {
 
       emit(DataLoaded(lectures));
     }, onError: (error) {
-      print("Error streaming lectures: $error");
+      // print("Error streaming lectures: $error");
       emit(DataError(error.toString()));
     });
   }

@@ -11,8 +11,8 @@ class AddLectureCubit extends Cubit<AddLectureState> {
           selectedTime: DateTime.now(),
           selectedCount: 0,
           selectedDayIndex: 0,
-          grade: '1st Prep', 
-          region: 'Abo hamad', 
+          grade: '1st Prep',
+          region: 'Abo hamad',
         ));
 
   void updateSelectedTime(DateTime time) {
@@ -28,14 +28,12 @@ class AddLectureCubit extends Cubit<AddLectureState> {
   }
 
   void updateGrade(String grade) {
-  emit(state.copyWith(grade: grade)); 
-}
+    emit(state.copyWith(grade: grade));
+  }
 
-void updateRegion(String region) {
-  emit(state.copyWith(region: region)); 
-}
-
-
+  void updateRegion(String region) {
+    emit(state.copyWith(region: region));
+  }
 
   Future<void> addLectureData(
       String grade, String region, int totalCount, DateTime lectureTime) async {
@@ -53,7 +51,7 @@ void updateRegion(String region) {
       await firebaseFirestore.collection('lectures').add(lectureData);
       emit(state.copyWith());
     } catch (error) {
-      print('Error adding lecture: $error');
+      // print('Error adding lecture: $error');
     }
   }
 
@@ -65,7 +63,7 @@ void updateRegion(String region) {
           .map((doc) => LectureModel.fromMap(doc.data(), doc.id))
           .toList();
     } catch (e) {
-      print("Error fetching lectures: $e");
+      // print("Error fetching lectures: $e");
       return [];
     }
   }

@@ -31,10 +31,12 @@ class LectureModel {
   }
 
   factory LectureModel.fromMap(Map<String, dynamic> map, String id) {
-    print("Map data for lecture: $map");
+    // print("Map data for lecture: $map");
     return LectureModel(
       id: id,
-      time: map['lectureTime'] != null ? (map['lectureTime'] as Timestamp).toDate() : null,
+      time: map['lectureTime'] != null
+          ? (map['lectureTime'] as Timestamp).toDate()
+          : null,
       studentCount: map['totalCount'] is int ? map['totalCount'] : 10,
       startingDay: map['startingDay'] ?? '',
       grade: map['grade'] ?? '',

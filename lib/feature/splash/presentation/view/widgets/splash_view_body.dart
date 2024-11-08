@@ -80,7 +80,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
                 if (state is UnAuthenticatedState) {
                   return const LoginView();
                 } else if (state is AuthenticatedState) {
-                  return HomeView();
+                  return const HomeView();
                 } else {
                   return const Scaffold(
                     body: Center(
