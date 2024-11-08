@@ -5,16 +5,21 @@ import 'package:attendance/feature/home/presentation/view/widgets/lecture_card.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LectureCardListView extends StatelessWidget {
+class LectureCardListView extends StatefulWidget {
   const LectureCardListView({super.key, required this.region});
   final String region;
 
+  @override
+  State<LectureCardListView> createState() => _LectureCardListViewState();
+}
+
+class _LectureCardListViewState extends State<LectureCardListView> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetLectureCubit, GetLectureState>(
       builder: (context, state) {
         if (state is DataLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center();
         } else if (state is DataError) {
           return Center(child: Text('Error: ${state.message}'));
         } else if (state is DataLoaded) {
@@ -26,7 +31,7 @@ class LectureCardListView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  region,
+                  widget.region,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

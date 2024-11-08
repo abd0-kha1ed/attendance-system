@@ -161,6 +161,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             // Assistant found, navigate to the Assistant's page
 
             // ignore: use_build_context_synchronously
+
             GoRouter.of(context).push(AppRouters.kHomeView);
           }
         }

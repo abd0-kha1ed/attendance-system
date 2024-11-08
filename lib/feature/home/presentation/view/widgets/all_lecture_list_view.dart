@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AllLectureListView extends StatelessWidget {
   const AllLectureListView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Flexible(
@@ -14,52 +15,50 @@ class AllLectureListView extends StatelessWidget {
         slivers: [
           SliverToBoxAdapter(
             child: BlocProvider(
-              create: (_) => GetLectureCubit()
-                ..fetchLectures(
-                    region:
-                        'Abo hamad'), 
+              create: (_) =>
+                  GetLectureCubit()..streamLectures(region: 'Abo hamad'),
               child: const LectureCardListView(region: 'Abo hamad'),
             ),
           ),
           SliverToBoxAdapter(
             child: BlocProvider(
               create: (_) =>
-                  GetLectureCubit()..fetchLectures(region: 'Zagazig'),
+                  GetLectureCubit()..streamLectures(region: 'Zagazig'),
               child: const LectureCardListView(region: 'Zagazig'),
             ),
           ),
           SliverToBoxAdapter(
             child: BlocProvider(
               create: (_) =>
-                  GetLectureCubit()..fetchLectures(region: '10th of ramadan'),
+                  GetLectureCubit()..streamLectures(region: '10th of ramadan'),
               child: const LectureCardListView(region: '10th of ramadan'),
             ),
           ),
           SliverToBoxAdapter(
             child: BlocProvider(
               create: (_) =>
-                  GetLectureCubit()..fetchLectures(region: 'Dyarb negm'),
+                  GetLectureCubit()..streamLectures(region: 'Dyarb negm'),
               child: const LectureCardListView(region: 'Dyarb negm'),
             ),
           ),
           SliverToBoxAdapter(
             child: BlocProvider(
               create: (_) =>
-                  GetLectureCubit()..fetchLectures(region: 'Minya el Qamh'),
+                  GetLectureCubit()..streamLectures(region: 'Minya el Qamh'),
               child: const LectureCardListView(region: 'Minya el Qamh'),
             ),
           ),
           SliverToBoxAdapter(
             child: BlocProvider(
               create: (_) =>
-                  GetLectureCubit()..fetchLectures(region: 'Almogaze'),
+                  GetLectureCubit()..streamLectures(region: 'Almogaze'),
               child: const LectureCardListView(region: 'Almogaze'),
             ),
           ),
           SliverToBoxAdapter(
             child: BlocProvider(
               create: (_) =>
-                  GetLectureCubit()..fetchLectures(region: 'Shnbara'),
+                  GetLectureCubit()..streamLectures(region: 'Shnbara'),
               child: const LectureCardListView(region: 'Shnbara'),
             ),
           ),

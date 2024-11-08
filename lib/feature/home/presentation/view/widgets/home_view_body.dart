@@ -113,7 +113,7 @@ class HomeViewBody extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-         const AllLectureListView(),
+        const AllLectureListView(),
         Image.asset(Assets.waveBottom),
       ],
     );
