@@ -1,3 +1,4 @@
+import 'package:attendance/feature/home/data/models/add_lecture_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseServices {
@@ -82,7 +83,35 @@ class FirebaseServices {
         .snapshots();
   }
 
-  Stream<QuerySnapshot> getLectures() {
-    return firestore.collection('lectures').snapshots();
+
+  
+Future<void> addLectureData(
+  String grade,
+  String region,
+  int studentCount,
+  DateTime lectureTime,
+) async {
+  CollectionReference lecturesRef = firestore.collection('lectures');
+
+  await lecturesRef.add({
+    'grade': grade,
+    'region': region,
+    'studentCount': studentCount,
+    'lectureTime': lectureTime,
+  });
+}
+
+  Stream<List<AddLectureModel>> getLecturesByRegion(String region) {
+    return firestore
+        .collection('lectures') 
+        .where('region', isEqualTo: region)
+        .snapshots() 
+        .map((snapshot) {
+          return snapshot.docs
+              .map((doc) => AddLectureModel.fromMap(doc.data()))
+              .toList();
+        });
   }
 }
+
+
