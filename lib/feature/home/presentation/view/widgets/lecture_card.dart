@@ -19,14 +19,13 @@ class LectureCard extends StatelessWidget {
         if (user != null) {
           print("user is arady exisit${user.email}");
 
-          GoRouter.of(context).push(AppRouters.kLectureControlPanelView);
+          GoRouter.of(context).push(AppRouters.kLectureControlPanelView,  extra: lecture);
         } else {
           print('user did not sign in ');
           GoRouter.of(context).push(AppRouters.kAssistantControlView);
         }
       },
       child: Container(
-        width: 160,
         padding: const EdgeInsets.all(12),
         margin: const EdgeInsets.only(right: 12),
         decoration: BoxDecoration(

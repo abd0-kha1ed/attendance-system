@@ -1,8 +1,10 @@
+import 'package:attendance/feature/home/data/models/lecture_model.dart';
 import 'package:attendance/feature/home/presentation/view/widgets/control_panel_section.dart';
 import 'package:flutter/material.dart';
 
 class LectureControlPanelViewBody extends StatelessWidget {
-  const LectureControlPanelViewBody({super.key});
+  const LectureControlPanelViewBody({super.key, required this.lectureModel});
+  final LectureModel lectureModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,11 +23,12 @@ class LectureControlPanelViewBody extends StatelessWidget {
                   color: const Color(0xff042B59),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
                   child: Text(
-                    'Abo hamad',
-                    style: TextStyle(color: Colors.white),
+                    lectureModel.region,
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
               ),
@@ -43,11 +46,12 @@ class LectureControlPanelViewBody extends StatelessWidget {
                   color: const Color(0xff042B59),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
                   child: Text(
-                    'Sunday - 1:00 PM',
-                    style: TextStyle(color: Colors.white),
+                    '${lectureModel.startingDay} - ${lectureModel.time!.hour}:${lectureModel.time!.minute} ${lectureModel.time!.hour >= 12 ? 'PM' : 'AM'}',
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
               ),
@@ -71,11 +75,12 @@ class LectureControlPanelViewBody extends StatelessWidget {
                       color: const Color(0xff042B59),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6, vertical: 6),
                       child: Text(
-                        '3rd Secondary',
-                        style: TextStyle(color: Colors.white),
+                        lectureModel.grade,
+                        style: const TextStyle(color: Colors.white),
                       ),
                     ),
                   ),
@@ -93,18 +98,19 @@ class LectureControlPanelViewBody extends StatelessWidget {
                       color: const Color(0xff042B59),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6, vertical: 6),
                       child: Row(
                         children: [
                           Text(
-                            '104',
-                            style: TextStyle(color: Colors.white),
+                            '${lectureModel.studentCount}',
+                            style: const TextStyle(color: Colors.white),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
-                          Icon(
+                          const Icon(
                             Icons.person,
                             color: Colors.white,
                           ),
@@ -120,7 +126,9 @@ class LectureControlPanelViewBody extends StatelessWidget {
             height: 30,
           ),
           const Spacer(),
-          const ControlPanelSection(),
+          ControlPanelSection(
+            lectureModel: lectureModel,
+          ),
           const Spacer(
             flex: 2,
           ),

@@ -1,6 +1,8 @@
 import 'package:attendance/feature/absence_report/presentation/view/absence_report_view.dart';
 import 'package:attendance/feature/assistant%20folder/presentation/view/assistant_control_view.dart';
 import 'package:attendance/feature/assistant%20folder/presentation/view/assistant_home_view.dart';
+import 'package:attendance/feature/home/data/models/lecture_model.dart';
+import 'package:attendance/feature/home/presentation/manger/get%20lecture/get_lecture_cubit.dart';
 import 'package:attendance/feature/studentList/presentation/views/add_feature_student.dart';
 import 'package:attendance/feature/studentList/presentation/views/add_new_student_view.dart';
 
@@ -55,7 +57,10 @@ abstract class AppRouters {
     ),
     GoRoute(
       path: kLectureControlPanelView,
-      builder: (context, state) => const LectureControlPanelView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => GetLectureCubit(),
+        child:  LectureControlPanelView(lectureModel: state.extra as LectureModel,),
+      ),
     ),
     GoRoute(
       path: kAddLectureView,

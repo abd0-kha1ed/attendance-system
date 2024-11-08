@@ -1,12 +1,14 @@
 import 'package:attendance/core/utils/app_routers.dart';
+import 'package:attendance/feature/home/data/models/lecture_model.dart';
 import 'package:attendance/feature/home/presentation/view/widgets/custom_control_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ControlPanelSection extends StatelessWidget {
   const ControlPanelSection({
-    super.key,
+    super.key, required this.lectureModel,
   });
+  final LectureModel lectureModel;
 
   @override
   Widget build(BuildContext context) {
