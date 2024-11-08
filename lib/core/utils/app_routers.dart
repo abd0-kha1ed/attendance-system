@@ -1,6 +1,7 @@
 import 'package:attendance/feature/absence_report/presentation/view/absence_report_view.dart';
 import 'package:attendance/feature/assistant%20folder/presentation/view/assistant_control_view.dart';
 import 'package:attendance/feature/assistant%20folder/presentation/view/assistant_home_view.dart';
+import 'package:attendance/feature/assistant%20folder/presentation/view/widgets/qr_scanner_screen.dart';
 import 'package:attendance/feature/home/data/models/lecture_model.dart';
 import 'package:attendance/feature/home/presentation/manger/get%20lecture/get_lecture_cubit.dart';
 import 'package:attendance/feature/studentList/presentation/views/add_feature_student.dart';
@@ -17,6 +18,7 @@ import 'package:attendance/feature/studentList/presentation/views/student_list_v
 import 'package:attendance/feature/teacher/presentation/manger/add_new_assistant_cubit/cubit/add_new_assistan_cubit.dart';
 import 'package:attendance/feature/teacher/presentation/view/add_new_assistnat_view.dart';
 import 'package:attendance/feature/teacher/presentation/view/teacher_view.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
@@ -37,6 +39,7 @@ abstract class AppRouters {
   static const kAddFeatureStudent = '/AddFeatureStudent';
   static const kAssistantHomeView = '/AssistantHomeView';
   static const kAssistantControlView = '/AssistantControlView';
+  static const kQRScannerScreen = '/QRScannerScreen';
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -104,5 +107,8 @@ abstract class AppRouters {
       path: kAssistantControlView,
       builder: (context, state) => const AssistantControlView(),
     ),
+    GoRoute(
+        path: kQRScannerScreen,
+        builder: (context, state) => const QRScannerScreen()),
   ]);
 }

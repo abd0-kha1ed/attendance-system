@@ -1,9 +1,5 @@
-import 'package:attendance/constant.dart';
-import 'package:attendance/core/utils/app_routers.dart';
-import 'package:attendance/feature/home/presentation/view/widgets/custom_control_panel.dart';
+import 'package:attendance/feature/assistant%20folder/presentation/view/widgets/assistant_control_view_body_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 
 class AssistantControlViewBody extends StatelessWidget {
   const AssistantControlViewBody({super.key});
@@ -123,27 +119,7 @@ class AssistantControlViewBody extends StatelessWidget {
           const SizedBox(
             height: 60,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomControlPanel(
-                  onTap: () {},
-                  title: 'Scan QrS',
-                  icon: FontAwesomeIcons.qrcode,
-                  background: kAppBarColor),
-              const SizedBox(
-                width: 30,
-              ),
-              CustomControlPanel(
-                onTap: () {
-                  GoRouter.of(context).push(AppRouters.kStudentListView);
-                },
-                title: 'Students List',
-                icon: Icons.group,
-                background: const Color(0xff0453b0),
-              ),
-            ],
-          ),
+          const AssistnatControlViewBodyWidget(),
         ],
       ),
     );

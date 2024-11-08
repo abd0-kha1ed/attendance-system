@@ -32,7 +32,7 @@ class AssistantHomeViewBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'mahmoud ahmed',
+                'Assistant',
                 style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
