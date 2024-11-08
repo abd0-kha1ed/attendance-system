@@ -2,6 +2,7 @@ import 'package:attendance/core/utils/firebase_services.dart';
 import 'package:attendance/core/widgets/custom_container.dart';
 import 'package:attendance/core/widgets/custom_snack_bar.dart';
 import 'package:attendance/core/widgets/custom_text_filed.dart';
+import 'package:attendance/feature/studentList/data/models/add_student_model.dart';
 import 'package:attendance/feature/studentList/presentation/add_new_cubit/cubit/add_new_student_cubit.dart';
 
 import 'package:flutter/material.dart';
@@ -9,7 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class AddNewStudentBody extends StatefulWidget {
-  const AddNewStudentBody({super.key});
+  const AddNewStudentBody({super.key, required this.studentModel});
+  final AddNewStudentModel studentModel;
 
   @override
   State<AddNewStudentBody> createState() => _AddNewStudentBodyState();
@@ -107,6 +109,7 @@ class _AddNewStudentBodyState extends State<AddNewStudentBody> {
                             phoneNumber: phoneNumber!,
                             parentPhoneNumber: parentPhoneNumber!,
                             code: code!,
+                            studentId: widget.studentModel.studentId,
                           );
                           // ignore: use_build_context_synchronously
                           showSnackBar(context, 'Student was add successfully');

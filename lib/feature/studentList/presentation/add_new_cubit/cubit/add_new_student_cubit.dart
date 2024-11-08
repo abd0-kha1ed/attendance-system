@@ -15,6 +15,7 @@ class AddNewStudentCubit extends Cubit<AddNewStudentState> {
     required String name,
     required String phoneNumber,
     required String parentPhoneNumber,
+    required String studentId
   }) async {
     emit(AddNewStudentLoading());
 
@@ -24,6 +25,7 @@ class AddNewStudentCubit extends Cubit<AddNewStudentState> {
         name,
         phoneNumber,
         parentPhoneNumber,
+        studentId,
       );
       emit(AddNewStudentSuccess());
     } on FirebaseException catch (e) {

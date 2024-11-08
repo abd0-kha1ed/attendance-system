@@ -27,8 +27,8 @@ class FirebaseServices {
   }
 
   Future<void> addNewStudent(String code, String name, String phoneNumber,
-      String parentPhoneNumber) async {
-    await firestore.collection('students').add({
+      String parentPhoneNumber, String studentId) async {
+    await firestore.collection('lectures').doc(studentId).collection('students').add({
       'code': code,
       'name': name,
       'phoneNumber': phoneNumber,
@@ -37,8 +37,10 @@ class FirebaseServices {
     });
   }
 
-  Stream<QuerySnapshot> getStudent() {
+  Stream<QuerySnapshot> getStudent(String studentId) {
     return firestore
+    .collection('lectures')
+    .doc(studentId)
         .collection('students')
         .orderBy('createdAt', descending: true)
         .snapshots();

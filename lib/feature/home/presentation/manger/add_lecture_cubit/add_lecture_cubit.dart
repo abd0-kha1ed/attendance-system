@@ -57,16 +57,16 @@ void updateRegion(String region) {
     }
   }
 
-  Future<List<LectureModel>> fetchLectures() async {
-    try {
-      final querySnapshot =
-          await firebaseFirestore.collection('lectures').get();
-      return querySnapshot.docs
-          .map((doc) => LectureModel.fromMap(doc.data(), doc.id))
-          .toList();
-    } catch (e) {
-      print("Error fetching lectures: $e");
-      return [];
-    }
-  }
+  // Future<List<LectureModel>> fetchLectures() async {
+  //   try {
+  //     final querySnapshot =
+  //         await firebaseFirestore.collection('lectures').get();
+  //     return querySnapshot.docs
+  //         .map((doc) => LectureModel.fromMap(doc.data(), doc.id))
+  //         .toList();
+  //   } catch (e) {
+  //     print("Error fetching lectures: $e");
+  //     return [];
+  //   }
+  // }
 }
