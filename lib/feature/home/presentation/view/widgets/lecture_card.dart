@@ -11,17 +11,16 @@ class LectureCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('${lecture.studentCount}');
     return GestureDetector(
       onTap: () async {
         User? user = FirebaseAuth.instance.currentUser;
 
         if (user != null) {
-          // المستخدم مسجل دخوله
           print("user is arady exisit${user.email}");
 
           GoRouter.of(context).push(AppRouters.kLectureControlPanelView);
         } else {
-          //
           print('user did not sign in ');
           GoRouter.of(context).push(AppRouters.kAssistantControlView);
         }

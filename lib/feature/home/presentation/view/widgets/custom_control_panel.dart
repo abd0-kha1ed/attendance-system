@@ -18,8 +18,7 @@ class CustomControlPanel extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.141,
-        width: MediaQuery.of(context).size.width * 0.28,
+        padding: const EdgeInsets.symmetric(vertical: 32),
         decoration: BoxDecoration(
             color: background, borderRadius: BorderRadius.circular(12)),
         child: Column(

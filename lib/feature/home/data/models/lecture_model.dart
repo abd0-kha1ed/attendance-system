@@ -21,8 +21,8 @@ class LectureModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'time': time != null ? Timestamp.fromDate(time!) : null,
-      'studentCount': studentCount,
+      'lectureTime': time != null ? Timestamp.fromDate(time!) : null,
+      'totalCount': studentCount,
       'startingDay': startingDay,
       'grade': grade,
       'region': region,
@@ -34,12 +34,14 @@ class LectureModel {
     print("Map data for lecture: $map");
     return LectureModel(
       id: id,
-      time: map['time'] != null ? (map['time'] as Timestamp).toDate() : null,
-      studentCount: map['studentCount'] is int ? map['studentCount'] as int : 0,
+      time: map['lectureTime'] != null ? (map['lectureTime'] as Timestamp).toDate() : null,
+      studentCount: map['totalCount'] is int ? map['totalCount'] : 10,
       startingDay: map['startingDay'] ?? '',
       grade: map['grade'] ?? '',
       region: map['region'] ?? '',
-      createdAt: map['createdAt'] != null ? (map['createdAt'] as Timestamp).toDate() : null,
+      createdAt: map['createdAt'] != null
+          ? (map['createdAt'] as Timestamp).toDate()
+          : null,
     );
   }
 }

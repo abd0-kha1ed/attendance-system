@@ -152,7 +152,7 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
                   items: const [
                     'Abo hamad',
                     'Zagazig',
-                    '10th of Ramadan',
+                    '10th of ramadan',
                     'Dyarb negm',
                     'Minya el Qamh',
                     'Almogaze',

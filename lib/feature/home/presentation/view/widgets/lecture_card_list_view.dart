@@ -58,6 +58,48 @@ class _LectureCardListViewState extends State<LectureCardListView> {
           return const SizedBox.shrink();
         }
       },
+      // child: BlocBuilder<GetLectureCubit, GetLectureState>(
+      //   builder: (context, state) {
+      //     if (state is DataLoading) {
+      //       return const Center(child: CircularProgressIndicator());
+      //     } else if (state is DataError) {
+      //       return Center(child: Text('Error: ${state.message}'));
+      //     } else if (state is DataLoaded) {
+      //       List<LectureModel> lectures = state.data;
+
+      //       return Padding(
+      //         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      //         child: Column(
+      //           crossAxisAlignment: CrossAxisAlignment.start,
+      //           children: [
+      //             Text(
+      //               region,
+      //               style: const TextStyle(
+      //                 fontSize: 20,
+      //                 fontWeight: FontWeight.bold,
+      //               ),
+      //             ),
+      //             const SizedBox(height: 8),
+      //             SizedBox(
+      //               height: 130,
+      //               child: ListView.builder(
+      //                 physics: const BouncingScrollPhysics(),
+      //                 scrollDirection: Axis.horizontal,
+      //                 itemCount: lectures.length,
+      //                 itemBuilder: (context, index) {
+      //                   return LectureCard(
+      //                     lecture: lectures[index],
+      //                   );
+      //                 },
+      //               ),
+      //             ),
+      //           ],
+      //         ),
+      //       );
+      //     } else {
+      //       return const SizedBox.shrink();
+      //     }
+      //   },
     );
   }
 }

@@ -8,7 +8,6 @@ class GetLectureCubit extends Cubit<GetLectureState> {
 
   GetLectureCubit() : super(DataLoading());
 
-  // استمع للتحديثات من Firestore في الوقت الفعلي بناءً على المنطقة
   void streamLectures({required String region}) {
     emit(DataLoading());
 
