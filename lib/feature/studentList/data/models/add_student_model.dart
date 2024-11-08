@@ -1,8 +1,8 @@
 class AddNewStudentModel {
-   String code;
-   String name;
-   String phoneNumber;
-   String parentPhoneNumber;
+  String code;
+  String name;
+  String phoneNumber;
+  String parentPhoneNumber;
   final String studentId;
 
   AddNewStudentModel(
@@ -17,7 +17,7 @@ class AddNewStudentModel {
       name: jsonData['name'] ?? 'Unknown ID',
       phoneNumber: jsonData['phoneNumber'] ?? 'Unnamed Pharmacy',
       parentPhoneNumber: jsonData['parentPhoneNumber'] ?? 'Unnamed Pharmacy',
-      studentId: jsonData['id'] ?? 'Unnamed Pharmacy',
+      studentId: jsonData['id'] ?? 'No Id',
     );
   }
 }

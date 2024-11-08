@@ -77,7 +77,7 @@ class _AddNewFeatureBodyState extends State<AddNewFeatureBody> {
                         name: name!,
                         code: code!,
                       );
-                      showSnackBar(context, 'Assistant was add success');
+                      showSnackBar(context, 'Student was add success');
                       //! throw exption student id requered
 
                       // await firebaseServices.addStudentFeature(name!, code!,)

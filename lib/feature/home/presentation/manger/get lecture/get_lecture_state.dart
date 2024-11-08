@@ -11,7 +11,7 @@ class DataLoading extends GetLectureState {}
 class DataLoaded extends GetLectureState {
   final List<LectureModel> data;
 
-   DataLoaded(this.data);
+  DataLoaded(this.data);
 
   @override
   List<Object> get props => [data];
@@ -20,7 +20,7 @@ class DataLoaded extends GetLectureState {
 class DataError extends GetLectureState {
   final String message;
 
-   DataError(this.message);
+  DataError(this.message);
 
   @override
   List<Object> get props => [message];

@@ -8,23 +8,23 @@ class GetLectureCubit extends Cubit<GetLectureState> {
 
   GetLectureCubit() : super(DataLoading());
 
-  Future<void> fetchLectures({required String region}) async {
+  // استمع للتحديثات من Firestore في الوقت الفعلي بناءً على المنطقة
+  void streamLectures({required String region}) {
     emit(DataLoading());
 
-    try {
-      var snapshot = await firebaseFirestore
-          .collection('lectures')
-          .where('region', isEqualTo: region) 
-          .get();
-
+    firebaseFirestore
+        .collection('lectures')
+        .where('region', isEqualTo: region)
+        .snapshots()
+        .listen((snapshot) {
       List<LectureModel> lectures = snapshot.docs.map((doc) {
         return LectureModel.fromMap(doc.data(), doc.id);
       }).toList();
 
       emit(DataLoaded(lectures));
-    } catch (error) {
-      print("Error fetching lectures: $error");
+    }, onError: (error) {
+      print("Error streaming lectures: $error");
       emit(DataError(error.toString()));
-    }
+    });
   }
 }

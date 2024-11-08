@@ -1,12 +1,11 @@
-import 'package:attendance/core/utils/app_routers.dart';
+import 'package:attendance/constant.dart';
 import 'package:attendance/core/utils/assets.dart';
 import 'package:attendance/core/widgets/custom_aler_dialog_widget.dart';
 import 'package:attendance/feature/home/presentation/view/widgets/all_lecture_list_view.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key});
+class AssistantHomeViewBody extends StatelessWidget {
+  const AssistantHomeViewBody({super.key});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,17 +31,13 @@ class HomeViewBody extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextButton(
-                  onPressed: () {
-                    GoRouter.of(context).push(AppRouters.kTeacherView);
-                  },
-                  child: const Text(
-                    'م/ محمود راضي',
-                    style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  )),
+              const Text(
+                'mahmoud ahmed',
+                style: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
+              ),
               IconButton(
                 style: const ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(Colors.red)),
@@ -74,37 +69,38 @@ class HomeViewBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'My Lecture',
+                'Lectures Today',
                 style: TextStyle(fontSize: 20),
               ),
-              IconButton(
-                style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll<Color>(
-                    Color(0xff027DFE),
-                  ),
-                ),
-                onPressed: () {
-                  GoRouter.of(context).push(AppRouters.kAddLectureView);
-                  // GoRouter.of(context).push(AppRouters.kTeacherView);
-                },
-                icon: const SizedBox(
-                  width: 120,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.add,
+              Container(
+                width: 180,
+                height: 65,
+                decoration: BoxDecoration(
+                    color: kAppBarColor,
+                    borderRadius: BorderRadius.circular(16)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          color: kLogoColor,
+                          borderRadius: BorderRadius.circular(12)),
+                      height: 45,
+                      width: 90,
+                      child: const Center(
+                        child: Text(
+                          'Friday',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    const Text(
+                      '01:32 Am',
+                      style: TextStyle(
                         color: Colors.white,
                       ),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        'Add Lecture',
-                        style: TextStyle(color: Colors.white, fontSize: 14),
-                      ),
-                    ],
-                  ),
+                    )
+                  ],
                 ),
               )
             ],

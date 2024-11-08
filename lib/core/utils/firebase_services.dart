@@ -74,11 +74,9 @@ class FirebaseServices {
     });
   }
 
-  Stream<QuerySnapshot> getStudentFeature(String studentId) {
+  Stream<QuerySnapshot> getStudentFeature() {
     return firestore
-        .collection('students')
-        .doc(studentId)
-        .collection('feature')
+        .collection('features')
         .orderBy('createdAt', descending: true)
         .snapshots();
   }
@@ -111,6 +109,10 @@ Future<void> addLectureData(
               .map((doc) => AddLectureModel.fromMap(doc.data()))
               .toList();
         });
+  }
+
+  Future<void> deleteFeatureStudent(String studentId) async {
+    await firestore.collection('features').doc(studentId).delete();
   }
 }
 
