@@ -1,5 +1,6 @@
 import 'package:attendance/core/utils/app_routers.dart';
 import 'package:attendance/feature/home/data/models/lecture_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -7,12 +8,23 @@ class LectureCard extends StatelessWidget {
   final LectureModel lecture;
 
   const LectureCard({super.key, required this.lecture});
-  final String role = 'teacher';
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        GoRouter.of(context).push(AppRouters.kLectureControlPanelView);
+      onTap: () async {
+        User? user = FirebaseAuth.instance.currentUser;
+
+        if (user != null) {
+          // المستخدم مسجل دخوله
+          print("user is arady exisit${user.email}");
+
+          GoRouter.of(context).push(AppRouters.kLectureControlPanelView);
+        } else {
+          //
+          print('user did not sign in ');
+          GoRouter.of(context).push(AppRouters.kAssistantControlView);
+        }
       },
       child: Container(
         width: 160,

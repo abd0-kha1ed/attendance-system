@@ -130,9 +130,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       setState(() => isLoading = true);
       try {
         // Sign in using Firebase Authentication
-
         // Debugging line
-
         if (role == 'Teacher') {
           // ignore: unused_local_variable
           UserCredential userCredential =
@@ -149,9 +147,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               .collection('assistants') // Firestore collection for assistants
               .where('email', isEqualTo: emailController.text)
               .get();
-
           // Debugging line
-
           if (assistantsQuery.docs.isEmpty) {
             // No matching assistant found
             // Debugging line
@@ -159,9 +155,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             showSnackBar(context, 'No assistant found with this email.');
           } else {
             // Assistant found, navigate to the Assistant's page
-
             // ignore: use_build_context_synchronously
-
             // ignore: use_build_context_synchronously
             GoRouter.of(context).push(AppRouters.kAssistantHomeView);
           }
