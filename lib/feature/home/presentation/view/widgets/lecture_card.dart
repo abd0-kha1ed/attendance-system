@@ -7,7 +7,7 @@ class LectureCard extends StatelessWidget {
   final LectureModel lecture;
 
   const LectureCard({super.key, required this.lecture});
-
+  final String role = 'teacher';
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

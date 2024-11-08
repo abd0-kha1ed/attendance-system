@@ -1,4 +1,6 @@
 import 'package:attendance/feature/absence_report/presentation/view/absence_report_view.dart';
+import 'package:attendance/feature/assistant%20folder/presentation/view/assistant_control_view.dart';
+import 'package:attendance/feature/assistant%20folder/presentation/view/assistant_home_view.dart';
 import 'package:attendance/feature/studentList/presentation/views/add_feature_student.dart';
 import 'package:attendance/feature/studentList/presentation/views/add_new_student_view.dart';
 
@@ -31,6 +33,8 @@ abstract class AppRouters {
   static const kAddNewStudent = '/AddNewStudentView';
   static const kEditLectureView = '/EditLectureView';
   static const kAddFeatureStudent = '/AddFeatureStudent';
+  static const kAssistantHomeView = '/AssistantHomeView';
+  static const kAssistantControlView = '/AssistantControlView';
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -69,10 +73,6 @@ abstract class AppRouters {
       path: kFeatureStudentView,
       builder: (context, state) => const FeaturedStudentsView(),
     ),
-    // GoRoute(
-    //   path: kEditExistingStudent,
-    //   builder: (context, state) => const EditExistingStudent(),
-    // ),
     GoRoute(
       path: kAddNewAssistant,
       builder: (context, state) => BlocProvider(
@@ -90,6 +90,14 @@ abstract class AppRouters {
     GoRoute(
       path: kAddFeatureStudent,
       builder: (context, state) => const AddFeatureStudent(),
-    )
+    ),
+    GoRoute(
+      path: kAssistantHomeView,
+      builder: (context, state) => const AssistantHomeView(),
+    ),
+    GoRoute(
+      path: kAssistantControlView,
+      builder: (context, state) => const AssistantControlView(),
+    ),
   ]);
 }

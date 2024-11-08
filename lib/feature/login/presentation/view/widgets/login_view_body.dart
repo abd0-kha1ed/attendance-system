@@ -162,7 +162,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
 
             // ignore: use_build_context_synchronously
 
-            GoRouter.of(context).push(AppRouters.kHomeView);
+            // ignore: use_build_context_synchronously
+            GoRouter.of(context).push(AppRouters.kAssistantHomeView);
           }
         }
 
