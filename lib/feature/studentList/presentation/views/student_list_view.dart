@@ -1,6 +1,8 @@
 import 'package:attendance/constant.dart';
+import 'package:attendance/core/utils/pdf_service.dart';
 import 'package:attendance/core/widgets/custom_lift_arrow.dart';
 import 'package:attendance/feature/home/data/models/lecture_model.dart';
+import 'package:attendance/feature/pdf_export.dart/presentation/views/pdf_view.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/student_list_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -18,12 +20,40 @@ class StudentListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // actions: [
+        //   Padding(
+        //     padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
+        //     child: GestureDetector(
+        //       onTap: () async {
+        //         final pdfDocument = await createPdfDocument('Your data here');
+        //         Navigator.push(
+        //           context,
+        //           MaterialPageRoute(
+        //             builder: (context) => PdfViewerPage(pdfDocument),
+        //           ),
+        //         );
+        //       },
+        //       child: Container(
+        //         decoration: BoxDecoration(
+        //             borderRadius: BorderRadius.circular(8), color: kLogoColor),
+        //         width: 160,
+        //         child: const Center(
+        //             child: Text(
+        //           'Export Data',
+        //           style: TextStyle(color: Colors.white, fontSize: 18),
+        //         )),
+        //       ),
+        //     ),
+        //   )
+        // ],
+
         automaticallyImplyLeading: false,
+
         title: const Text(
           'Students List',
           style: TextStyle(color: Colors.white),
         ),
-        centerTitle: true,
+        // centerTitle: true,
         backgroundColor: kAppBarColor,
         leading: IconButton(
           onPressed: () {},
@@ -38,7 +68,8 @@ class StudentListView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButtonWidget(
         onPressed: () {
-          GoRouter.of(context).push(AppRouters.kAddNewStudent, extra: lectureModel);
+          GoRouter.of(context)
+              .push(AppRouters.kAddNewStudent, extra: lectureModel);
         },
       ),
     );

@@ -1,5 +1,7 @@
+import 'package:attendance/core/utils/pdf_service.dart';
 import 'package:attendance/core/widgets/custom_text_filed.dart';
 import 'package:attendance/feature/absence_report/presentation/view/widgets/absence_report_list_view.dart';
+import 'package:attendance/feature/pdf_export.dart/presentation/views/pdf_view.dart';
 import 'package:flutter/material.dart';
 
 class AbsenceReportViewBody extends StatelessWidget {
@@ -26,7 +28,15 @@ class AbsenceReportViewBody extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () async {
+                  // final pdfDocument = await createPdfDocument('Your data here');
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => PdfViewerPage(pdfDocument),
+                  //   ),
+                  // );
+                },
                 child: const Text('Export Data'),
               ),
             ],

@@ -47,8 +47,8 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: firebaseServices
-          .getStudentFeature(widget.lectureId), // Ensure this is a Firebase real-time stream
+      stream: firebaseServices.getStudentFeature(
+          widget.lectureId), // Ensure this is a Firebase real-time stream
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // return const Center(child: CircularProgressIndicator());

@@ -48,10 +48,13 @@ class FeaturedStudentsView extends StatelessWidget {
             )
           ],
         ),
-        body:  FeaturedStudentsViewBody(lectureId: lectureModel.id,),
+        body: FeaturedStudentsViewBody(
+          lectureId: lectureModel.id,
+        ),
         floatingActionButton: FloatingActionButtonWidget(
           onPressed: () {
-            GoRouter.of(context).push(AppRouters.kAddFeatureStudent, extra: lectureModel);
+            GoRouter.of(context)
+                .push(AppRouters.kAddFeatureStudent, extra: lectureModel);
           },
         ));
   }
