@@ -1,8 +1,6 @@
 import 'package:attendance/constant.dart';
-import 'package:attendance/core/utils/pdf_service.dart';
 import 'package:attendance/core/widgets/custom_lift_arrow.dart';
 import 'package:attendance/feature/home/data/models/lecture_model.dart';
-import 'package:attendance/feature/pdf_export.dart/presentation/views/pdf_view.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/student_list_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

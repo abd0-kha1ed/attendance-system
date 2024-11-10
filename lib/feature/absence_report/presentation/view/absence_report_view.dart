@@ -22,7 +22,7 @@ class AbsenceReportView extends StatelessWidget {
           ),
         ),
       ),
-      body: AbsenceReportViewBody(),
+      body: const AbsenceReportViewBody(),
     );
   }
 }

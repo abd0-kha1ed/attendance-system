@@ -9,31 +9,29 @@ class AddNewStudentCubit extends Cubit<AddNewStudentState> {
   AddNewStudentCubit() : super(AddNewStudentInitial());
   final FirebaseServices firebaseServices = FirebaseServices();
 
-  Future<void> addNewStudent(String lectureId,
-  String name,
-  String code,
-  String phoneNumber,
-  String parentPhoneNumber,
+  Future<void> addNewStudent(
+    String lectureId,
+    String name,
+    String code,
+    String phoneNumber,
+    String parentPhoneNumber,
   ) async {
-  emit(AddNewStudentLoading());
+    emit(AddNewStudentLoading());
 
-  try {
-    await firebaseServices.addNewStudent(
-      lectureId,name,code,phoneNumber,parentPhoneNumber
-    );
-    emit(AddNewStudentSuccess());
-  } catch (e) {
-    emit(AddNewStudentFail(errorMessage: e.toString()));
+    try {
+      await firebaseServices.addNewStudent(
+          lectureId, code, name, phoneNumber, parentPhoneNumber);
+      emit(AddNewStudentSuccess());
+    } catch (e) {
+      emit(AddNewStudentFail(errorMessage: e.toString()));
+    }
   }
-}
 
-
-  
-Future<void> addStudentFeature({
-    required String code,
-    required String name,
-  required String lectureId
-  }) async {
+  Future<void> addStudentFeature(
+      {required String code,
+      required String name,
+      required String lectureId,
+      required String studentId}) async {
     emit(AddNewStudentLoading());
 
     try {
@@ -50,5 +48,3 @@ Future<void> addStudentFeature({
     }
   }
 }
-
-

@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class StudentModel {
-   String code;
-   String name;
-   String phoneNumber;
-   String parentPhoneNumber;
+  String code;
+  String name;
+  String phoneNumber;
+  String parentPhoneNumber;
   final String studentId;
 
   StudentModel({
@@ -26,13 +26,15 @@ class StudentModel {
     };
   }
 
-  factory StudentModel.fromJson(Map<String, dynamic> json, ) {
+  factory StudentModel.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return StudentModel(
       code: json['code'],
       name: json['name'],
-      phoneNumber: json['phoneNumber'],
-      parentPhoneNumber: json['parentPhoneNumber'],
-      studentId: json['studentId'],
+      phoneNumber: json['phoneNumber'] ?? '',
+      parentPhoneNumber: json['parentPhoneNumber'] ?? '',
+      studentId: json['studentId'] ?? '',
     );
   }
 }

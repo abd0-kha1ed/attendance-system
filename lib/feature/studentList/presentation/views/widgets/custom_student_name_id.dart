@@ -17,7 +17,7 @@ class CustomStudentNameId extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                addNewStudentModel.name,
+                addNewStudentModel.code,
                 style: const TextStyle(color: Colors.white, fontSize: 20),
               ),
             ),
@@ -27,7 +27,7 @@ class CustomStudentNameId extends StatelessWidget {
           width: 15,
         ),
         Text(
-          addNewStudentModel.code,
+          addNewStudentModel.name,
           // style: TextStyle(fontSize: 20),
         ),
       ],

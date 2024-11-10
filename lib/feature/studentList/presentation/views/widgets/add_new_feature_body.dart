@@ -78,6 +78,7 @@ class _AddNewFeatureBodyState extends State<AddNewFeatureBody> {
 
                       BlocProvider.of<AddNewStudentCubit>(context)
                           .addStudentFeature(
+                            studentId: DateTime.now().toString(),
                         lectureId: widget.lectureModel.id,
                         name: name!,
                         code: code!,

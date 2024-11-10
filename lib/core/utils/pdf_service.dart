@@ -21,9 +21,9 @@ Future<pw.Document> createPdfDocument(
                 .map((student) => [student['name'], student['code']])
                 .toList(),
             headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
-            headerDecoration: pw.BoxDecoration(color: PdfColors.grey300),
-            cellPadding: pw.EdgeInsets.all(8),
-            cellStyle: pw.TextStyle(fontSize: 12),
+            headerDecoration: const pw.BoxDecoration(color: PdfColors.grey300),
+            cellPadding: const pw.EdgeInsets.all(8),
+            cellStyle: const pw.TextStyle(fontSize: 12),
           ),
         ],
       ),
