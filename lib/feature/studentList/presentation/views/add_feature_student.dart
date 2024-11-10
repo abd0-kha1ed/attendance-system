@@ -1,9 +1,11 @@
 import 'package:attendance/core/widgets/custom_lift_arrow.dart';
+import 'package:attendance/feature/home/data/models/lecture_model.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/add_new_feature_body.dart';
 import 'package:flutter/material.dart';
 
 class AddFeatureStudent extends StatelessWidget {
-  const AddFeatureStudent({super.key});
+  const AddFeatureStudent({super.key, required this.lectureModel});
+  final LectureModel lectureModel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +26,7 @@ class AddFeatureStudent extends StatelessWidget {
           ),
         ),
       ),
-      body: const AddNewFeatureBody(),
+      body:  AddNewFeatureBody(lectureModel: lectureModel,),
     );
   }
 }

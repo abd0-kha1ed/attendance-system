@@ -17,13 +17,14 @@ class GetLectureCubit extends Cubit<GetLectureState> {
         .snapshots()
         .listen((snapshot) {
       List<LectureModel> lectures = snapshot.docs.map((doc) {
-        return LectureModel.fromMap(doc.data(), doc.id);
+        return LectureModel.fromMap(doc.data());
       }).toList();
 
       emit(DataLoaded(lectures));
     }, onError: (error) {
-      // print("Error streaming lectures: $error");
       emit(DataError(error.toString()));
     });
   }
+
+ 
 }

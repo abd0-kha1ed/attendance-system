@@ -1,12 +1,13 @@
 import 'package:attendance/core/utils/firebase_services.dart';
-import 'package:attendance/feature/studentList/data/models/add_student_model.dart';
+import 'package:attendance/feature/studentList/data/models/student_model.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/custom_search_student_list.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/feature_student_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 class FeaturedStudentsViewBody extends StatefulWidget {
-  const FeaturedStudentsViewBody({super.key});
+  const FeaturedStudentsViewBody({super.key, required this.lectureId});
+  final String lectureId;
 
   @override
   State<FeaturedStudentsViewBody> createState() => _StudentListViewBodyState();
@@ -14,8 +15,8 @@ class FeaturedStudentsViewBody extends StatefulWidget {
 
 class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
   final FirebaseServices firebaseServices = FirebaseServices();
-  List<AddNewStudentModel> studentsFeature = [];
-  List<AddNewStudentModel> filteredStudents = [];
+  List<StudentModel> studentsFeature = [];
+  List<StudentModel> filteredStudents = [];
   TextEditingController searchController = TextEditingController();
   Timer? debounce;
 
@@ -34,8 +35,7 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
   }
 
   // Filter students based on search query
-  List<AddNewStudentModel> _getFilteredStudents(
-      List<AddNewStudentModel> students) {
+  List<StudentModel> _getFilteredStudents(List<StudentModel> students) {
     final query = searchController.text.toLowerCase();
     return query.isEmpty
         ? students
@@ -48,7 +48,7 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: firebaseServices
-          .getStudentFeature(), // Ensure this is a Firebase real-time stream
+          .getStudentFeature(widget.lectureId), // Ensure this is a Firebase real-time stream
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // return const Center(child: CircularProgressIndicator());
@@ -60,13 +60,13 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
 
         if (snapshot.hasData) {
           // Map snapshot data to the students list
-          studentsFeature = snapshot.data!.docs.map((doc) {
-            return AddNewStudentModel.fromjson({
-              'name': doc['name'],
-              'code': doc['code'],
-              'id': doc.id,
-            });
-          }).toList();
+          // studentsFeature = snapshot.data!.docs.map((doc) {
+          //   return StudentModel.fromjson({
+          //     'name': doc['name'],
+          //     'code': doc['code'],
+          //     'id': doc.id,
+          //   });
+          // }).toList();
 
           // Apply filtering directly here
           filteredStudents = _getFilteredStudents(studentsFeature);

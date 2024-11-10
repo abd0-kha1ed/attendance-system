@@ -169,6 +169,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.18.1"
+  firestore_model:
+    dependency: "direct main"
+    description:
+      name: firestore_model
+      sha256: "90d8b6a7e8ccc8c32805e814b74e1bd6229056f2d1abe71e4d9a4384873d060c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   flutter:
     dependency: "direct main"
     description: flutter

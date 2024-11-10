@@ -26,21 +26,30 @@ class FirebaseServices {
     await firestore.collection('assistants').doc(assistantId).delete();
   }
 
-  Future<void> addNewStudent(String code, String name, String phoneNumber,
-      String parentPhoneNumber, String studentId) async {
-    await firestore.collection('lectures').doc(studentId).collection('students').add({
-      'code': code,
+  Future<void> addNewStudent(
+    String lectureId,
+    String code,
+    String name,
+    String phoneNumber,
+    String parentPhoneNumber,
+  ) async {
+    await firestore
+        .collection('lectures')
+        .doc(lectureId)
+        .collection('students')
+        .add({
       'name': name,
+      'code': code,
       'phoneNumber': phoneNumber,
       'parentPhoneNumber': parentPhoneNumber,
       'createdAt': FieldValue.serverTimestamp(),
     });
   }
 
-  Stream<QuerySnapshot> getStudent(String studentId) {
+  Stream<QuerySnapshot> getStudent(String lectureId) {
     return firestore
-    .collection('lectures')
-    .doc(studentId)
+        .collection('lectures')
+        .doc(lectureId)
         .collection('students')
         .orderBy('createdAt', descending: true)
         .snapshots();
@@ -52,8 +61,14 @@ class FirebaseServices {
     String phoneNumber,
     String parentPhoneNumber,
     String studentId,
+    String lectureId,
   ) async {
-    await firestore.collection('students').doc(studentId).update({
+    await firestore
+        .collection('lectures')
+        .doc(lectureId)
+        .collection('students')
+        .doc(studentId)
+        .update({
       'code': code,
       'name': name,
       'phoneNumber': phoneNumber,
@@ -61,61 +76,69 @@ class FirebaseServices {
     });
   }
 
-  Future<void> deleteStudent(String studentId) async {
-    await firestore.collection('students').doc(studentId).delete();
+  Future<void> deleteStudent(String studentId, String lectureId) async {
+    await firestore
+        .collection('lectures')
+        .doc(lectureId)
+        .collection('students')
+        .doc(studentId)
+        .delete();
   }
 
   Future<void> addStudentFeature(
     String code,
     String name,
+    String lectureId,
   ) async {
-    await firestore.collection('features').add({
+    await firestore
+        .collection('lectures')
+        .doc(lectureId)
+        .collection('features')
+        .add({
       'code': code,
       'name': name,
       'createdAt': FieldValue.serverTimestamp(),
     });
   }
 
-  Stream<QuerySnapshot> getStudentFeature() {
+  Stream<QuerySnapshot> getStudentFeature(String lectureId) {
     return firestore
+        .collection('lectures')
+        .doc(lectureId)
         .collection('features')
         .orderBy('createdAt', descending: true)
         .snapshots();
   }
 
+  Future<void> addLectureData(
+    String grade,
+    String region,
+    int studentCount,
+    DateTime lectureTime,
+  ) async {
+    CollectionReference lecturesRef = firestore.collection('lectures');
 
-  
-Future<void> addLectureData(
-  String grade,
-  String region,
-  int studentCount,
-  DateTime lectureTime,
-) async {
-  CollectionReference lecturesRef = firestore.collection('lectures');
-
-  await lecturesRef.add({
-    'grade': grade,
-    'region': region,
-    'studentCount': studentCount,
-    'lectureTime': lectureTime,
-  });
-}
+    await lecturesRef.add({
+      'grade': grade,
+      'region': region,
+      'studentCount': studentCount,
+      'lectureTime': lectureTime,
+    });
+  }
 
   Stream<List<AddLectureModel>> getLecturesByRegion(String region) {
     return firestore
-        .collection('lectures') 
+        .collection('lectures')
         .where('region', isEqualTo: region)
-        .snapshots() 
+        .snapshots()
         .map((snapshot) {
-          return snapshot.docs
-              .map((doc) => AddLectureModel.fromMap(doc.data()))
-              .toList();
-        });
+      return snapshot.docs
+          .map((doc) => AddLectureModel.fromMap(doc.data()))
+          .toList();
+    });
   }
 
   Future<void> deleteFeatureStudent(String studentId) async {
     await firestore.collection('features').doc(studentId).delete();
   }
 }
-
-

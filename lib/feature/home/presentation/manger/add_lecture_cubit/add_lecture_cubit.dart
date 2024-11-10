@@ -1,10 +1,13 @@
+import 'package:attendance/feature/home/data/models/lecture_model.dart';
 import 'package:attendance/feature/home/presentation/manger/add_lecture_cubit/add_lecture_cubit_state.dart';
+
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddLectureCubit extends Cubit<AddLectureState> {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
   AddLectureCubit()
       : super(AddLectureState(
           selectedTime: DateTime.now(),
@@ -36,18 +39,17 @@ class AddLectureCubit extends Cubit<AddLectureState> {
 
   Future<void> addLectureData(
       String grade, String region, int totalCount, DateTime lectureTime) async {
-    final lectureData = {
-      'grade': grade,
-      'region': region,
-      'totalCount': totalCount,
-      'lectureTime': lectureTime,
-      'startingDay': state.selectedDayIndex == 0
-          ? 'Saturday'
-          : 'Sunday', // Optional: store starting day
-    };
+    LectureModel lectureModel = LectureModel(
+        id: DateTime.now().microsecond.toString(),
+        time: lectureTime,
+        studentCount: totalCount,
+        startingDay: state.selectedDayIndex == 01 ? 'Saturday' : 'Sunday',
+        grade: grade,
+        region: region,
+        createdAt: DateTime.now());
 
     try {
-      await firebaseFirestore.collection('lectures').add(lectureData);
+      await firebaseFirestore.collection('lectures').add(lectureModel.toMap());
       emit(state.copyWith());
     } catch (error) {
       // print('Error adding lecture: $error');

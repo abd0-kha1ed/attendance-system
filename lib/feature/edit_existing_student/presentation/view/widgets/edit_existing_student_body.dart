@@ -2,14 +2,17 @@ import 'package:attendance/core/utils/firebase_services.dart';
 import 'package:attendance/core/widgets/custom_container.dart';
 import 'package:attendance/core/widgets/custom_snack_bar.dart';
 import 'package:attendance/core/widgets/custom_text_filed.dart';
-import 'package:attendance/feature/studentList/data/models/add_student_model.dart';
+import 'package:attendance/feature/home/data/models/lecture_model.dart';
+import 'package:attendance/feature/studentList/data/models/student_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class EditExistingStudentBody extends StatefulWidget {
-  const EditExistingStudentBody({super.key, required this.studentModel});
-  final AddNewStudentModel studentModel;
+  const EditExistingStudentBody({super.key, required this.studentModel, required this.lectureModel});
+  final StudentModel studentModel;
+  final LectureModel lectureModel;
 
   @override
   State<EditExistingStudentBody> createState() =>
@@ -99,9 +102,11 @@ class _EditExistingStudentBodyState extends State<EditExistingStudentBody> {
                         widget.studentModel.phoneNumber,
                         widget.studentModel.parentPhoneNumber,
                         widget.studentModel.studentId,
+                        widget.lectureModel.id
                       );
                       isLoading = false;
                       setState(() {});
+                      GoRouter.of(context).pop();
                       // ignore: use_build_context_synchronously
                       showSnackBar(context, 'Student was update successfully');
                     } on FirebaseException {
