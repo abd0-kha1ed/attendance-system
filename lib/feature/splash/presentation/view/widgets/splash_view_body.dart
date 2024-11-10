@@ -62,7 +62,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   }
 
   void navigateToHomeView() {
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Navigator.push(
         // ignore: use_build_context_synchronously
         context,
