@@ -1,4 +1,3 @@
-import 'package:attendance/feature/home/data/models/lecture_model.dart';
 import 'package:attendance/feature/home/presentation/manger/add_lecture_cubit/add_lecture_cubit_state.dart';
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
@@ -55,7 +54,6 @@ class AddLectureCubit extends Cubit<AddLectureState> {
     }
   }
 
-<<<<<<< HEAD
   // Future<List<LectureModel>> fetchLectures() async {
   //   try {
   //     final querySnapshot =
@@ -68,18 +66,4 @@ class AddLectureCubit extends Cubit<AddLectureState> {
   //     return [];
   //   }
   // }
-=======
-  Future<List<LectureModel>> fetchLectures() async {
-    try {
-      final querySnapshot =
-          await firebaseFirestore.collection('lectures').get();
-      return querySnapshot.docs
-          .map((doc) => LectureModel.fromMap(doc.data(), doc.id))
-          .toList();
-    } catch (e) {
-      // print("Error fetching lectures: $e");
-      return [];
-    }
-  }
->>>>>>> 0588c4bdf5f29627cb89145dbd5486ea95feae5f
 }

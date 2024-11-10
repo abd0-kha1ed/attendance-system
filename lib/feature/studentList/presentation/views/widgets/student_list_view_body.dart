@@ -22,6 +22,7 @@ class _StudentListViewBodyState extends State<StudentListViewBody> {
   List<AddNewStudentModel> filteredStudents = [];
   TextEditingController searchController = TextEditingController();
   Timer? debounce;
+  AddNewStudentModel? addNewStudentModel;
 
   @override
   void initState() {
