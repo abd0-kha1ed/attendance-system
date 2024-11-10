@@ -8,7 +8,6 @@ import 'package:attendance/feature/home/presentation/manger/get%20lecture/get_le
 import 'package:attendance/feature/studentList/presentation/add_new_cubit/cubit/add_new_student_cubit.dart';
 import 'package:attendance/feature/studentList/presentation/views/add_feature_student.dart';
 import 'package:attendance/feature/studentList/presentation/views/add_new_student_view.dart';
-
 import 'package:attendance/feature/edit_lecture/presentation/view/edit_lecture_view.dart';
 import 'package:attendance/feature/home/presentation/view/add_lecture_view.dart';
 import 'package:attendance/feature/home/presentation/view/home_view.dart';

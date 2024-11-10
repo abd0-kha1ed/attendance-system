@@ -10,7 +10,8 @@ import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class EditExistingStudentBody extends StatefulWidget {
-  const EditExistingStudentBody({super.key, required this.studentModel, required this.lectureModel});
+  const EditExistingStudentBody(
+      {super.key, required this.studentModel, required this.lectureModel});
   final StudentModel studentModel;
   final LectureModel lectureModel;
 
@@ -64,6 +65,7 @@ class _EditExistingStudentBodyState extends State<EditExistingStudentBody> {
                 height: 20,
               ),
               CustomTextField(
+                keyboardType: TextInputType.number,
                 controller: codeController,
               ),
               const SizedBox(
@@ -76,12 +78,14 @@ class _EditExistingStudentBodyState extends State<EditExistingStudentBody> {
                 height: 12,
               ),
               CustomTextField(
+                keyboardType: TextInputType.number,
                 controller: phoneController,
               ),
               const SizedBox(
                 height: 12,
               ),
               CustomTextField(
+                keyboardType: TextInputType.number,
                 controller: phoneParentController,
               ),
               const SizedBox(
@@ -97,13 +101,12 @@ class _EditExistingStudentBodyState extends State<EditExistingStudentBody> {
                     setState(() {});
                     try {
                       await firebaseServices.updateStudent(
-                        widget.studentModel.code,
-                        widget.studentModel.name,
-                        widget.studentModel.phoneNumber,
-                        widget.studentModel.parentPhoneNumber,
-                        widget.studentModel.studentId,
-                        widget.lectureModel.id
-                      );
+                          widget.studentModel.code,
+                          widget.studentModel.name,
+                          widget.studentModel.phoneNumber,
+                          widget.studentModel.parentPhoneNumber,
+                          widget.studentModel.studentId,
+                          widget.lectureModel.id);
                       isLoading = false;
                       setState(() {});
                       GoRouter.of(context).pop();
