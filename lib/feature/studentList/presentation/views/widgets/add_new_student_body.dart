@@ -35,6 +35,7 @@ class _AddNewStudentBodyState extends State<AddNewStudentBody> {
                 height: 20,
               ),
               CustomTextField(
+                keyboardType: TextInputType.number,
                 hintText: 'Student Code',
                 onSaved: (value) => code = value,
               ),
@@ -49,6 +50,7 @@ class _AddNewStudentBodyState extends State<AddNewStudentBody> {
                 height: 20,
               ),
               CustomTextField(
+                keyboardType: TextInputType.number,
                 hintText: 'Phone Number',
                 onSaved: (value) => phoneNumber = value,
               ),
@@ -56,6 +58,7 @@ class _AddNewStudentBodyState extends State<AddNewStudentBody> {
                 height: 20,
               ),
               CustomTextField(
+                keyboardType: TextInputType.number,
                 hintText: 'Parent Phone Number',
                 onSaved: (value) => parentPhoneNumber = value,
               ),
@@ -78,7 +81,12 @@ class _AddNewStudentBodyState extends State<AddNewStudentBody> {
                         );
 
                         BlocProvider.of<AddNewStudentCubit>(context)
-                            .addNewStudent(widget.lectureId, student.name,student.code,student.phoneNumber, student.parentPhoneNumber);
+                            .addNewStudent(
+                                widget.lectureId,
+                                student.name,
+                                student.code,
+                                student.phoneNumber,
+                                student.parentPhoneNumber);
                         showSnackBar(context, 'Student was added successfully');
                       } else {
                         autovalidateMode = AutovalidateMode.always;

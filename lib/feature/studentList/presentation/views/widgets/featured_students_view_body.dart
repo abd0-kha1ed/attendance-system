@@ -48,7 +48,11 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: firebaseServices.getStudentFeature(
+<<<<<<< HEAD
           widget.lectureModel.id), // Ensure this is a Firebase real-time stream
+=======
+          widget.lectureId), // Ensure this is a Firebase real-time stream
+>>>>>>> 6575638e219a4ada343158fcc2cfd784449bae1b
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // return const Center(child: CircularProgressIndicator());
@@ -103,7 +107,7 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
           ));
         }
       },
-    );
+    )
   }
 
   @override

@@ -10,7 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddNewFeatureBody extends StatefulWidget {
   const AddNewFeatureBody({
-    super.key, required this.lectureModel,
+    super.key,
+    required this.lectureModel,
   });
   final LectureModel lectureModel;
 
@@ -46,6 +47,7 @@ class _AddNewFeatureBodyState extends State<AddNewFeatureBody> {
               height: 16,
             ),
             CustomTextField(
+              keyboardType: TextInputType.number,
               controller: codeController,
               hintText: 'Student Code',
               onSaved: (value) {

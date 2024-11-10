@@ -138,7 +138,7 @@ class _EditLectureViewBodyState extends State<EditLectureViewBody> {
                   const Text('Grade'),
                   CustomDropdownButton(
                     value: widget.lectureModel.grade,
-                    items: [
+                    items: const [
                       '1st Prep',
                       '2nd Prep',
                       '3rd Prep',
@@ -159,7 +159,7 @@ class _EditLectureViewBodyState extends State<EditLectureViewBody> {
                   const Text('Region'),
                   CustomDropdownButton(
                     value: widget.lectureModel.region,
-                    items: [
+                    items: const [
                       'Abo hamad',
                       'Zagazig',
                       '10th of ramadan',

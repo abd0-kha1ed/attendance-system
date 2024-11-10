@@ -6,7 +6,6 @@ import 'package:attendance/feature/studentList/presentation/views/widgets/studen
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-
 class StudentListViewBody extends StatefulWidget {
   const StudentListViewBody({super.key, required this.lecture});
   final LectureModel lecture;
@@ -21,6 +20,7 @@ class _StudentListViewBodyState extends State<StudentListViewBody> {
   List<StudentModel> filteredStudents = [];
   TextEditingController searchController = TextEditingController();
   Timer? debounce;
+  // AddNewStudentModel? addNewStudentModel;
 
   @override
   void initState() {
@@ -42,68 +42,66 @@ class _StudentListViewBodyState extends State<StudentListViewBody> {
     return query.isEmpty
         ? students
         : students
-            .where((student) => student.name.toLowerCase().contains(query))
+            .where((student) => student.code.toLowerCase().contains(query))
             .toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    return
-       StreamBuilder(
-        stream: firebaseServices.getStudent(widget.lecture.id),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
+    return StreamBuilder(
+      stream: firebaseServices.getStudent(widget.lecture.id),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          // return const Center(child: CircularProgressIndicator());
+        }
 
-          if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          }
+        if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        }
 
-          if (snapshot.hasData) {
-            students = snapshot.data!.docs.map((doc) {
-              return StudentModel.fromJson({
-                'name': doc['name'],
-                'code': doc['code'],
-                'phoneNumber': doc['phoneNumber'],
-                'parentPhoneNumber': doc['parentPhoneNumber'],
-                'studentId': doc.id,
-              });
-            }).toList();
+        if (snapshot.hasData) {
+          students = snapshot.data!.docs.map((doc) {
+            return StudentModel.fromJson({
+              'name': doc['name'],
+              'code': doc['code'],
+              'phoneNumber': doc['phoneNumber'],
+              'parentPhoneNumber': doc['parentPhoneNumber'],
+              'studentId': doc.id,
+            });
+          }).toList();
 
-            filteredStudents = _getFilteredStudents(students);
+          filteredStudents = _getFilteredStudents(students);
 
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: [
-                  const SizedBox(height: 10),
-                  CustomSearchStudentList(
-                    controller: searchController,
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                const SizedBox(height: 10),
+                CustomSearchStudentList(
+                  controller: searchController,
+                ),
+                const SizedBox(height: 20),
+                if (filteredStudents.isEmpty) const Text('No students found'),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: filteredStudents.length,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return StudentListViewBodyWidget(
+                        studentModel: filteredStudents[index],
+                        lecture: widget.lecture,
+                      );
+                    },
                   ),
-                  const SizedBox(height: 20),
-                  if (filteredStudents.isEmpty) const Text('No students found'),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: filteredStudents.length,
-                      physics: const BouncingScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return StudentListViewBodyWidget(
-                          studentModel: filteredStudents[index], lecture: widget.lecture,
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            );
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
-      );
-
-
+                ),
+              ],
+            ),
+          );
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
+      },
+    );
   }
 
   @override

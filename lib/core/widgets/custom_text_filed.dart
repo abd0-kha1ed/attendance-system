@@ -10,7 +10,9 @@ class CustomTextField extends StatelessWidget {
       this.enabled = true,
       this.onChanged,
       this.hintText,
-      this.controller, this.onSaved});
+      this.controller,
+      this.onSaved,
+      this.keyboardType});
   final String? labelText;
   final IconButton? iconButton;
   final bool obscureText;
@@ -19,9 +21,11 @@ class CustomTextField extends StatelessWidget {
   final void Function(String)? onChanged;
   final TextEditingController? controller;
   final void Function(String?)? onSaved;
+  final TextInputType? keyboardType;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: keyboardType,
       onSaved: onSaved,
       controller: controller,
       onChanged: onChanged,
