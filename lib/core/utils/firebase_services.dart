@@ -117,6 +117,13 @@ class FirebaseServices {
     });
   }
 
+  Future <void> deleteLecture(String lectureId)async{
+    await firestore
+        .collection('lectures')
+        .doc(lectureId)
+        .delete();
+  }
+
   Stream<QuerySnapshot> getStudentFeature(String lectureId) {
     return firestore
         .collection('lectures')

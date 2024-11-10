@@ -1,4 +1,6 @@
+import 'package:attendance/core/utils/firebase_services.dart';
 import 'package:attendance/core/widgets/custom_lift_arrow.dart';
+import 'package:attendance/core/widgets/custom_snack_bar.dart';
 import 'package:attendance/feature/edit_lecture/presentation/view/widgets/edit_lecture_view_body.dart';
 import 'package:attendance/feature/home/data/models/lecture_model.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +25,11 @@ class EditLectureView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () async{
+                await FirebaseServices().deleteLecture(lectureModel.id);
+
+                showSnackBar(context, 'delete successfully');
+              },
               icon: const Icon(
                 Icons.delete,
                 color: Colors.red,

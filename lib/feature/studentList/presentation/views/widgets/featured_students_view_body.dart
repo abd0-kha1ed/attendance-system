@@ -7,7 +7,10 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 class FeaturedStudentsViewBody extends StatefulWidget {
-  const FeaturedStudentsViewBody({super.key, required this.lectureModel, });
+  const FeaturedStudentsViewBody({
+    super.key,
+    required this.lectureModel,
+  });
   final LectureModel lectureModel;
   @override
   State<FeaturedStudentsViewBody> createState() => _StudentListViewBodyState();
@@ -103,7 +106,7 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
           ));
         }
       },
-    )
+    );
   }
 
   @override
