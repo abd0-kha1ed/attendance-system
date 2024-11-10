@@ -245,19 +245,15 @@ class _EditLectureViewBodyState extends State<EditLectureViewBody> {
               CustomContainer(
                 text: 'Update Lecture',
                 onTap: () async {
-                  try {
-                    await FirebaseServices().updateLectureData(
-                        widget.lectureModel.id,
-                        state.region,
-                        state.selectedCount,
-                        state.selectedTime,
-                        state.grade,
-                        state.selectedDayIndex);
-                    GoRouter.of(context).pop();
-                    showSnackBar(context, 'Lecture saved successfully');
-                  } on Exception catch (e) {
-                    showSnackBar(context, 'opps there was an error');
-                  }
+                  await FirebaseServices().updateLectureData(
+                      widget.lectureModel.id,
+                      state.region,
+                      state.selectedCount,
+                      state.selectedTime,
+                      state.grade,
+                      state.selectedDayIndex);
+                  GoRouter.of(context).pop();
+                  showSnackBar(context, 'Lecture saved successfully');
                 },
               )
             ],

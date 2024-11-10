@@ -38,24 +38,22 @@ class AddLectureCubit extends Cubit<AddLectureState> {
   }
 
   Future<void> addLectureData(
-      String grade,
-      String region,
-      int studentCount,
-      DateTime lectureTime,
-      ) async {
-    CollectionReference lecturesRef = firebaseFirestore.collection('lectures');
+      String grade, String region, int totalCount, DateTime lectureTime) async {
+    LectureModel lectureModel = LectureModel(
+        id: DateTime.now().microsecond.toString(),
+        time: lectureTime,
+        studentCount: totalCount,
+        startingDay: state.selectedDayIndex == 01 ? 'Saturday' : 'Sunday',
+        grade: grade,
+        region: region,
+        createdAt: DateTime.now());
 
-    // Add the new document and get a reference to it
-    DocumentReference docRef = await lecturesRef.add({
-      'grade': grade,
-      'region': region,
-      'studentCount': studentCount,
-      'lectureTime': Timestamp.fromDate(lectureTime),
-      'createdAt': FieldValue.serverTimestamp(),
-    });
-
-    // Update the 'id' field to be the document's ID
-    await docRef.update({'id': docRef.id});
+    try {
+      await firebaseFirestore.collection('lectures').add(lectureModel.toMap());
+      emit(state.copyWith());
+    } catch (error) {
+      // print('Error adding lecture: $error');
+    }
   }
 
   // Future<void> updateLectureData(String lectureId, String region,

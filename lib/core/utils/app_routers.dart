@@ -111,7 +111,9 @@ abstract class AppRouters {
       path: kEditLectureView,
       builder: (context, state) => BlocProvider(
         create: (context) => AddLectureCubit(),
-        child:  EditLectureView(lectureModel: state.extra as LectureModel,),
+        child: EditLectureView(
+          lectureModel: state.extra as LectureModel,
+        ),
       ),
     ),
     GoRoute(

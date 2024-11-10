@@ -15,6 +15,7 @@ Future<pw.Document> createPdfDocument(
             style: pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold),
           ),
           pw.SizedBox(height: 20),
+          // ignore: deprecated_member_use
           pw.Table.fromTextArray(
             headers: ['Name', 'Code'],
             data: students
