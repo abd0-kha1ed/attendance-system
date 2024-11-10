@@ -5,7 +5,6 @@ import 'package:attendance/feature/assistant%20folder/presentation/view/widgets/
 import 'package:attendance/feature/home/data/models/lecture_model.dart';
 import 'package:attendance/feature/home/presentation/manger/add_lecture_cubit/add_lecture_cubit.dart';
 import 'package:attendance/feature/home/presentation/manger/get%20lecture/get_lecture_cubit.dart';
-import 'package:attendance/feature/studentList/data/models/student_model.dart';
 import 'package:attendance/feature/studentList/presentation/add_new_cubit/cubit/add_new_student_cubit.dart';
 import 'package:attendance/feature/studentList/presentation/views/add_feature_student.dart';
 import 'package:attendance/feature/studentList/presentation/views/add_new_student_view.dart';

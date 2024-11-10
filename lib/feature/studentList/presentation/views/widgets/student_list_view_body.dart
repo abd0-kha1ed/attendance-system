@@ -1,6 +1,4 @@
-import 'package:attendance/core/utils/app_routers.dart';
 import 'package:attendance/core/utils/firebase_services.dart';
-import 'package:attendance/core/widgets/floating_action_button_widget.dart';
 import 'package:attendance/feature/home/data/models/lecture_model.dart';
 import 'package:attendance/feature/studentList/data/models/student_model.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/custom_search_student_list.dart';
@@ -8,7 +6,6 @@ import 'package:attendance/feature/studentList/presentation/views/widgets/studen
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:go_router/go_router.dart';
 
 class StudentListViewBody extends StatefulWidget {
   const StudentListViewBody({super.key, required this.lecture});

@@ -1,5 +1,4 @@
 import 'package:attendance/core/utils/firebase_services.dart';
-import 'package:attendance/feature/home/data/models/lecture_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

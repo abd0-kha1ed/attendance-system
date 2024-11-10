@@ -1,6 +1,4 @@
 import 'package:attendance/feature/home/data/models/add_lecture_model.dart';
-import 'package:attendance/feature/home/data/models/lecture_model.dart';
-import 'package:attendance/feature/studentList/data/models/student_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseServices {

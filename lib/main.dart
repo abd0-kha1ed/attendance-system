@@ -1,5 +1,4 @@
 import 'package:attendance/core/utils/app_routers.dart';
-import 'package:attendance/feature/home/data/models/lecture_model.dart';
 import 'package:attendance/feature/login/data/repo/firebase_auth_repo_impl.dart';
 
 import 'package:attendance/feature/login/presentation/manger/login_cubit/auth_cubit.dart';
