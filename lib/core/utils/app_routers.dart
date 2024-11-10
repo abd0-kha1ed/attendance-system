@@ -3,8 +3,9 @@ import 'package:attendance/feature/assistant%20folder/presentation/view/assistan
 import 'package:attendance/feature/assistant%20folder/presentation/view/assistant_home_view.dart';
 import 'package:attendance/feature/assistant%20folder/presentation/view/widgets/qr_scanner_screen.dart';
 import 'package:attendance/feature/home/data/models/lecture_model.dart';
+import 'package:attendance/feature/home/presentation/manger/add_lecture_cubit/add_lecture_cubit.dart';
 import 'package:attendance/feature/home/presentation/manger/get%20lecture/get_lecture_cubit.dart';
-import 'package:attendance/feature/studentList/data/models/add_student_model.dart';
+import 'package:attendance/feature/studentList/data/models/student_model.dart';
 import 'package:attendance/feature/studentList/presentation/add_new_cubit/cubit/add_new_student_cubit.dart';
 import 'package:attendance/feature/studentList/presentation/views/add_feature_student.dart';
 import 'package:attendance/feature/studentList/presentation/views/add_new_student_view.dart';
@@ -78,11 +79,21 @@ abstract class AppRouters {
     ),
     GoRoute(
       path: kStudentListView,
-      builder: (context, state) => const StudentListView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => GetLectureCubit(),
+        child: StudentListView(
+          lectureModel: state.extra as LectureModel,
+        ),
+      ),
     ),
     GoRoute(
       path: kFeatureStudentView,
-      builder: (context, state) => const FeaturedStudentsView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => AddNewStudentCubit(),
+        child: FeaturedStudentsView(
+          lectureModel: state.extra as LectureModel,
+        ),
+      ),
     ),
     GoRoute(
       path: kAddNewAssistant,
@@ -93,9 +104,10 @@ abstract class AppRouters {
     GoRoute(
       path: kAddNewStudent,
       builder: (context, state) => BlocProvider(
-        create: (context) => AddNewStudentCubit(),
-        child:  AddNewStudentView(studentModel: state.extra as AddNewStudentModel,),
-      ),
+          create: (context) => AddLectureCubit(),
+          child: AddNewStudentView(
+            lectureModel: state.extra as LectureModel,
+          )),
     ),
     GoRoute(
       path: kEditLectureView,
@@ -103,7 +115,12 @@ abstract class AppRouters {
     ),
     GoRoute(
       path: kAddFeatureStudent,
-      builder: (context, state) => const AddFeatureStudent(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => AddNewStudentCubit(),
+        child: AddFeatureStudent(
+          lectureModel: state.extra as LectureModel,
+        ),
+      ),
     ),
     GoRoute(
       path: kAssistantHomeView,

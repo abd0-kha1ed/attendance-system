@@ -25,3 +25,12 @@ class DataError extends GetLectureState {
   @override
   List<Object> get props => [message];
 }
+
+class StudentSelected extends GetLectureState {
+  final String studentId;
+
+  StudentSelected(this.studentId);
+
+  @override
+  List<Object> get props => [studentId];
+}

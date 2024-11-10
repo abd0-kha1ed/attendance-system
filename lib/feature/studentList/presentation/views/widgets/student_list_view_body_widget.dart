@@ -4,9 +4,10 @@ import 'package:attendance/core/utils/firebase_services.dart';
 import 'package:attendance/core/widgets/custom_icon_button.dart';
 import 'package:attendance/core/widgets/custom_show_dialog.dart';
 import 'package:attendance/core/widgets/whats_phone.dart';
-import 'package:attendance/feature/edit_existing_student/prisentation/view/edit_existing_student.dart';
+import 'package:attendance/feature/edit_existing_student/presentation/view/edit_existing_student.dart';
+import 'package:attendance/feature/home/data/models/lecture_model.dart';
 
-import 'package:attendance/feature/studentList/data/models/add_student_model.dart';
+import 'package:attendance/feature/studentList/data/models/student_model.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/custom_student_name_id.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -14,9 +15,10 @@ import 'package:go_router/go_router.dart';
 class StudentListViewBodyWidget extends StatelessWidget {
   StudentListViewBodyWidget({
     super.key,
-    required this.studentModel,
+    required this.studentModel, required this.lecture,
   });
-  final AddNewStudentModel studentModel;
+  final StudentModel studentModel;
+  final LectureModel lecture;
 
   final FirebaseServices firebaseServices = FirebaseServices();
   @override
@@ -40,6 +42,7 @@ class StudentListViewBodyWidget extends StatelessWidget {
                   context,
                   MaterialPageRoute(builder: (context) {
                     return EditExistingStudent(
+                      lectureModel: lecture,
                       studentModel: studentModel,
                     );
                   }),
@@ -69,7 +72,7 @@ class StudentListViewBodyWidget extends StatelessWidget {
                       return CustomShowDialog(
                         onPressed: () async {
                           await firebaseServices
-                              .deleteStudent(studentModel.studentId);
+                              .deleteStudent(studentModel.studentId, lecture.id);
                           // ignore: use_build_context_synchronously
                           GoRouter.of(context).pop();
                         },

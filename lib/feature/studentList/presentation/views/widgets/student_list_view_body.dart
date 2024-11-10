@@ -1,7 +1,8 @@
 import 'package:attendance/core/utils/app_routers.dart';
 import 'package:attendance/core/utils/firebase_services.dart';
 import 'package:attendance/core/widgets/floating_action_button_widget.dart';
-import 'package:attendance/feature/studentList/data/models/add_student_model.dart';
+import 'package:attendance/feature/home/data/models/lecture_model.dart';
+import 'package:attendance/feature/studentList/data/models/student_model.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/custom_search_student_list.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/student_list_view_body_widget.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,8 @@ import 'dart:async';
 import 'package:go_router/go_router.dart';
 
 class StudentListViewBody extends StatefulWidget {
-  const StudentListViewBody({super.key});
+  const StudentListViewBody({super.key, required this.lecture});
+  final LectureModel lecture;
 
   @override
   State<StudentListViewBody> createState() => _StudentListViewBodyState();
@@ -18,8 +20,8 @@ class StudentListViewBody extends StatefulWidget {
 
 class _StudentListViewBodyState extends State<StudentListViewBody> {
   final FirebaseServices firebaseServices = FirebaseServices();
-  List<AddNewStudentModel> students = [];
-  List<AddNewStudentModel> filteredStudents = [];
+  List<StudentModel> students = [];
+  List<StudentModel> filteredStudents = [];
   TextEditingController searchController = TextEditingController();
   Timer? debounce;
 
@@ -38,8 +40,7 @@ class _StudentListViewBodyState extends State<StudentListViewBody> {
   }
 
   // Filter students based on search query
-  List<AddNewStudentModel> _getFilteredStudents(
-      List<AddNewStudentModel> students) {
+  List<StudentModel> _getFilteredStudents(List<StudentModel> students) {
     final query = searchController.text.toLowerCase();
     return query.isEmpty
         ? students
@@ -50,13 +51,12 @@ class _StudentListViewBodyState extends State<StudentListViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: StreamBuilder(
-        stream: firebaseServices.getStudent(students[0]
-            .studentId), // Ensure this is a Firebase real-time stream
+    return
+       StreamBuilder(
+        stream: firebaseServices.getStudent(widget.lecture.id),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            // return const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.hasError) {
@@ -64,18 +64,16 @@ class _StudentListViewBodyState extends State<StudentListViewBody> {
           }
 
           if (snapshot.hasData) {
-            // Map snapshot data to the students list
             students = snapshot.data!.docs.map((doc) {
-              return AddNewStudentModel.fromjson({
+              return StudentModel.fromJson({
                 'name': doc['name'],
                 'code': doc['code'],
                 'phoneNumber': doc['phoneNumber'],
                 'parentPhoneNumber': doc['parentPhoneNumber'],
-                'id': doc.id,
+                'studentId': doc.id,
               });
             }).toList();
 
-            // Apply filtering directly here
             filteredStudents = _getFilteredStudents(students);
 
             return Padding(
@@ -94,7 +92,7 @@ class _StudentListViewBodyState extends State<StudentListViewBody> {
                       physics: const BouncingScrollPhysics(),
                       itemBuilder: (context, index) {
                         return StudentListViewBodyWidget(
-                          studentModel: filteredStudents[index],
+                          studentModel: filteredStudents[index], lecture: widget.lecture,
                         );
                       },
                     ),
@@ -103,19 +101,12 @@ class _StudentListViewBodyState extends State<StudentListViewBody> {
               ),
             );
           } else {
-            return const Center(
-                child: Center(
-              child: CircularProgressIndicator(),
-            ));
+            return const Center(child: CircularProgressIndicator());
           }
         },
-      ),
-      floatingActionButton: FloatingActionButtonWidget(
-        onPressed: () {
-          GoRouter.of(context).push(AppRouters.kAddNewStudent);
-        },
-      ),
-    );
+      );
+
+
   }
 
   @override

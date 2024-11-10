@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LectureModel {
-  final String? id;
+  final String id;
   final DateTime? time;
   final int studentCount;
   final String startingDay;
@@ -10,7 +10,7 @@ class LectureModel {
   final DateTime? createdAt;
 
   LectureModel({
-    this.id,
+    required this.id,
     required this.time,
     required this.studentCount,
     required this.startingDay,
@@ -27,13 +27,13 @@ class LectureModel {
       'grade': grade,
       'region': region,
       'createdAt': createdAt != null ? Timestamp.fromDate(createdAt!) : null,
+      'id': DateTime.now().microsecond.toString(),
     };
   }
 
-  factory LectureModel.fromMap(Map<String, dynamic> map, String id) {
-    // print("Map data for lecture: $map");
+  factory LectureModel.fromMap(Map<String, dynamic> map) {
     return LectureModel(
-      id: id,
+      id: map['id'],
       time: map['lectureTime'] != null
           ? (map['lectureTime'] as Timestamp).toDate()
           : null,

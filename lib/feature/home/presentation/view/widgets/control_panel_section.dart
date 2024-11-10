@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ControlPanelSection extends StatelessWidget {
-  const ControlPanelSection({
-    super.key, required this.lectureModel,
+  const    ControlPanelSection({
+    super.key,
+    required this.lectureModel,
   });
   final LectureModel lectureModel;
 
@@ -33,7 +34,8 @@ class ControlPanelSection extends StatelessWidget {
             Expanded(
               child: CustomControlPanel(
                 onTap: () {
-                  GoRouter.of(context).push(AppRouters.kStudentListView);
+                  GoRouter.of(context)
+                      .push(AppRouters.kStudentListView, extra: lectureModel);
                 },
                 title: 'Students List',
                 icon: Icons.group,
@@ -64,7 +66,7 @@ class ControlPanelSection extends StatelessWidget {
             Expanded(
               child: CustomControlPanel(
                 onTap: () {
-                  GoRouter.of(context).push(AppRouters.kFeatureStudentView);
+                  GoRouter.of(context).push(AppRouters.kFeatureStudentView, extra: lectureModel);
                 },
                 title: 'Featured Students',
                 icon: Icons.star,

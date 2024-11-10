@@ -1,14 +1,14 @@
 import 'package:attendance/core/utils/firebase_services.dart';
 import 'package:attendance/core/widgets/custom_icon_button.dart';
 import 'package:attendance/core/widgets/custom_show_dialog.dart';
-import 'package:attendance/feature/studentList/data/models/add_student_model.dart';
+import 'package:attendance/feature/studentList/data/models/student_model.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/custom_student_name_id.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class FeatureStudentItemWidget extends StatelessWidget {
   FeatureStudentItemWidget({super.key, required this.addNewStudentModel});
-  final AddNewStudentModel addNewStudentModel;
+  final StudentModel addNewStudentModel;
   final FirebaseServices firebaseServices = FirebaseServices();
   @override
   Widget build(BuildContext context) {

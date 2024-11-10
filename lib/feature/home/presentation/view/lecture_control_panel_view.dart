@@ -27,7 +27,9 @@ class LectureControlPanelView extends StatelessWidget {
           ),
         ),
       ),
-      body:  LectureControlPanelViewBody(lectureModel: lectureModel,),
+      body: LectureControlPanelViewBody(
+        lectureModel: lectureModel,
+      ),
     );
   }
 }
