@@ -42,7 +42,7 @@ class _StudentListViewBodyState extends State<StudentListViewBody> {
     return query.isEmpty
         ? students
         : students
-            .where((student) => student.name.toLowerCase().contains(query))
+            .where((student) => student.code.toLowerCase().contains(query))
             .toList();
   }
 
@@ -52,7 +52,7 @@ class _StudentListViewBodyState extends State<StudentListViewBody> {
       stream: firebaseServices.getStudent(widget.lecture.id),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          // return const Center(child: CircularProgressIndicator());
         }
 
         if (snapshot.hasError) {
