@@ -76,6 +76,7 @@ class FirebaseServices {
     });
   }
 
+
   Future<void> deleteStudent(String studentId, String lectureId) async {
     await firestore
         .collection('lectures')
@@ -101,19 +102,18 @@ class FirebaseServices {
     });
   }
 
-  Future<void> updateLectureData(
-      String lectureId,
-      String region,
-      int totalCount,
-      DateTime lectureTime,
-      String grade,
-      int startingDay) async {
-    await firestore.collection('lectures').doc(lectureId).update({
-      'lectureTime': lectureTime,
-      'totalCount': totalCount,
+  Future<void>updateLectureData(String lectureId, String region,
+     int totalCount, DateTime lectureTime, String grade, int startingDay)async{
+    await firestore
+        .collection('lectures')
+        .doc(lectureId)
+        .update({
+      'lectureTime':lectureTime,
+      'totalCount':totalCount,
       'startingDay': startingDay,
-      'grade': grade,
-      'region': region
+      'grade':grade,
+      'region':region
+
     });
   }
 
@@ -154,16 +154,7 @@ class FirebaseServices {
     });
   }
 
-  Future<void> deleteFeatureStudent(String lectureId, String studentId) async {
-    await firestore
-        .collection('lectures')
-        .doc(lectureId)
-        .collection('features')
-        .doc(studentId)
-        .delete();
-  }
-
-  Future<void> deleteLecture(String lectureId) async {
-    await firestore.collection('lectures').doc(lectureId).delete();
+  Future<void> deleteFeatureStudent( String lectureId, String studentId) async {
+    await firestore.collection('lectures').doc(lectureId).collection('features').doc(studentId).delete();
   }
 }

@@ -17,8 +17,7 @@ class GetLectureCubit extends Cubit<GetLectureState> {
         .snapshots()
         .listen((snapshot) {
       List<LectureModel> lectures = snapshot.docs.map((doc) {
-        // Pass doc.id as the documentId parameter
-        return LectureModel.fromMap(doc.data(), doc.id);
+        return LectureModel.fromMap(doc.data());
       }).toList();
 
       emit(DataLoaded(lectures));
@@ -26,4 +25,6 @@ class GetLectureCubit extends Cubit<GetLectureState> {
       emit(DataError(error.toString()));
     });
   }
+
+ 
 }

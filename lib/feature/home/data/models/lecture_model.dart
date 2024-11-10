@@ -21,23 +21,23 @@ class LectureModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id, // Store the existing id instead of generating a new one
       'lectureTime': time != null ? Timestamp.fromDate(time!) : null,
       'totalCount': studentCount,
       'startingDay': startingDay,
       'grade': grade,
       'region': region,
       'createdAt': createdAt != null ? Timestamp.fromDate(createdAt!) : null,
+      'id': DateTime.now().microsecond.toString(),
     };
   }
 
-  factory LectureModel.fromMap(Map<String, dynamic> map, String documentId) {
+  factory LectureModel.fromMap(Map<String, dynamic> map) {
     return LectureModel(
-      id: documentId, // Use the document ID from Firestore
+      id: map['id'],
       time: map['lectureTime'] != null
           ? (map['lectureTime'] as Timestamp).toDate()
           : null,
-      studentCount: map['totalCount'] ?? 0,
+      studentCount: map['totalCount'] is int ? map['totalCount'] : 10,
       startingDay: map['startingDay'] ?? '',
       grade: map['grade'] ?? '',
       region: map['region'] ?? '',
