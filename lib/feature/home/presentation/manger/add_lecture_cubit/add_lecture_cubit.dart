@@ -56,7 +56,6 @@ class AddLectureCubit extends Cubit<AddLectureState> {
     }
   }
 
-<<<<<<< HEAD
   // Future<void> updateLectureData(String lectureId, String region,
   //     int totalCount, DateTime lectureTime, String grade) async {
   //   LectureModel lectureModel = LectureModel(
@@ -86,18 +85,4 @@ class AddLectureCubit extends Cubit<AddLectureState> {
 //     return [];
 //   }
 // }
-=======
-  // Future<List<LectureModel>> fetchLectures() async {
-  //   try {
-  //     final querySnapshot =
-  //         await firebaseFirestore.collection('lectures').get();
-  //     return querySnapshot.docs
-  //         .map((doc) => LectureModel.fromMap(doc.data(), doc.id))
-  //         .toList();
-  //   } catch (e) {
-  //     print("Error fetching lectures: $e");
-  //     return [];
-  //   }
-  // }
->>>>>>> 6575638e219a4ada343158fcc2cfd784449bae1b
 }
