@@ -261,7 +261,6 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
                   selectedCount,
                   selectedTime,
                 );
-                GoRouter.of(context).pop();
                 showSnackBar(context, 'Lecture saved successfully');
               },
             ),

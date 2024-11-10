@@ -48,6 +48,7 @@ class _AddNewAssistantBodyState extends State<AddNewAssistantBody> {
               height: 8,
             ),
             CustomTextField(
+              keyboardType: TextInputType.number,
               onSaved: (value) {
                 phone = value;
               },
