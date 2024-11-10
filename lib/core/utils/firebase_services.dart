@@ -76,6 +76,7 @@ class FirebaseServices {
     });
   }
 
+
   Future<void> deleteStudent(String studentId, String lectureId) async {
     await firestore
         .collection('lectures')
@@ -98,6 +99,21 @@ class FirebaseServices {
       'code': code,
       'name': name,
       'createdAt': FieldValue.serverTimestamp(),
+    });
+  }
+
+  Future<void>updateLectureData(String lectureId, String region,
+     int totalCount, DateTime lectureTime, String grade, int startingDay)async{
+    await firestore
+        .collection('lectures')
+        .doc(lectureId)
+        .update({
+      'lectureTime':lectureTime,
+      'totalCount':totalCount,
+      'startingDay': startingDay,
+      'grade':grade,
+      'region':region
+
     });
   }
 
@@ -138,7 +154,7 @@ class FirebaseServices {
     });
   }
 
-  Future<void> deleteFeatureStudent(String studentId) async {
-    await firestore.collection('features').doc(studentId).delete();
+  Future<void> deleteFeatureStudent( String lectureId, String studentId) async {
+    await firestore.collection('lectures').doc(lectureId).collection('features').doc(studentId).delete();
   }
 }

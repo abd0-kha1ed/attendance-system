@@ -110,7 +110,10 @@ abstract class AppRouters {
     ),
     GoRoute(
       path: kEditLectureView,
-      builder: (context, state) => const EditLectureView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => AddLectureCubit(),
+        child:  EditLectureView(lectureModel: state.extra as LectureModel,),
+      ),
     ),
     GoRoute(
       path: kAddFeatureStudent,

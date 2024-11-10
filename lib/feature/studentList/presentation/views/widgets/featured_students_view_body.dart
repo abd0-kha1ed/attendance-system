@@ -1,4 +1,5 @@
 import 'package:attendance/core/utils/firebase_services.dart';
+import 'package:attendance/feature/home/data/models/lecture_model.dart';
 import 'package:attendance/feature/studentList/data/models/student_model.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/custom_search_student_list.dart';
 import 'package:attendance/feature/studentList/presentation/views/widgets/feature_student_item_widget.dart';
@@ -6,9 +7,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 class FeaturedStudentsViewBody extends StatefulWidget {
-  const FeaturedStudentsViewBody({super.key, required this.lectureId});
-  final String lectureId;
-
+  const FeaturedStudentsViewBody({super.key, required this.lectureModel, });
+  final LectureModel lectureModel;
   @override
   State<FeaturedStudentsViewBody> createState() => _StudentListViewBodyState();
 }
@@ -47,8 +47,8 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: firebaseServices
-          .getStudentFeature(widget.lectureId), // Ensure this is a Firebase real-time stream
+      stream: firebaseServices.getStudentFeature(
+          widget.lectureModel.id), // Ensure this is a Firebase real-time stream
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // return const Center(child: CircularProgressIndicator());
@@ -60,13 +60,13 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
 
         if (snapshot.hasData) {
           // Map snapshot data to the students list
-          // studentsFeature = snapshot.data!.docs.map((doc) {
-          //   return StudentModel.fromjson({
-          //     'name': doc['name'],
-          //     'code': doc['code'],
-          //     'id': doc.id,
-          //   });
-          // }).toList();
+          studentsFeature = snapshot.data!.docs.map((doc) {
+            return StudentModel.fromJson({
+              'name': doc['name'],
+              'code': doc['code'],
+              'id': doc.id,
+            });
+          }).toList();
 
           // Apply filtering directly here
           filteredStudents = _getFilteredStudents(studentsFeature);
@@ -87,6 +87,7 @@ class _StudentListViewBodyState extends State<FeaturedStudentsViewBody> {
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (context, index) {
                       return FeatureStudentItemWidget(
+                        lectureModel: widget.lectureModel,
                         addNewStudentModel: filteredStudents[index],
                       );
                     },

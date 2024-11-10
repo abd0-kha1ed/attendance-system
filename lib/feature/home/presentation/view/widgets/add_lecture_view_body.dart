@@ -1,5 +1,6 @@
 import 'package:attendance/constant.dart';
 import 'package:attendance/core/widgets/custom_container.dart';
+import 'package:attendance/core/widgets/custom_snack_bar.dart';
 import 'package:attendance/feature/home/presentation/manger/add_lecture_cubit/add_lecture_cubit.dart';
 import 'package:attendance/feature/home/presentation/manger/add_lecture_cubit/add_lecture_cubit_state.dart';
 import 'package:attendance/feature/home/presentation/view/widgets/custom_dropdown_button.dart';
@@ -7,6 +8,7 @@ import 'package:attendance/feature/home/presentation/view/widgets/time_picker_bo
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class AddLectureViewBody extends StatefulWidget {
   const AddLectureViewBody({super.key});
@@ -259,7 +261,8 @@ class _AddLectureViewBodyState extends State<AddLectureViewBody> {
                   selectedCount,
                   selectedTime,
                 );
-                // showSnackBar(context, 'Lecture saved successfully');
+                GoRouter.of(context).pop();
+                showSnackBar(context, 'Lecture saved successfully');
               },
             ),
           ],

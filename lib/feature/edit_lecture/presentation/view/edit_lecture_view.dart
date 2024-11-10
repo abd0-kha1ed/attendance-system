@@ -1,10 +1,12 @@
 import 'package:attendance/core/widgets/custom_lift_arrow.dart';
 import 'package:attendance/feature/edit_lecture/presentation/view/widgets/edit_lecture_view_body.dart';
+import 'package:attendance/feature/home/data/models/lecture_model.dart';
 import 'package:flutter/material.dart';
 
 class EditLectureView extends StatelessWidget {
-  const EditLectureView({super.key});
-  
+  const EditLectureView({super.key, required this.lectureModel});
+  final LectureModel lectureModel;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +34,7 @@ class EditLectureView extends StatelessWidget {
         title: const Text('Edit Lecture'),
         centerTitle: true,
       ),
-      body: const EditLectureViewBody(),
+      body:  EditLectureViewBody(lectureModel: lectureModel,),
     );
   }
 }

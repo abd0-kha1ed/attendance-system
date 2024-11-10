@@ -48,7 +48,7 @@ class FeaturedStudentsView extends StatelessWidget {
             )
           ],
         ),
-        body:  FeaturedStudentsViewBody(lectureId: lectureModel.id,),
+        body:  FeaturedStudentsViewBody(lectureModel: lectureModel,),
         floatingActionButton: FloatingActionButtonWidget(
           onPressed: () {
             GoRouter.of(context).push(AppRouters.kAddFeatureStudent, extra: lectureModel);

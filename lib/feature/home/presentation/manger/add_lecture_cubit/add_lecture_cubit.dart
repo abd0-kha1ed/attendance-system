@@ -56,6 +56,23 @@ class AddLectureCubit extends Cubit<AddLectureState> {
     }
   }
 
+  // Future<void> updateLectureData(String lectureId, String region,
+  //     int totalCount, DateTime lectureTime, String grade) async {
+  //   LectureModel lectureModel = LectureModel(
+  //     id: lectureId,
+  //     time: lectureTime,
+  //     studentCount: totalCount,
+  //     startingDay: state.selectedDayIndex == 01 ? 'Saturday' : 'Sunday',
+  //     grade: grade,
+  //     region: region,
+  //     createdAt: DateTime.now(),
+  //   );
+  //   await firebaseFirestore
+  //       .collection('lectures')
+  //       .doc(lectureId)
+  //       .update(lectureModel.toMap());
+  // }
+
 // Future<List<LectureModel>> fetchLectures() async {
 //   try {
 //     final querySnapshot =

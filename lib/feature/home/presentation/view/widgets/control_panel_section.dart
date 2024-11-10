@@ -21,7 +21,7 @@ class ControlPanelSection extends StatelessWidget {
             Expanded(
               child: CustomControlPanel(
                 onTap: () {
-                  GoRouter.of(context).push(AppRouters.kEditLectureView);
+                  GoRouter.of(context).push(AppRouters.kEditLectureView, extra: lectureModel);
                 },
                 title: 'Edit Lecture',
                 icon: Icons.edit,
