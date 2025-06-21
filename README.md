@@ -51,5 +51,8 @@ A professional mobile app for managing student attendance, designed to help **te
 - ✅ Ideal for educational institutions looking to automate attendance and improve communication.
 
 ---
+## 📸 Screenshots
+
+![Attendance System Preview](screenshots/attendance_combined_preview.jpg)
 
 💬 **Open to feedback, suggestions, and collaborations!**
