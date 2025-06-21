@@ -62,13 +62,11 @@ class _SplashViewBodyState extends State<SplashViewBody>
   }
 
   void navigateToHomeView() {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.push(
-        // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(
           builder: (context) {
-            // return LoginView();
             return BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
                 if (state is AuthErrorState) {
@@ -100,7 +98,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
     slidingAnimation =
-        Tween<Offset>(begin: const Offset(0, 15), end: Offset.zero)
+        Tween<Offset>(begin: const Offset(0, 30), end: Offset.zero)
             .animate(animationController);
 
     animationController.forward();
